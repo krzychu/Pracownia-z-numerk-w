@@ -7,3 +7,7 @@ matrix_test: matrix.h matrix_test.cpp
 memory_test: matrix.h matrix_test.cpp
 	g++ matrix_test.cpp -g -o matrix_test.run -DTEST_MEMORY
 	valgrind ./matrix_test.run
+
+submatrix_test: matrix.h matrix_test.cpp
+	g++ matrix_test.cpp -g -o matrix_test.run -DTEST_SUB
+	./matrix_test.run

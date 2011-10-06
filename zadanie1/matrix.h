@@ -71,37 +71,42 @@ Matrix<T> std_mul (const Matrix<T>& a, const Matrix<T>& b){
 
 template <class Type>
 Matrix<Type> fast_mul_internal(const Matrix<Type>& a, const Matrix<Type>& b){
+	
+
+	
 	Matrix<Type> result(a.getSize());
 	if(a.getSize() == 1){
 		result.set(0,0,a.get(0,0) * b.get(0,0));
-		return result;
 	}
-	
-	Matrix<Type> A,B,C,D,E,F,G,H;
-	Matrix<Type> P1,P2,P3,P4,P5,P6,P7;
-	A = a.getA();
-	B = a.getB();
-	C = a.getC();
-	D = a.getD();
+	else{
+			Matrix<Type> A,B,C,D,E,F,G,H;
+			Matrix<Type> P1,P2,P3,P4,P5,P6,P7;
+			A = a.getA();
+			B = a.getB();
+			C = a.getC();
+			D = a.getD();
 
-	E = b.getA();
-	F = b.getC();
-	G = b.getB();
-	H = b.getD();
+			E = b.getA();
+			F = b.getC();
+			G = b.getB();
+			H = b.getD();
 
-	P1 = fast_mul_internal(A,G-H);	
-	P2 = fast_mul_internal(A+B,H);
-	P3 = fast_mul_internal(C+D,E);
-	P4 = fast_mul_internal(D,F-E);
-	P5 = fast_mul_internal(A+D,E+H);
-	P6 = fast_mul_internal(B-D,F+H);
-	P7 = fast_mul_internal(A-C,E+G);
+			P1 = fast_mul_internal(A,G-H);	
+			P2 = fast_mul_internal(A+B,H);
+			P3 = fast_mul_internal(C+D,E);
+			P4 = fast_mul_internal(D,F-E);
+			P5 = fast_mul_internal(A+D,E+H);
+			P6 = fast_mul_internal(B-D,F+H);
+			P7 = fast_mul_internal(A-C,E+G);
 
-	result.setR(P5 + P4 - P2 + P6);
-	result.setS(P1 + P2);
-	result.setT(P3 + P4);
-	result.setU(P5 + P1 - P3 - P7);
-
+			result.setR(P5 + P4 - P2 + P6);
+			result.setS(P1 + P2);
+			result.setT(P3 + P4);
+			result.setU(P5 + P1 - P3 - P7);
+	}
+/*	std::cout << "A = " << a;
+	std::cout << "B = " << b;
+	std::cout << "A * B = " << result;*/
 	return result;
 }
 
@@ -140,7 +145,8 @@ class Matrix{
 			m_colShift = colShift;
 		}
 
-	protected:	
+		
+	public:
 		inline void set(int row, int col, T val) const{
 			row += m_rowShift;
 			col += m_colShift;
@@ -152,7 +158,6 @@ class Matrix{
 
 
 
-	public:
 		Matrix(){
 			m_data = NULL;
 			m_size = 0;
@@ -245,25 +250,26 @@ class Matrix{
 
 		Matrix<T> getA() const{
 			int newsize = m_size/2;
-			Matrix<T> result(m_data, 0, 0, newsize);
+			Matrix<T> result(m_data, m_rowShift, m_colShift, newsize);
 			return result;
 		}
 		
 		Matrix<T> getB() const{
 			int newsize = m_size/2;
-			Matrix<T> result(m_data, 0, newsize, newsize);
+			Matrix<T> result(m_data, m_rowShift, m_colShift + newsize, newsize);
 			return result;
 		}
 		
 		Matrix<T> getC() const{
 			int newsize = m_size/2;
-			Matrix<T> result(m_data, newsize, 0, newsize);
+			Matrix<T> result(m_data, m_rowShift + newsize, m_colShift, newsize);
 			return result;
 		}
 		
 		Matrix<T> getD() const{
 			int newsize = m_size/2;
-			Matrix<T> result(m_data, newsize, newsize, newsize);
+			Matrix<T> result(m_data, m_rowShift+newsize, 
+				m_colShift + newsize, newsize);
 			return result;
 		}
 
