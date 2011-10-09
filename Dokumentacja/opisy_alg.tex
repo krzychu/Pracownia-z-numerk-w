@@ -1,0 +1,27 @@
+\section{Opis algorytmów}
+\subsection{Agorytm naturalny mnożenia macierzy}
+Pierwszy badany przez nas algorytm jest bezpośrednią realizacją definicji mnożenia macierzy. Mając dane $A,B \in M_{n}$, gdzie $M_{n}$ jest zbiorem macierzy kwadratowych o szerokości i długości $n$,ich iloczyn określamy jako
+$$ \begin{bmatrix}
+a_{11} & a_{12} & \ldots & a_{1n} \\
+a_{21} & \hdotsfor{3} \\
+\hdotsfor{4}\\
+a_{n1} & \hdotsfor{2} & a_{nn} \end{bmatrix}
+\begin{bmatrix}
+b_{11} & b_{12} & \ldots & b_{1n} \\
+b_{21} & \hdotsfor{3} \\
+\hdotsfor{4}\\
+b_{n1} & \hdotsfor{2} & b_{nn} \end{bmatrix}=
+\begin{bmatrix}
+c_{11} & c_{12} & \ldots & c_{1n} \\
+a_{21} & \hdotsfor{3} \\
+\hdotsfor{4}\\
+c_{n1} & \hdotsfor{2} & c_{nn} \end{bmatrix}
+$$
+
+Wobec tego dowolny element macierzy wynikowej jest określony wzorem $c_{ij}=\sum_{k=1}^{n} a_{ik}b_{kj}$. 
+Pozytywną cechą tego algorytmu jest jego prostota, jednakże obliczenie wartości każdego elementu macierzy wynikowej musimy wykonać $n$ mnożeń oraz $n$ dodawań, co przy uwzględnieniu ilości elementów w wyniku daje złożoność $O(n^3)$. Jak się okazuje istnieją algorytmy o lepszej złożoności. Jednym z nich jest algorytm Strassena.
+\subsection{Algorytm Strassena mnożenia macierzy}
+Rozważamy jedynie macierze kwadratowe, których rozmiar wynosi $2^n$, $n \in \mathbf{N}$ (jeżeli wymiar macierzy nie jest tej postaci, uzupełamy badaną macierz zerami tak, aby spełniała to założenie). W pojedynczym wywołaniu algorytmu Strassena, macierze wejściowe $X$ i $Y$ dzielone są na 4 podmacierze tych samych rozmiarów.
+$$X=\begin{bmatrix} A & B \\ C & D \end{bmatrix},	
+Y=\begin{bmatrix} E & G \\ F & H \end{bmatrix},		
+Z=XY=\begin{bmatrix} R & S \\ T & U \end{bmatrix}$$
