@@ -103,8 +103,15 @@ Matrix<T> std_mul (const Matrix<T>& a, const Matrix<T>& b){
 	Strassen matrix multiplication. We assume that a and b dimension is a power of 2
 */
 template <class Type>
-Matrix<Type> fast_mul_internal(const Matrix<Type>& a, const Matrix<Type>& b){
+Matrix<Type> fast_mul_internal(
+	const Matrix<Type>& a, 
+	const Matrix<Type>& b, 
+	int threshold)
+{
 	
+	if(a.getSize() < threshold)
+		return std_mul(a,b);
+
 	Matrix<Type> result(a.getSize());
 	if(a.getSize() == 1){
 		result.set(0,0,a.get(0,0) * b.get(0,0));
@@ -123,13 +130,13 @@ Matrix<Type> fast_mul_internal(const Matrix<Type>& a, const Matrix<Type>& b){
 	G = b.getB();
 	H = b.getD();
 
-	P1 = fast_mul_internal(A,G-H);	
-	P2 = fast_mul_internal(A+B,H);
-	P3 = fast_mul_internal(C+D,E);
-	P4 = fast_mul_internal(D,F-E);
-	P5 = fast_mul_internal(A+D,E+H);
-	P6 = fast_mul_internal(B-D,F+H);
-	P7 = fast_mul_internal(A-C,E+G);
+	P1 = fast_mul_internal(A,G-H, threshold);	
+	P2 = fast_mul_internal(A+B,H, threshold);
+	P3 = fast_mul_internal(C+D,E, threshold);
+	P4 = fast_mul_internal(D,F-E, threshold);
+	P5 = fast_mul_internal(A+D,E+H, threshold);
+	P6 = fast_mul_internal(B-D,F+H, threshold);
+	P7 = fast_mul_internal(A-C,E+G, threshold);
 
 	result.setR(P5 + P4 - P2 + P6);
 	result.setS(P1 + P2);
@@ -146,7 +153,7 @@ Matrix<Type> fast_mul_internal(const Matrix<Type>& a, const Matrix<Type>& b){
 	must be equal.
 */
 template <class T>
-Matrix<T> fast_mul(const Matrix<T>& a, const Matrix<T>& b){
+Matrix<T> fast_mul(const Matrix<T>& a, const Matrix<T>& b, int threshold = 0){
 	if(a.getSize() != b.getSize())
 		throw "Matrix size mismatch";
 
@@ -156,7 +163,7 @@ Matrix<T> fast_mul(const Matrix<T>& a, const Matrix<T>& b){
 	Matrix<T> b_big = b;
 	b_big.extend();
 
-	Matrix<T> result = fast_mul_internal<T>(a_big,b_big);
+	Matrix<T> result = fast_mul_internal<T>(a_big,b_big, threshold);
 	result.cut(a.getSize());
 	return result;
 }
@@ -236,6 +243,23 @@ class Matrix{
 				
 			return m_data->m_data[row * m_data->m_size + col];
 		} 
+
+		
+		/*
+			returns sum of all elements squared
+		*/
+		T delta() const{
+			T result = 0;
+			T acc;
+			for(int i=0; i<m_size; i++){
+				for(int j=0 ; j<m_size; j++){
+					acc = get(i,j);
+					acc = acc * acc;
+					result += acc;
+				}
+			}		
+			return result;
+		}
 
 
 		// returns matrix size
@@ -385,7 +409,8 @@ class Matrix{
 
 		friend std::ostream& operator << <> (std::ostream& , const Matrix<T>& );
 		friend Matrix<T> std_mul <> (const Matrix<T>& a, const Matrix<T>& b);
-		friend Matrix<T> fast_mul_internal <> (const Matrix<T>& a, const Matrix<T>& b);
+		friend Matrix<T> fast_mul_internal <> (const Matrix<T>& a, 
+						const Matrix<T>& b, int theshold);
 };
 
 
