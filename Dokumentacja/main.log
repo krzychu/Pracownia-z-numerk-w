@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2011.10.6)  9 OCT 2011 19:57
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2011.10.6)  10 OCT 2011 01:20
 entering extended mode
  %&-line parsing enabled.
 **main.tex
@@ -458,7 +458,8 @@ Package: times 2005/04/12 PSNFSS-v9.2a (SPQR)
 (/usr/share/texmf-texlive/tex/latex/multirow/multirow.sty
 \bigstrutjot=\dimen124
 ) (./main.aux
-(./wstep.aux) (./opisy_alg.aux))
+(./wstep.aux) (./opisy_alg.aux) (./zlozonosc_poprawnosc.aux)
+(./testy_tabele_wykresy.aux) (./wnioski.aux) (./bibliografia.aux))
 \openout1 = `main.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 15.
@@ -538,29 +539,29 @@ LaTeX Info: Redefining \pageref on input line 15.
 \openout3 = `main.out'.
 
 \AtBeginShipoutBox=\box28
+LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <17.28> not available
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 19.
+ (./main.toc
+LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <12> not available
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 2.
+)
+\tf@toc=\write4
+\openout4 = `main.toc'.
+
  [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
 \openout2 = `wstep.aux'.
 
+ (./wstep.tex) [2
 
-(./wstep.tex)
+]
 \openout2 = `opisy_alg.aux'.
 
  (./opisy_alg.tex
-LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <17.28> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 1.
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <14.4> not available
 (Font)              Font shape `T1/ptm/b/n' tried instead on input line 2.
-
-Overfull \hbox (33.66267pt too wide) in paragraph at lines 21--23
-[]\T1/ptm/m/n/12 Wobec tego do-wolny ele-ment ma-cie-rzy wy-ni-ko-wej jest okre
--±lony wzo-rem $\OML/cmm/m/it/12 c[] \OT1/cmr/m/n/12 = [][] \OML/cmm/m/it/12 a[
-]b[]$\T1/ptm/m/n/12 .
- []
-
-) [2
-
+) [3
 
 
 ]
@@ -569,35 +570,48 @@ Overfull \hbox (33.66267pt too wide) in paragraph at lines 21--23
  (./zlozonosc_poprawnosc.tex)
 \openout2 = `testy_tabele_wykresy.aux'.
 
- (./testy_tabele_wykresy.tex)
+
+(./testy_tabele_wykresy.tex) [4
+
+
+
+
+]
 \openout2 = `wnioski.aux'.
 
- (./wnioski.tex)
+ (./wnioski.tex) [5
+
+
+]
 \openout2 = `bibliografia.aux'.
 
-(./bibliografia.tex) (./main.aux (./wstep.aux) (./opisy_alg.aux)
-(./zlozonosc_poprawnosc.aux) (./testy_tabele_wykresy.aux) (./wnioski.aux)
-(./bibliografia.aux)) ) 
+ (./bibliografia.tex)
+[6
+
+
+] (./main.aux (./wstep.aux) (./opisy_alg.aux) (./zlozonosc_poprawnosc.aux)
+(./testy_tabele_wykresy.aux) (./wnioski.aux) (./bibliografia.aux)) ) 
 Here is how much of TeX's memory you used:
- 5271 strings out of 495026
- 72333 string characters out of 1181802
- 151748 words of memory out of 3000000
- 8335 multiletter control sequences out of 15000+50000
- 25522 words of font info for 46 fonts, out of 3000000 for 9000
+ 5320 strings out of 495026
+ 72931 string characters out of 1181802
+ 151989 words of memory out of 3000000
+ 8357 multiletter control sequences out of 15000+50000
+ 39566 words of font info for 57 fonts, out of 3000000 for 9000
  48 hyphenation exceptions out of 8191
- 38i,8n,38p,388b,310s stack positions out of 5000i,500n,10000p,200000b,50000s
-{/usr/share/texmf-texlive/fonts/enc/dvips/base/8r.enc}</
-usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/t
-exmf-texlive/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texmf-texliv
-e/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texmf-texlive/fonts/typ
-e1/public/amsfonts/cm/cmmi8.pfb></usr/share/texmf-texlive/fonts/type1/public/am
-sfonts/cm/cmr12.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cm
-r8.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy10.pfb></us
-r/share/texmf-texlive/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texliv
-e/fonts/type1/urw/times/utmr8a.pfb>
-Output written on main.pdf (2 pages, 93966 bytes).
+ 38i,8n,38p,519b,310s stack positions out of 5000i,500n,10000p,200000b,50000s
+{/usr/share
+/texmf-texlive/fonts/enc/dvips/base/8r.enc}</usr/share/texmf-texlive/fonts/type
+1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-texlive/fonts/type1/public/am
+sfonts/cm/cmex10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/c
+mmi12.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi8.pfb></
+usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/te
+xmf-texlive/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texmf-texlive/f
+onts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-texlive/fonts/type1/
+urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmr8a.pfb
+></usr/share/texmf-texlive/fonts/type1/urw/times/utmri8a.pfb>
+Output written on main.pdf (6 pages, 113602 bytes).
 PDF statistics:
- 55 PDF objects out of 1000 (max. 8388607)
- 6 named destinations out of 1000 (max. 500000)
- 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 114 PDF objects out of 1000 (max. 8388607)
+ 16 named destinations out of 1000 (max. 500000)
+ 57 words of extra memory for PDF output out of 10000 (max. 10000000)
 
