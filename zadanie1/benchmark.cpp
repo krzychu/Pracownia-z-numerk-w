@@ -7,17 +7,18 @@ static long start_time_val;
 long get_usec(){
 	timeval tv;
 	gettimeofday(&tv, NULL);
-	return tv.tv_usec;
+	return tv.tv_usec + tv.tv_sec*1000000;
 }
 
-void start_time(){
-	start_time_val = get_usec();
+void start_timer(){
+  start_time_val = get_usec();
 }
 
 long stop_timer(){
-	return get_usec() - start_time_val;
+  return get_usec() - start_time_val;
 }
 
 void print_timer(){
-	std::cout << "time : " << stop_timer() / 1000;
+  std::cout << "time : " << stop_timer()  << "us\n";
 }
+

@@ -13,6 +13,12 @@ memory_test: matrix.h memory_test.cpp
 	valgrind ./memory_test.run double normal 5 10
 
 
-submatrix_test: matrix.h matrix_test.cpp
-	g++ matrix_test.cpp -g -o matrix_test.run -DTEST_SUB
-	./matrix_test.run
+time_test: time_test.cpp benchmark.cpp matrix.h
+	g++  benchmark.cpp time_test.cpp -g -Wall -o time_test.run
+	./time_test.run > time.dat
+	gnuplot -p time_plot.gnu
+ 
+
+delta_test: matrix.h delta_test.cpp
+	g++ delta_test.cpp -g -Wall -o delta_test.run
+	

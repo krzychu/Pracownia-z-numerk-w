@@ -1,0 +1,37 @@
+Testy do zrobienia:
+
+1. Wydajnościowe (Można by na kilku różnych komputerach)
+
+  - porównanie szybkości metod(na razie dla pojedyńczej precyzji):
+    * strassena
+    * naturalnej
+    * zmodyfikowanego strassena z optymalnym progiem
+    program dla zadanego zakresu wygeneruje dane, zapisze w formacie
+    czytelnym dla gnuplota
+
+  - wyznaczenie optymalnego progu
+    program zrobi dla kilku rozmiarów macierzy testy wydajnościowe,
+    i zostawi dane
+
+
+
+2. Dokładnościowe
+  
+ 
+
+
+
+
+
+
+
+Spis programów testujących, parametry trzeba zmieniać w Makefile
+
+-----------------------------------------------------------------------
+
+time_test.run - testuje czas działania obu metod mnożenia macierzy
+
+polecenie : time_test.run METODA A B PRÓG
+  gdzie metoda to albo "stassen" albo "standard", a A i B definiują początek i
+  koniec testowanego przedziału wielkości macierzy, a próg to parametr metody
+  strassena.
