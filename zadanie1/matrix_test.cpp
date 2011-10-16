@@ -69,6 +69,6 @@ void test_identity_square(int s){
 
 
 int main(int argc, char** argv){
-	test_mul(4);
+	test_mul(7);
 	return 0;
 }

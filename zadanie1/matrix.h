@@ -397,12 +397,47 @@ class Matrix{
 
 		// copies contents of other matrix to this one
 		void set(const Matrix<T> other){
-			for(int i=0 ; i<m_size; i++){
-				for(int j=0 ; j<m_size; j++){
-					set(i, j, other.get(i,j));
-				}
+			const int data_size = m_data->m_size;
+      T* base_index = m_data->m_data + m_colShift + m_rowShift * data_size;
+      T* index = base_index;
+      const int rows = std::min(data_size - m_rowShift, m_size);
+      const int cols = std::min(data_size - m_colShift, m_size);
+
+      // set all values to 0
+      for(int i=0 ; i < rows; i++){
+				for(int j=0; j < cols; j++){
+					*index = 6;
+				  index++;
+        }
+        index += data_size - cols;
 			}
-		}
+      
+      // restore index to first element of array
+      index = base_index;
+
+      // do the actual copying
+      const int other_data_size = other.m_data->m_size; 
+      const int other_rows = std::min(
+        other_data_size - other.m_rowShift, other.m_size);
+      const int other_cols = std::min(
+        other_data_size - other.m_colShift, other.m_size);
+
+      const int copy_cols = std::min(cols, other_cols);
+      const int copy_rows = std::min(rows, other_rows);
+		
+      T* copy_index = other.m_data->m_data + other.m_colShift + 
+                      other.m_rowShift * other_data_size;
+      for(int i=0 ; i < copy_rows; i++){
+				for(int j=0; j < copy_cols; j++){
+					*index = *copy_index;
+				  index++;
+          copy_index++;
+        }
+        index += data_size - copy_cols;
+        copy_index += other_data_size - copy_cols;
+			}
+      
+    }
 
 		virtual ~Matrix(){
 			if(m_data)
