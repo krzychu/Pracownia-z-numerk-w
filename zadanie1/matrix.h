@@ -195,6 +195,8 @@ class Matrix{
 
 		
 	public:
+    
+    enum{OP_ADD, OP_SUB, OP_COPY};
 
 		// sets A_i,j to be val
 		inline void set(int row, int col, T val) const{
@@ -354,28 +356,20 @@ class Matrix{
 		}
 
 		
-	  // matrix addition
+		// adds other to this matrix
 		Matrix<T> operator+(const Matrix<T>& other) const{
 			Matrix m(m_size);
-			for(int i=0 ; i<m_size; i++){
-				for(int j=0 ; j<m_size; j++){
-					m.set(i, j, get(i,j) + other.get(i,j));
-				}
-			}
-			return m;
+		  m.set(*this);
+      m.apply(OP_ADD, other);
+      return m;
 		}
-
-
 
 		// subtracts one matrix from another
 		Matrix<T> operator-(const Matrix<T>& other) const{
 			Matrix m(m_size);
-			for(int i=0 ; i<m_size; i++){
-				for(int j=0 ; j<m_size; j++){
-					m.set(i, j, get(i,j) - other.get(i,j));
-				}
-			}
-			return m;
+		  m.set(*this);
+      m.apply(OP_SUB, other);
+      return m;
 		}
 
 	
@@ -394,9 +388,56 @@ class Matrix{
 				old->decRefs();
 		}
 
+    // apply operation to two matrices
+    void apply(int operation, const Matrix<T>& other){
+    	const int data_size = m_data->m_size;
+      T* index = m_data->m_data + m_colShift + m_rowShift * data_size;
+      const int rows = std::min(data_size - m_rowShift, m_size);
+      const int cols = std::min(data_size - m_colShift, m_size);
+      const int other_data_size = other.m_data->m_size; 
+      const int other_rows = std::min(
+        other_data_size - other.m_rowShift, other.m_size);
+      const int other_cols = std::min(
+        other_data_size - other.m_colShift, other.m_size);
+      const int copy_cols = std::min(cols, other_cols);
+      const int copy_rows = std::min(rows, other_rows);	
+      T* copy_index = other.m_data->m_data + other.m_colShift + 
+                      other.m_rowShift * other_data_size;
+      
+      if(operation == OP_COPY){
+        for(int i=0 ; i < copy_rows; i++){
+          for(int j=0; j < copy_cols; j++){
+            *index++ = *copy_index++;
+          }
+          index += data_size - copy_cols;
+          copy_index += other_data_size - copy_cols;
+        }
+      }
+      else if(operation == OP_ADD){
+        for(int i=0 ; i < copy_rows; i++){
+          for(int j=0; j < copy_cols; j++){
+            *index++ += *copy_index++;
+          }
+          index += data_size - copy_cols;
+          copy_index += other_data_size - copy_cols;
+        }
+      }
+      else if(operation == OP_SUB){
+        for(int i=0 ; i < copy_rows; i++){
+          for(int j=0; j < copy_cols; j++){
+            *index++ -= *copy_index++;
+          }
+          index += data_size - copy_cols;
+          copy_index += other_data_size - copy_cols;
+        }
+      }
 
-		// copies contents of other matrix to this one
-		void set(const Matrix<T> other){
+    } 
+
+
+
+    // sets matrix content to be 0
+		void set_zero(){
 			const int data_size = m_data->m_size;
       T* base_index = m_data->m_data + m_colShift + m_rowShift * data_size;
       T* index = base_index;
@@ -406,37 +447,18 @@ class Matrix{
       // set all values to 0
       for(int i=0 ; i < rows; i++){
 				for(int j=0; j < cols; j++){
-					*index = 6;
+					*index = 0;
 				  index++;
         }
         index += data_size - cols;
 			}
-      
-      // restore index to first element of array
-      index = base_index;
+    } 
 
-      // do the actual copying
-      const int other_data_size = other.m_data->m_size; 
-      const int other_rows = std::min(
-        other_data_size - other.m_rowShift, other.m_size);
-      const int other_cols = std::min(
-        other_data_size - other.m_colShift, other.m_size);
 
-      const int copy_cols = std::min(cols, other_cols);
-      const int copy_rows = std::min(rows, other_rows);
-		
-      T* copy_index = other.m_data->m_data + other.m_colShift + 
-                      other.m_rowShift * other_data_size;
-      for(int i=0 ; i < copy_rows; i++){
-				for(int j=0; j < copy_cols; j++){
-					*index = *copy_index;
-				  index++;
-          copy_index++;
-        }
-        index += data_size - copy_cols;
-        copy_index += other_data_size - copy_cols;
-			}
-      
+		// copies contents of other matrix to this one
+		void set(const Matrix<T>& other){
+      set_zero();
+      apply(OP_COPY,other);
     }
 
 		virtual ~Matrix(){
