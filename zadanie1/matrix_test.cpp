@@ -66,38 +66,9 @@ void test_identity_square(int s){
 	cout << fast_mul(id,id);
 }
 
-void test_partition(){
-	MatrixIdentity<float> id(3);
-	cout << id;
-	id.extend();
-	cout << id;
-	cout << "Duze A\n";
-	cout << id.getA().getA();
-	cout << id.getA().getB();
-	cout << id.getA().getC();
-	cout << id.getA().getD();
-	
-	cout << "Duze B\n";
-	cout << id.getB().getA();
-	cout << id.getB().getB();
-	cout << id.getB().getC();
-	cout << id.getB().getD();
-	
-	cout << "Duze C\n";
-	cout << id.getC().getA();
-	cout << id.getC().getB();
-	cout << id.getC().getC();
-	cout << id.getC().getD();
-	
-	cout << "Duze D\n";
-	cout << id.getD().getA();
-	cout << id.getD().getB();
-	cout << id.getD().getC();
-	cout << id.getD().getD();
-	
-}
+
 
 int main(int argc, char** argv){
-	test_mul(8);
+	test_mul(4);
 	return 0;
 }

@@ -2,6 +2,7 @@
 #define MATRIX_H
 
 #include <iostream>
+#include <algorithm>
 #include <cstdlib>
 
 
@@ -353,7 +354,7 @@ class Matrix{
 		}
 
 		
-		// adds two matrices
+	  // matrix addition
 		Matrix<T> operator+(const Matrix<T>& other) const{
 			Matrix m(m_size);
 			for(int i=0 ; i<m_size; i++){
@@ -363,6 +364,7 @@ class Matrix{
 			}
 			return m;
 		}
+
 
 
 		// subtracts one matrix from another

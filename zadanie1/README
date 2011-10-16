@@ -17,21 +17,10 @@ Testy do zrobienia:
 
 2. Dokładnościowe
   
- 
 
 
 
+Testy:
 
-
-
-
-Spis programów testujących, parametry trzeba zmieniać w Makefile
-
------------------------------------------------------------------------
-
-time_test.run - testuje czas działania obu metod mnożenia macierzy
-
-polecenie : time_test.run METODA A B PRÓG
-  gdzie metoda to albo "stassen" albo "standard", a A i B definiują początek i
-  koniec testowanego przedziału wielkości macierzy, a próg to parametr metody
-  strassena.
+make time_test: porównuje 3 metody dla zadanego zakresu wielkości
+macierzy, i rysuje wykres gnuplotem. 
