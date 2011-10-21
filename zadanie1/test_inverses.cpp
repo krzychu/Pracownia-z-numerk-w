@@ -7,8 +7,8 @@
 using namespace std;
 
 
-#define RANGE_START 10
-#define RANGE_END 50
+#define RANGE_START 64
+#define RANGE_END 65
 #define RAND_INT_RANGE 2
 
 template<class T>
@@ -76,7 +76,7 @@ void test(){
     mutant_error2 = fast_mul(ps.second, ps.first, 128) - id;
    
   
-    cout << i << " \n";
+    cout << i << " ";
     
     cout << std_error1.delta() << " ";
     cout << strassen_error1.delta() << " ";

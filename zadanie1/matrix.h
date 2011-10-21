@@ -83,6 +83,8 @@ std::ostream& operator <<(std::ostream& os, const Matrix<T>& mat){
 /*
 	O(n^3) straightforward matrix multiplication
 */
+
+
 template<class T>
 Matrix<T> std_mul (const Matrix<T>& a, const Matrix<T>& b){
 	Matrix<T> m(a.getSize());
@@ -95,7 +97,7 @@ Matrix<T> std_mul (const Matrix<T>& a, const Matrix<T>& b){
   T* b_index = b.getIndex();
 
   for(int i=0 ; i<rows; i++){
-		for(int j = 0; j < cols ; j++){
+		for(int j=0; j < cols ; j++){
 			T acc = 0;
 			for(int k = 0; k < travel ; k++){
 				acc += *a_index * *b_index;
@@ -109,10 +111,31 @@ Matrix<T> std_mul (const Matrix<T>& a, const Matrix<T>& b){
     a_index += a.m_data->m_size;
     b_index = b.getIndex();
 	}
+
+  std::cout << "std mul\n";
+  std::cout << a;
+  std::cout << b;
+  std::cout << m;
+
 	return m;
 }
 
-
+/*
+template<class T>
+Matrix<T> std_mul (const Matrix<T>& a, const Matrix<T>& b){
+	Matrix<T> m(a.getSize());
+  for(int i= 0 ;i<a.getSize() ; i++){
+    for(int j=0 ; j<a.getSize(); j++){
+      T acc = 0;
+      for(int k=0 ; k<a.getSize() ; k++){
+        acc += a.get(i,k) * b.get(k,j) ;
+      }
+      m.set(i,j,acc);
+    }
+  }
+	return m;
+}
+*/
 
 /*
 	Strassen matrix multiplication. We assume that a and b dimension is a power of 2
@@ -124,7 +147,7 @@ Matrix<Type> fast_mul_internal(
 	int threshold)
 {
 	
-	if(a.getSize() < threshold)
+	if(a.getSize() <= threshold)
 		return std_mul(a,b);
 
 	Matrix<Type> result(a.getSize());
