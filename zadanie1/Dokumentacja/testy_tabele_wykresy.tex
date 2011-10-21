@@ -1,1 +1,22 @@
 \section{Przebieg doświadczenia numerycznego}
+\subsection{Porównanie szybkości algorytmów}
+Dla porównania szybkości obydwu algorytmów opisanych powyżej wygenerowaliśmy
+losowo macierze z zakresu wielkośći $n \in [4, 2000]$ i zmierzyliśmy czasy ich
+działania. Otrzmane wyniki wykorzystaliśmy do wygenerowania wykresu zależności
+czasu działania od wielkosci macierzy dla algrymu Strassena i algorytmu
+naturalnego.
+%tu będzie wykres
+Powyższy wykres pozwolił nam na wyciągnięcie wniosku, że dla badanego przez nas
+zakresu wielkości macierzy, mimo że algorytm Strassena ma mniejszą złożoność
+obliczeniową, jest wolniejszy od algorytmu naturalnego. W związku z tym
+postanowiliśmy zbadać, czy połączenie obydwu algorytmów nie dałoby znacznie
+lepszych wyników. Na podstawie sporządzonych przez nas wykresów wyznaczyliśmy
+próg na $n=128$. Oznacza to, że dla mniejszych macierzy (z zakresu
+$n \in [4, 128]$)do obliczeń wykorzystujemy naturalną metodę mnożenia macierzy,
+dla reszty zaś metodę Strassena.
+\subsection{Porównanie dokładności algorytmów}
+W celu zbadania dokładności metod, obliczyliśmy wartości odpowiednich
+współczynników. Pierwszy z nich zadany jest wzorem:
+$$\Delta(XX^{-1}-I),$$
+gdzie $I$ jest macierzą jednostkową, natomiast $\Delta(X) = sum_{i=1}^{n}
+sum_{j=1}^{n} x_{ij}^2.$

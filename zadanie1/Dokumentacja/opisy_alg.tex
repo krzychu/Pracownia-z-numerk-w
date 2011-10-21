@@ -1,6 +1,8 @@
 \section{Opis algorytmów}
 \subsection{Agorytm naturalny mnożenia macierzy}
-Pierwszy badany przez nas algorytm jest bezpośrednią realizacją definicji mnożenia macierzy. Mając dane $A,B \in M_{n}$, gdzie $M_{n}$ jest zbiorem macierzy kwadratowych o szerokości i długości $n$,ich iloczyn określamy jako
+Pierwszy badany przez nas algorytm jest bezpośrednią realizacją definicji
+mnożenia macierzy. Mając dane $A,B \in M_{n}$, gdzie $M_{n}$ jest zbiorem
+macierzy kwadratowych o szerokości i długości $n$,ich iloczyn określamy jako
 $$ \begin{bmatrix}
 a_{11} & a_{12} & \ldots & a_{1n} \\
 a_{21} & \hdotsfor{3} \\
@@ -15,13 +17,43 @@ b_{n1} & \hdotsfor{2} & b_{nn} \end{bmatrix}=
 c_{11} & c_{12} & \ldots & c_{1n} \\
 a_{21} & \hdotsfor{3} \\
 \hdotsfor{4}\\
-c_{n1} & \hdotsfor{2} & c_{nn} \end{bmatrix}
-$$,
+c_{n1} & \hdotsfor{2} & c_{nn} \end{bmatrix},
+$$
 gdzie$c_{ij}=\sum_{k=1}^{n} a_{ik}b_{kj}$. 
 
-Pozytywną cechą tego algorytmu jest jego prostota, jednakże obliczenie wartości każdego elementu macierzy wynikowej musimy wykonać $n$ mnożeń oraz $n$ dodawań, co przy uwzględnieniu ilości elementów w wyniku daje złożoność $O(n^3)$. Jak się okazuje istnieją algorytmy o lepszej złożoności. Jednym z nich jest algorytm Strassena\footnote{Tu będzie przypis o hipotezie Strassena, jak dostaniem ksiazke od Michała}.
+Pozytywną cechą tego algorytmu jest jego prostota, jednakże obliczenie wartości
+każdego elementu macierzy wynikowej musimy wykonać $n$ mnożeń oraz $n$ dodawań,
+co przy uwzględnieniu ilości elementów w wyniku daje złożoność $O(n^3)$.
+Jak się okazuje istnieją algorytmy o lepszej złożoności. Jednym z nich jest
+algorytm Strassena\footnote{Tu będzie przypis o hipotezie Strassena, jak
+dostaniem ksiazke od Michała}.
 \subsection{Algorytm Strassena mnożenia macierzy}
-Rozważamy jedynie macierze kwadratowe, których rozmiar wynosi $2^n$, $n \in \mathbf{N}$ (jeżeli wymiar macierzy nie jest tej postaci, uzupełamy badaną macierz zerami tak, aby spełniała to założenie). W pojedynczym wywołaniu algorytmu Strassena, macierze wejściowe $X$ i $Y$ dzielone są na 4 podmacierze tych samych rozmiarów.
+Rozważamy jedynie macierze kwadratowe, których rozmiar wynosi $2^n$, $n \in
+\mathbf{N}$ (jeżeli wymiar macierzy nie jest tej postaci, uzupełamy badaną
+macierz zerami tak, aby spełniała to założenie). W pojedynczym wywołaniu
+algorytmu Strassena, macierze wejściowe $X$ i $Y$ dzielone są na 4 podmacierze
+tych samych rozmiarów.
 $$X=\begin{bmatrix} A & B \\ C & D \end{bmatrix},	
 Y=\begin{bmatrix} E & G \\ F & H \end{bmatrix},		
 Z=XY=\begin{bmatrix} R & S \\ T & U \end{bmatrix}$$
+
+Wówczas
+$$ R=AE+BF, S=AG+BH, T=CE+DF, U=CG+DH.$$
+Aby więc obliczyć iloczyn macierzy musimy wykonć 8 mnożeń macierzy stopnia
+$\frac{n}{2}$, stąd złożoność algorytmu nie ulega zmianie. Wystarczy jednak
+wprowadzić lekkie modyfikacje, aby  w każdym wykonaniu rekurencyjnym wykonywać
+7 zamiast 8 multiplikacji. Mówi o tym poniższy
+\begin{lm}{Zachodzą następujące równości:
+$$R=P_5+P_4-P_2+P_6, S=P_1+P_2, T=P_3+P_4, U=P_5+P_1-P_3-P_7,$$
+gdzie
+$$P_1=A(G-H), P_2=(A+B)H, P_3=(C+D)E, P_4=D(F-E),$$
+$$P_5=(A+D)(E+H), P_6=(B-D)(F+H), P_7 = (A-C)(E+G).$$}
+\end{lm}
+\begin{proof}
+Sprawdzimy poprawność równości $S=P_1+P_2$ (pozostałe równości sprawdza się
+analogicznie).
+$$S=P_1+P_2=A(G-H)+(A+B)H=AG-AH+AH-BH=AG+BH$$
+\end{proof}
+W każdym wywołaniu algorytmu Strassena dla macierzy dwukrotnie mniejszego
+rozmiaru wykonujemy 7 mnożeń, stąd złożoność algorytmu to $O(n^{\log{2}{7}})
+\approx O(2^{2.807}).$
