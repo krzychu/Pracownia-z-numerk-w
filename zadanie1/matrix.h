@@ -92,8 +92,6 @@ Matrix<T> std_mul (const Matrix<T>& a, const Matrix<T>& b){
   const int cols = std::max(a.getRealCols(), b.getRealCols());
   const int travel = std::min(a.getRealCols(), b.getRealRows());
 
-  const int as = a.getRealRows();
-
   T* a_index = a.getIndex();
   T* b_index = b.getIndex();
   T* a_limit = a.m_data->m_data + a.m_data->m_size*a.m_data->m_size;
