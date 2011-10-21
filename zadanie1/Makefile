@@ -30,8 +30,10 @@ time_test_best: time_test_best.cpp benchmark.cpp matrix.h
 
 
 # porównuje wszystkie metody pod względem dokładności w zakresie [2:512]
-
-
+assoc_test: assoc_test.cpp matrix.h
+	g++  assoc_test.cpp -g -Wall -o assoc_test.run
+	./assoc_test.run double > assoc_double.dat
+	./assoc_test.run float > assoc_float.dat
 
 
 # porównuje wszystkie metody pod względem dokładności w zakresie [2:512]

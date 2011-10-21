@@ -8,7 +8,7 @@ using namespace std;
 
 
 #define RANGE_START 2
-#define RANGE_END 500
+#define RANGE_END 512
 
 template<class T>
 pair< Matrix<T>, Matrix<T> > generate(int n){
@@ -59,6 +59,7 @@ pair< Matrix<T>, Matrix<T> > generate(int n){
 template<class T>
 void test(){
   cout << "# test dokładności, pierwsze 3 kolumny dla równania ^(X*(X^-1) - I)\n";
+  cout << "# następne 3 kolumny dla równania ^((X^-1)*X - I)\n";
   cout << "# rozmiar delta_std delta_strassen delta_mutant  itd\n";
   for(int i = RANGE_START; i <= RANGE_END; i+=1){
     pair< Matrix<T>, Matrix<T> > ps = generate<T>(i);
@@ -95,16 +96,16 @@ int main(int argc, char **argv){
   srand(time(0));
  
   if(argc != 2){
-    cout << "podaj precyzję : double lub float";
+    cout << "podaj precyzję : double lub float\n";
     return -1;
   }
 
   if(strcmp(argv[1], "double")){  
-    cout << "# precyzja : double";
+    cout << "# precyzja : double\n";
     test<double>();
   }
   else{
-    cout << "# precyzja : float";
+    cout << "# precyzja : float\n";
     test<float>();
   }
 
