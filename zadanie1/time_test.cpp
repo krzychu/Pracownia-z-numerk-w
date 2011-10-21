@@ -3,7 +3,7 @@
 #include <iostream>
 
 
-#define RANGE_START 2
+#define RANGE_START 4
 #define RANGE_END 50
 #define BEST_THRESHOLD 100
 
@@ -28,7 +28,7 @@ int main(int argc, char** argv){
     cout << stop_timer() << "  ";
   
     start_timer();
-    c = fast_mul(a,b,0);
+ //   c = fast_mul(a,b,0);
     cout << stop_timer() << "  ";
   
     start_timer();
