@@ -19,7 +19,7 @@ void test_mul(int size){
 	cout << "#! /usr/bin/octave -q\n";	
 	cout << "A = " << m1 << ";";
 	cout << "B = " << m2 << ";";
-	cout << "C_fast = " << fast_mul(m1,m2) << ";";
+	cout << "C_fast = " << fast_mul(m1,m2,4) << ";";
 	cout << "C_std = " << std_mul(m1,m2) << ";";
 	cout << "printf(\"fast error matrix\\n\");\n";
 	cout << "A * B - C_fast\n";
@@ -63,12 +63,13 @@ void test_submatrix(int s){
 void test_identity_square(int s){
 	MatrixIdentity<float> id(s);
 	cout << id;
-	cout << fast_mul(id,id);
+	cout << fast_mul(id,id,4);
 }
 
 
 
 int main(int argc, char** argv){
-	test_mul(7);
-	return 0;
+	test_mul(8);
+	//test_identity_square(17);
+  return 0;
 }

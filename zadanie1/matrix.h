@@ -94,7 +94,7 @@ Matrix<T> std_mul (const Matrix<T>& a, const Matrix<T>& b){
   T* a_index = a.getIndex();
   T* b_index = b.getIndex();
 
-  for(int i=0 ; i<rows; i++){
+  for(int i=0 ; i < rows; i++){
 		for(int j = 0; j < cols ; j++){
 			T acc = 0;
 			for(int k = 0; k < travel ; k++){

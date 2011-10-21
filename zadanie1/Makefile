@@ -5,6 +5,7 @@ matrix_test: matrix.h matrix_test.cpp
 	octave in.m
 	rm in.m
 
+
 memory_test: matrix.h memory_test.cpp
 	g++ memory_test.cpp -g -Wall -o memory_test.run
 	echo "strassen:"
@@ -21,8 +22,7 @@ time_test: time_test.cpp benchmark.cpp matrix.h
 
 inverse_test: test_inverses.cpp matrix.h
 	g++  test_inverses.cpp -g -Wall -o inverse_test.run
-	./inverse_test.run double > inverse_double.dat
-	./inverse_test.run float > inverse_float.dat
+	./inverse_test.run double 
 
 
 threshold: threshold_test.cpp benchmark.o matrix.h
