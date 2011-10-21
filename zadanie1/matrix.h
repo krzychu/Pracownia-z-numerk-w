@@ -111,12 +111,6 @@ Matrix<T> std_mul (const Matrix<T>& a, const Matrix<T>& b){
     a_index += a.m_data->m_size;
     b_index = b.getIndex();
 	}
-
-  std::cout << "std mul\n";
-  std::cout << a;
-  std::cout << b;
-  std::cout << m;
-
 	return m;
 }
 

@@ -21,7 +21,9 @@ time_test: time_test.cpp benchmark.cpp matrix.h
 
 inverse_test: test_inverses.cpp matrix.h
 	g++  test_inverses.cpp -g -Wall -o inverse_test.run
-	./inverse_test.run double
+	./inverse_test.run double > inverse_double.dat
+	./inverse_test.run float > inverse_float.dat
+
 
 
 threshold: threshold_test.cpp benchmark.o matrix.h

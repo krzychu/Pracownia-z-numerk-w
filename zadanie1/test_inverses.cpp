@@ -7,9 +7,8 @@
 using namespace std;
 
 
-#define RANGE_START 64
-#define RANGE_END 65
-#define RAND_INT_RANGE 2
+#define RANGE_START 2
+#define RANGE_END 1024
 
 template<class T>
 pair< Matrix<T>, Matrix<T> > generate(int n){
@@ -61,7 +60,7 @@ template<class T>
 void test(){
   cout << "# test dokładności, pierwsze 3 kolumny dla równania ^(X*(X^-1) - I)\n";
   cout << "# rozmiar delta_std delta_strassen delta_mutant  itd\n";
-  for(int i = RANGE_START; i <= RANGE_END; i++){
+  for(int i = RANGE_START; i <= RANGE_END; i*=2){
     pair< Matrix<T>, Matrix<T> > ps = generate<T>(i);
     MatrixIdentity<T> id(i);
     Matrix<T> strassen_error1, std_error1, mutant_error1;

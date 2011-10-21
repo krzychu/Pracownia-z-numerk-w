@@ -31,6 +31,19 @@ void test_mul(int size){
 	cout << "D = " << fast_mul(id,id);
 }
 
+void test_submul(int size){
+  Matrix<double> a(2*size);
+  Matrix<double> b(4*size);
+  b.extend();
+  a.extend();
+  a.randomize(-1,1);
+  b.randomize(-1,1);
+  cout << "A = " << a.getA();
+  cout << "B = " << b.getA().getB();
+  cout << "C = " << std_mul(a.getA(), b.getA().getB());
+  cout << "A*B - C\n";
+}
+
 
 void test_memory(){
 	Matrix<float> M(10);
@@ -69,6 +82,6 @@ void test_identity_square(int s){
 
 
 int main(int argc, char** argv){
-	test_mul(3);
+	test_submul(3);
 	return 0;
 }
