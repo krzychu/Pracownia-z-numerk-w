@@ -3,9 +3,9 @@
 #include <iostream>
 
 
-#define RANGE_START 4
-#define RANGE_END 50
-#define BEST_THRESHOLD 100
+#define RANGE_START 512
+#define RANGE_END 512
+#define BEST_THRESHOLD 128
 
 using namespace std;
 

@@ -19,7 +19,7 @@ void test_mul(int size){
 	cout << "#! /usr/bin/octave -q\n";	
 	cout << "A = " << m1 << ";";
 	cout << "B = " << m2 << ";";
-	cout << "C_fast = " << fast_mul(m1,m2,4) << ";";
+	cout << "C_fast = " << fast_mul(m1,m2,2) << ";";
 	cout << "C_std = " << std_mul(m1,m2) << ";";
 	cout << "printf(\"fast error matrix\\n\");\n";
 	cout << "A * B - C_fast\n";
@@ -28,7 +28,18 @@ void test_mul(int size){
 	
 	cout << "printf(\"identity squared fast\\n\");\n";
 	MatrixIdentity<double> id(size);
-	cout << "D = " << fast_mul(id,id);
+	cout << "D = " << fast_mul(id,id,2);
+}
+
+void test_submul(int size){
+  Matrix<double> a(2*size);
+  Matrix<double> b(4*size);
+  
+  
+  cout << "A = " << a.getA();
+  cout << "B = " << b.getA().getB();
+  cout << "C = " << std_mul(a.getA(), b.getA().getB());
+  cout << "A*B - C\n";
 }
 
 
@@ -67,9 +78,7 @@ void test_identity_square(int s){
 }
 
 
-
 int main(int argc, char** argv){
-	test_mul(8);
-	//test_identity_square(17);
-  return 0;
+	test_mul(5);
+	return 0;
 }

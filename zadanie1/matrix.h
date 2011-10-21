@@ -83,32 +83,43 @@ std::ostream& operator <<(std::ostream& os, const Matrix<T>& mat){
 /*
 	O(n^3) straightforward matrix multiplication
 */
+
 template<class T>
 Matrix<T> std_mul (const Matrix<T>& a, const Matrix<T>& b){
 	Matrix<T> m(a.getSize());
 
-  const int rows = std::min(a.getRealRows(), b.getRealRows());
-  const int cols = std::min(a.getRealCols(), b.getRealCols());
+  const int rows = std::max(a.getRealRows(), b.getRealRows());
+  const int cols = std::max(a.getRealCols(), b.getRealCols());
   const int travel = std::min(a.getRealCols(), b.getRealRows());
+
+  const int as = a.getRealRows();
 
   T* a_index = a.getIndex();
   T* b_index = b.getIndex();
+  T* a_limit = a.m_data->m_data + a.m_data->m_size*a.m_data->m_size;
+  T* b_limit = b.m_data->m_data + b.m_data->m_size*b.m_data->m_size;
+
 
   for(int i=0 ; i < rows; i++){
-		for(int j = 0; j < cols ; j++){
+		for(int j=0; j < cols ; j++){
 			T acc = 0;
-			for(int k = 0; k < travel ; k++){
-				acc += *a_index * *b_index;
+			T* ai = a_index;
+      T* bi = b_index;
+      for(int k = 0; k < travel ; k++){
+        if(a_index >= a_limit || b_index >= b_limit)
+          break;
+        acc += (*a_index) * (*b_index);
         a_index++;
         b_index += b.m_data->m_size;
 			}
-      a_index -= travel;
-      b_index += 1 - travel*b.m_data->m_size;
+      a_index = ai;
+      b_index = 1 + bi;
 			m.set(i,j,acc);
 		}
     a_index += a.m_data->m_size;
     b_index = b.getIndex();
 	}
+
 	return m;
 }
 
@@ -124,15 +135,15 @@ Matrix<Type> fast_mul_internal(
 	int threshold)
 {
 	
-	if(a.getSize() < threshold)
+	if(a.getSize() <= threshold)
 		return std_mul(a,b);
 
 	Matrix<Type> result(a.getSize());
-	if(a.getSize() == 1){
-		result.set(0,0,a.get(0,0) * b.get(0,0));
-		return result;
-	}
-	
+  if(a.getSize() == 1){
+    result.set(0,0,a.get(0,0) * b.get(0,0));
+  }
+
+
 	Matrix<Type> A,B,C,D,E,F,G,H;
 	Matrix<Type> P1,P2,P3,P4,P5,P6,P7;
 	A = a.getA();
