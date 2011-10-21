@@ -3,8 +3,8 @@
 #include <iostream>
 
 
-#define RANGE_START 2
-#define RANGE_END 50
+#define RANGE_START 1024
+#define RANGE_END 1024
 #define BEST_THRESHOLD 100
 
 using namespace std;

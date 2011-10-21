@@ -18,7 +18,5 @@ time_test: time_test.cpp benchmark.cpp matrix.h
 	./time_test.run > time.dat
 	gnuplot -p time_plot.gnu
  
-
-delta_test: matrix.h delta_test.cpp
-	g++ delta_test.cpp -g -Wall -o delta_test.run
-	
+inverse_test: inverse_test.cpp matrix.h
+	g++  inverse_test.cpp -g -Wall -o inverse_test.run
