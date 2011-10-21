@@ -86,14 +86,28 @@ std::ostream& operator <<(std::ostream& os, const Matrix<T>& mat){
 template<class T>
 Matrix<T> std_mul (const Matrix<T>& a, const Matrix<T>& b){
 	Matrix<T> m(a.getSize());
-	for(int i=0 ; i<m.m_size; i++){
-		for(int j = 0; j < m.m_size ; j++){
+
+  const int rows = std::min(a.getRealRows(), b.getRealRows());
+  const int cols = std::min(a.getRealCols(), b.getRealCols());
+  const int travel = std::min(a.getRealCols(), b.getRealRows());
+
+  T* a_index = a.getIndex();
+  T* b_index = b.getIndex();
+
+  for(int i=0 ; i<rows; i++){
+		for(int j = 0; j < cols ; j++){
 			T acc = 0;
-			for(int k = 0; k < m.m_size ; k++){
-				acc += a.get(i,k)*b.get(k,j);	
+			for(int k = 0; k < travel ; k++){
+				acc += *a_index * *b_index;
+        a_index++;
+        b_index += b.m_data->m_size;
 			}
+      a_index -= travel;
+      b_index += 1 - travel*b.m_data->m_size;
 			m.set(i,j,acc);
 		}
+    a_index += a.m_data->m_size;
+    b_index = b.getIndex();
 	}
 	return m;
 }
@@ -270,6 +284,20 @@ class Matrix{
 			return m_size;
 		}
 
+    // returns number of nonzero rows
+    int getRealRows() const{
+      return std::min(m_size, m_data->m_size - m_rowShift);
+    }
+
+    // returns number of nonzero columns
+    int getRealCols() const{
+      return std::min(m_size, m_data->m_size - m_colShift);
+    }
+
+    // returns pointer to actual matrix data
+    T* getIndex() const{
+      return m_data->m_data + m_colShift + m_rowShift * m_data->m_size;
+    }
 
 		/*
 			extends matrix size to be smallest power of 2 greater or equal to
@@ -391,9 +419,9 @@ class Matrix{
     // apply operation to two matrices
     void apply(int operation, const Matrix<T>& other){
     	const int data_size = m_data->m_size;
-      T* index = m_data->m_data + m_colShift + m_rowShift * data_size;
-      const int rows = std::min(data_size - m_rowShift, m_size);
-      const int cols = std::min(data_size - m_colShift, m_size);
+      T* index = getIndex();
+      const int rows = getRealRows();
+      const int cols = getRealCols();
       const int other_data_size = other.m_data->m_size; 
       const int other_rows = std::min(
         other_data_size - other.m_rowShift, other.m_size);
@@ -401,8 +429,7 @@ class Matrix{
         other_data_size - other.m_colShift, other.m_size);
       const int copy_cols = std::min(cols, other_cols);
       const int copy_rows = std::min(rows, other_rows);	
-      T* copy_index = other.m_data->m_data + other.m_colShift + 
-                      other.m_rowShift * other_data_size;
+      T* copy_index = other.getIndex();
       
       if(operation == OP_COPY){
         for(int i=0 ; i < copy_rows; i++){

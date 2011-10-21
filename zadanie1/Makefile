@@ -18,7 +18,16 @@ time_test: time_test.cpp benchmark.cpp matrix.h
 	./time_test.run > time.dat
 	gnuplot -p time_plot.gnu
  
-
+threshold: threshold_test.cpp benchmark.o matrix.h
+	g++  threshold_test.cpp -g -Wall -c -o threshold_test.o
+	g++  threshold_test.o benchmark.o -o threshold_test.run
+	./threshold_test.run > threshold.dat
+	gnuplot -p threshold_plot.gnu
+ 
 delta_test: matrix.h delta_test.cpp
 	g++ delta_test.cpp -g -Wall -o delta_test.run
-	
+
+benchmark.o: benchmark.cpp
+	g++ benchmark.cpp -g -Wall -c -o benchmark.o
+
+
