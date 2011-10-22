@@ -15,7 +15,7 @@ int main(int argc, char** argv){
   // data file header
   cout << "#  size  standard  strassen  mutant\n";
 
-  for(int size = RANGE_START; size <= RANGE_END; size++){
+  for(int size = RANGE_START; size <= RANGE_END; size+=4){
     Matrix<float> a(size);
     Matrix<float> b(size);
     a.randomize(-1,1);
