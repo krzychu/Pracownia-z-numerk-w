@@ -22,6 +22,7 @@ int main(int argc, char** argv){
     b.randomize(-1,1);
 
     cout << size << "  ";
+    cerr << size << "\n";
 
     start_timer();
     Matrix<float> c = std_mul(a,b);

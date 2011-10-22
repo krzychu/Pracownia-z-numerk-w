@@ -20,7 +20,8 @@ int main(int argc, char** argv){
     Matrix<float> b(size);
     a.randomize(-1,1);
     b.randomize(-1,1);
-
+    
+    cerr << size << "\n";
     cout << size << "  ";
 
     start_timer();
