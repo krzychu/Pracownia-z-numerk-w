@@ -25,8 +25,12 @@ Pozytywną cechą tego algorytmu jest jego prostota, jednakże obliczenie warto�
 każdego elementu macierzy wynikowej musimy wykonać $n$ mnożeń oraz $n$ dodawań,
 co przy uwzględnieniu ilości elementów w wyniku daje złożoność $O(n^3)$.
 Jak się okazuje istnieją algorytmy o lepszej złożoności. Jednym z nich jest
-algorytm Strassena\footnote{Tu będzie przypis o hipotezie Strassena, jak
-dostaniem ksiazke od Michała}.
+algorytm Strassena\footnote{Wciąż nierozwiązane jest pytanie, czy istnieje
+algorytm realizujący mnożenie macierzy $n \times n$ przy dostatecznie dużym
+$n$ z użyciem $O(n^{2+\epsilon})$ działań, gdzie $\epsilon$ jest dowolnie
+małą liczbą dodatnią. Jest ono znane pod nazwą hipotezy Strassena.
+W 1982 r. Coppersmith i Winograd udowodnili, że wystarcza $O(n^{2.5})$
+działań.}
 \subsection{Algorytm Strassena mnożenia macierzy}
 Rozważamy jedynie macierze kwadratowe, których rozmiar wynosi $2^n$, $n \in
 \mathbf{N}$ (jeżeli wymiar macierzy nie jest tej postaci, uzupełamy badaną

@@ -1,22 +1,35 @@
 \section{Przebieg doświadczenia numerycznego}
 \subsection{Porównanie szybkości algorytmów}
 Dla porównania szybkości obydwu algorytmów opisanych powyżej wygenerowaliśmy
-losowo macierze z zakresu wielkośći $n \in [4, 2000]$ i zmierzyliśmy czasy ich
-działania. Otrzmane wyniki wykorzystaliśmy do wygenerowania wykresu zależności
+losowo macierze z zakresu wielkośći $n \in [2, 500]$ i zmierzyliśmy czas ich
+mnożenia przez obydwie metody. Otrzmane wyniki wykorzystaliśmy do wygenerowania wykresu zależności
 czasu działania od wielkosci macierzy dla algrymu Strassena i algorytmu
 naturalnego.
-%tu będzie wykres
-Powyższy wykres pozwolił nam na wyciągnięcie wniosku, że dla badanego przez nas
+\begin{figure}[hb]
+\begin{center}
+\input{./wykresy/time_nat_str.tex}
+\caption{Zleżność czasu działania od wielkości macierzy dla metody naturalnej i Strassena}
+\end{center}
+\end{figure}
+\begin{figure}[hb]
+\begin{center}
+\input{./wykresy/time_nat_mut.tex}
+\caption{Zależność czasu działania od wielkości macierzy dla metody naturalnej i połączonej}
+\end{center}
+\end{figure}
+Wykres przedstawiony na rysunku \textbf{3.1} pozwolił nam na wyciągnięcie wniosku, że dla badanego przez nas
 zakresu wielkości macierzy, mimo że algorytm Strassena ma mniejszą złożoność
-obliczeniową, jest wolniejszy od algorytmu naturalnego. W związku z tym
+obliczeniową, jest wolniejszy od algorytmu naturalnego niemalże tysiąckrotnie. W związku z tym
 postanowiliśmy zbadać, czy połączenie obydwu algorytmów nie dałoby znacznie
-lepszych wyników. Na podstawie sporządzonych przez nas wykresów wyznaczyliśmy
+lepszych wyników. Na podstawie przeprowadzonych przez nas doświadczeń wyznaczyliśmy
 próg na $n=128$. Oznacza to, że dla mniejszych macierzy (z zakresu
-$n \in [4, 128]$)do obliczeń wykorzystujemy naturalną metodę mnożenia macierzy,
-dla reszty zaś metodę Strassena.
-\subsection{Porównanie dokładności algorytmów}
-W celu zbadania dokładności metod, obliczyliśmy wartości odpowiednich
-współczynników. Pierwszy z nich zadany jest wzorem:
-$$\Delta(XX^{-1}-I),$$
-gdzie $I$ jest macierzą jednostkową, natomiast $\Delta(X) = sum_{i=1}^{n}
-sum_{j=1}^{n} x_{ij}^2.$
+$n \in [4, 128]$)do obliczeń wykorzystujemy naturalny algorytm mnożenia macierzy,
+dla reszty zaś algorytm Strassena. Porównaliśmy czas pracy otrzymanej metody z metodą
+mnożenia macierzy z definicji dla zakresu danych $n \in [2, 2000]$. Nasze przypuszczenia okazały się być słuszne.
+Połączenie odydwu algorytmów wymagakrótszego czasu na mnożnie macierzy, co obrazuje wykres z rysunku \textbf{3.2}.
+%\subsection{Porównanie dokładności algorytmów}
+%W celu zbadania dokładności metod, obliczyliśmy wartości odpowiednich
+%współczynników. Pierwszy z nich zadany jest wzorem:
+%$$\Delta(XX^{-1}-I),$$
+%gdzie $I$ jest macierzą jednostkową, natomiast $\Delta(X) = sum_{i=1}^{n}
+%sum_{j=1}^{n} x_{ij}^2.$
