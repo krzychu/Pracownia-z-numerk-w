@@ -27,9 +27,26 @@ $n \in [4, 128]$)do obliczeń wykorzystujemy naturalny algorytm mnożenia macier
 dla reszty zaś algorytm Strassena. Porównaliśmy czas pracy otrzymanej metody z metodą
 mnożenia macierzy z definicji dla zakresu danych $n \in [2, 2000]$. Nasze przypuszczenia okazały się być słuszne.
 Połączenie odydwu algorytmów wymagakrótszego czasu na mnożnie macierzy, co obrazuje wykres z rysunku \textbf{3.2}.
-%\subsection{Porównanie dokładności algorytmów}
-%W celu zbadania dokładności metod, obliczyliśmy wartości odpowiednich
-%współczynników. Pierwszy z nich zadany jest wzorem:
-%$$\Delta(XX^{-1}-I),$$
-%gdzie $I$ jest macierzą jednostkową, natomiast $\Delta(X) = sum_{i=1}^{n}
-%sum_{j=1}^{n} x_{ij}^2.$
+\subsection{Porównanie dokładności algorytmów}
+W celu zbadania dokładności metod, obliczyliśmy wartości odpowiednich
+współczynników. Pierwszy z nich zadany jest wzorem:
+$$\Delta(XX^{-1}-I),$$
+gdzie $I$ jest macierzą jednostkową, natomiast $\Delta(X) = \sum_{i=1}^{n}
+\sum_{j=1}^{n} x_{ij}^2.$
+
+Aby obliczyć ten wartość zaprezentowanego powyżej współczynnika potrzebowaliśmy macierzy o znanej odwrotności, która zadana jest wzorem. Wykorzystaliśmy jeden z typów macierzy trójdiagonalnych. Niech więc $B = (b_{ij})$ będzie macierzą $n \times n$ zadaną przez
+%$$b_{ij}=b_i,  i=j,$$
+%$$b_{ij}=\delta_{i, j-1}, i<j,$$
+%$$b_{ij}=\delta_{i-1, j}, \and i>j,$$
+$$b_{ij} = \left\{\begin{matrix}b_i & \mbox{jeśli } i=j \\\delta_{i, j-1} & \mbox{jeśli } i<j \\\delta_{i-1,j} & \mbox{jeśli } i>j \end{matrix}\right.$$
+gdzie $b_i=b_{n-i+1}$ oraz $\delta_{ij}$ to tzw. delta Korneckera. Definiując
+$b_kr_{k-1}+r_{k-2}, k = 2, ... , n-1$ i $r=(b_nr_{n-1}+r_{n-2})$, gdzie
+$r_0=1, r_1=-b_1$ i określając macierz $C=(c_{ij})$ rozmiaru $n \times n$, gdzie
+%$$c_{ij}=r^{-1}r_{i-1}r_{n-j}, \and i \leq j,$$
+%$$c_{ij}=c_{ji}, \and i>j,$$
+$$c_{ij} = \left\{\begin{matrix}r^{-1}r_{i-j}r_{n-j} & \mbox{jeśli } i \leq j  \\c_{ji} & \mbox{jeśli } i > j \end{matrix}\right.$$
+dostajemy macierz odwrotną do macierzy $B$ ($B^{-1}=C$).
+
+Obliczenia przeprowdziliśmy posługując się arytmetykami single oraz double. Rysunki \textbf{3.3} oraz \textbf{3.4} obrazują wyniki naszych doświadczeń. Macierze trójdiagonalne danych rozmiarów generowaliśmy losowo. 
+
+
