@@ -48,5 +48,44 @@ $$c_{ij} = \left\{\begin{matrix}r^{-1}r_{i-j}r_{n-j} & \mbox{jeśli } i \leq j  
 dostajemy macierz odwrotną do macierzy $B$ ($B^{-1}=C$).
 
 Obliczenia przeprowdziliśmy posługując się arytmetykami single oraz double. Rysunki \textbf{3.3} oraz \textbf{3.4} obrazują wyniki naszych doświadczeń. Macierze trójdiagonalne danych rozmiarów generowaliśmy losowo. 
-
-
+\begin{figure}[hb]
+\begin{center}
+\input{./wykresy/inverse_X_X-1.tex}
+\caption{Wykres zależności wartości współczynnika $\Delta(XX^{-1}-I)$ od wielkości macierzy w arytmetyce double}
+\end{center}
+\end{figure}
+%***********************************************************************
+\begin{figure}[hb]
+\begin{center}
+\input{./wykresy/inverse_X_X-1_float.tex}
+\caption{Wykres zależności współczynnika $\Delta(XX^{-1}-I)$ od wielkości macierzy w arytmetyce single}
+\end{center}
+\end{figure}
+%***********************************************************************
+\begin{figure}[hb]
+\begin{center}
+\input{./wykresy/inverse_X-1_X.tex}
+\caption{Wykres zależności współczynnika $\Delta(X^{-1}X-I)$ od wielkości macierzy w arytmetyce double}
+\end{center}
+\end{figure}
+%***********************************************************************
+\begin{figure}
+\begin{center}
+\input{./wykresy/inverse_X-1_X_float.tex}
+\caption{Wykres zależności współczynnika $\Delta(X^{-1}X-I)$ od wielkości macierzy w arytmetyce single}
+\end{center}
+\end{figure}
+%***********************************************************************
+\begin{figure}
+\begin{center}
+\input{./wykresy/assoc_double.tex}
+\caption{Wykres zależności współczynnika $\Delta((XY)V-X(YV))$ od wielkości macierzy w arytmetyce double}
+\end{center}
+\end{figure}
+%**********************************************************************
+\begin{figure}
+\begin{center}
+\input{./wykresy/assoc_float.tex}
+\caption{Wykres zależności współczynnika $\Delta((XY)V-X(YV))$ od wielkości macierzy w arytmetyce single}
+\end{center}
+\end{figure}

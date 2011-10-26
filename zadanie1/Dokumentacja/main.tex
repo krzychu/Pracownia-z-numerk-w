@@ -15,6 +15,7 @@
 \usepackage[small, bf]{caption}
 \newtheorem{lm}{Lemat}
 \usepackage{graphicx}
+\usepackage{wrapfig}
 
 \begin{document}
 \title{\LARGE \textbf{Pracownia z Analizy Numerycznej}\\Rozwiązanie zadania P1.25}
@@ -24,10 +25,11 @@
 \date {Wrocław, \today}
 \maketitle
 \tableofcontents
-\include{wstep}
-\include{opisy_alg}
-\include{zlozonosc_poprawnosc}
-\include{testy_tabele_wykresy}
-\include{wnioski}
-\include{bibliografia}
+\newpage
+\input{wstep}
+\input{opisy_alg}
+\input{zlozonosc_poprawnosc}
+\input{testy_tabele_wykresy}
+\input{wnioski}
+\input{bibliografia}
 \end{document}
