@@ -5,13 +5,13 @@ losowo macierze z zakresu wielkośći $n \in [2, 500]$ i zmierzyliśmy czas ich
 mnożenia przez obydwie metody. Otrzmane wyniki wykorzystaliśmy do wygenerowania wykresu zależności
 czasu działania od wielkosci macierzy dla algrymu Strassena i algorytmu
 naturalnego.
-\begin{figure}[h!tb]
+\begin{figure}[htb]
 \begin{center}
 \input{./wykresy/time_nat_str.tex}
 \caption{Zleżność czasu działania od wielkości macierzy dla metody naturalnej i Strassena}
 \end{center}
 \end{figure}
-\begin{figure}[h!tb]
+\begin{figure}[h]
 \begin{center}
 \input{./wykresy/time_nat_mut.tex}
 \caption{Zależność czasu działania od wielkości macierzy dla metody naturalnej i połączonej}
@@ -21,13 +21,12 @@ Wykres przedstawiony na rysunku \textbf{3.1} pozwolił nam na wyciągnięcie wni
 zakresu wielkości macierzy, mimo że algorytm Strassena ma mniejszą złożoność
 obliczeniową, jest wolniejszy od algorytmu naturalnego niemalże tysiąckrotnie. W związku z tym
 postanowiliśmy zbadać, czy połączenie obydwu algorytmów nie dałoby znacznie
-lepszych wyników. Na podstawie przeprowadzonych przez nas doświadczeń wyznaczyliśmy eksperymentalnie
+lepszych wyników. Na podstawie przeprowadzonych przez nas doświadczeń wyznaczyliśmy
 próg na $n=128$. Oznacza to, że dla mniejszych macierzy (z zakresu
-$n \in [2, 128]$) do obliczeń wykorzystujemy naturalny algorytm mnożenia macierzy,
-dla reszty zaś algorytm Strassena. Porównaliśmy czas pracy programu będącego
-implemetują otrzymanej metody z czasem działania programu realizującego metodę
+$n \in [4, 128]$)do obliczeń wykorzystujemy naturalny algorytm mnożenia macierzy,
+dla reszty zaś algorytm Strassena. Porównaliśmy czas pracy otrzymanej metody z metodą
 mnożenia macierzy z definicji dla zakresu danych $n \in [2, 2000]$. Nasze przypuszczenia okazały się być słuszne.
-Połączenie odydwu algorytmów wymaga krótszego czasu wkonywania obliczeń, co obrazuje wykres z rysunku \textbf{3.2}.
+Połączenie odydwu algorytmów wymagakrótszego czasu na mnożnie macierzy, co obrazuje wykres z rysunku \textbf{3.2}.
 \subsection{Porównanie dokładności algorytmów}
 W celu zbadania dokładności metod, obliczyliśmy wartości odpowiednich
 współczynników. Pierwszy z nich zadany jest wzorem:
@@ -49,27 +48,27 @@ $$c_{ij} = \left\{\begin{matrix}r^{-1}r_{i-j}r_{n-j} & \mbox{jeśli } i \leq j  
 dostajemy macierz odwrotną do macierzy $B$ ($B^{-1}=C$).
 
 Obliczenia przeprowdziliśmy posługując się arytmetykami single oraz double. Rysunki \textbf{3.3} oraz \textbf{3.4} obrazują wyniki naszych doświadczeń. Macierze trójdiagonalne rozmiarów z przdziału $n \in [2,500]$  generowaliśmy losowo. 
-\begin{figure}[h!tb]
+\begin{figure}[h]
 \begin{center}
 \input{./wykresy/inverse_X_X-1.tex}
 \caption{Wykres zależności wartości współczynnika $\Delta(XX^{-1}-I)$ od wielkości macierzy w arytmetyce double}
 \end{center}
 \end{figure}
 
-Po przeanalizowaniu wykresów narzuca się fakt, że wartość wyznacznika dla metody Strassena jest dla nieiwelkich macierzy $10^3$ razy większa, a dla większych macierzy (od rozmiaru bliskiego $n=200$) nawet milionkrotnie większa od wartości tego samego współczynnkia dla pozostałych metod. Śwriadczy to o tym, że algorytm Strassena jest mniej dokładany niż algorytm standardowy czy stworzony przez nas algorytm połączony.
+Po przeanalizowaniu wykresów narzuca się fakt, że metoda Strassena około $10^6$ razy mniej dokładana niż metody naturalna czy stworzona przez nas metoda połączona.
 Rząd błędów, który jest określany przez badany współczynnik odwrotności, dla algorymu standardowego bowiem mieści się w przedziale $(10^{-33}, 10^{-24})$,
 zaś dla algorytmu Strassena wartość wyrażenia $\Delta(XX^{-1}-I)$ osiąga wartości sięgające $10^{-16}$, gdy obliczenia wykonjemy przy użyciu arytmetyki double.
 Za mniejszą złożoność obliczeniową płacimy więc sporymi stratami na dokładności.
 %***********************************************************************
-\begin{figure}[h!tb]
+\begin{figure}[htb]
 \begin{center}
 \input{./wykresy/inverse_X_X-1_float.tex}
 \caption{Wykres zależności współczynnika $\Delta(XX^{-1}-I)$ od wielkości macierzy w arytmetyce single}
 \end{center}
 \end{figure}
-Wykres zależności współczynnika $\Delta(XX^{-1}-I)$ dla arytmetyki single jest w kształcie podobny do wykresu z rysunku {\bf 3.3}. Różnica w rzędzie wiekości błędu nie jest więc zależna od wyboru arytmetyki. Zmniejszenie się wartości badanego wyrażenia wynika z tego, że arytmetyka single ma mnniejszą precyzję od arytmetyki double.
+Wykres zależności współczynnika $\Delta(XX^{-1}-I)$ dla arytmetyki single jest w kształcie podobny do wykresu z rysunku {\bf 3.3}. Rząd wielkości błędu nie jest więc zależny od wyboru arytmetyki. Zmniejszenie się wartości badanego wyrażenia wynika z tego, że arytmetyka single ma mnniejszą precyzję od arytmetyki double.
 %***********************************************************************
-\begin{figure}[ht!b]
+\begin{figure}[htb]
 \begin{center}
 \input{./wykresy/inverse_X-1_X.tex}
 \caption{Wykres zależności współczynnika $\Delta(X^{-1}X-I)$ od wielkości macierzy w arytmetyce double}
@@ -80,10 +79,10 @@ Rysunki {\bf 3.5} oraz {\bf 3.6} stanowią graficzne przedstaiwnie obliczeń w o
 współczynnika $\Delta (X^{-1}X - I)$. Porównanie ich z ich odpowiednikami dla wcześniejszego współczynnika
 pozwalają nam na wyciągnięcie wniosku, że dokładność zaimplementowanych przez nas
 algorytmów jest niezależna od zmiany kolejności obliczeń. Wynika to z faktu, że widocznym jest podobieństwo
-powyższych wykresów, a rzędy wilkości  współczynników błędu dla danych arytmetyk nie zmieniły się po zastosowaniu przeciwnej kolejności
+powyższych wykresów, a rzędy wilkości błędu dla danych arytmetyk nie zmieniły się po zastosowaniu przeciwnej kolejności
 wykonywania mnożeń.
 %***********************************************************************
-\begin{figure}[h!tb]
+\begin{figure}[htb]
 \begin{center}
 \input{./wykresy/inverse_X-1_X_float.tex}
 \caption{Wykres zależności współczynnika $\Delta(X^{-1}X-I)$ od wielkości macierzy w arytmetyce single}
@@ -96,10 +95,10 @@ $$\Delta((XY)V-X(YV)),$$
 gdzie $X, Y, V$ są macierzami kwadratowymi. Obliczyliśmy jego wartości dla losowo wygenetrowanych macierzy o wielkości z przedziału $n \in [2,500]$
 odpowiednio wykorzystując algorytm naturlany, algorytm Strassena i stworzony przez nas algorytm łączący obie metody.
 Wykres {\bf 3.7} przedstawia wyniki uzyskane przez nas w przypadku użycia arytmetyki double. Tak jak dla popzednich współczynników, algorytm
-Strassena daje najmniej dokładne wyniki, wartość wyrażenia $\Delta((XY)V-X(YV))$ dla badanych przez nas wielkości macierzy sięga nawet $10^{-16}$,
+Strassena daje najmniej dokładne wyniki, wartość wyrażenia $\Delta((XY)V-X(YV))$ dla badanych przez nas wiekkosci macierzy sięga nawet $10^{-16}$,
 co stanowi około $10^{3}$ krotnie gorszy wynik, niż pozostałe metody. Patrząc na wykres,
 można zauważyć, że wielkości współczynników dla pozostałych metod są sobie bliskie.
-\begin{figure}[h!tb]
+\begin{figure}[h]
 \begin{center}
 \input{./wykresy/assoc_double.tex}
 \caption{Wykres zależności współczynnika $\Delta((XY)V-X(YV))$ od wielkości macierzy w arytmetyce double}
@@ -110,7 +109,7 @@ można zauważyć, że wielkości współczynników dla pozostałych metod są s
 Ten sam współczynnik przebadaliśmy wykonując obliczenia za pomocą arytmetyki single, a wyniki tego doświadczenia prezentuje rysunek {\bf 3.8}.
 Jak widać, z przyczyny zmniejszenia się dokładności arytmetyki, uzyskane wyniki mają wartości nawet $10^{16}$ razy większe w porówaniu do poprzednio użytej
 arytmetyki, jednakże kształt wykresu pozostał niezmieniony. Zmiana arytmetyki nie wpływa więc na zmianę wzajemnej zależności wartości współczynnika dla badanych algorytmów.
-\begin{figure}[h!tb]
+\begin{figure}[htb]
 \begin{center}
 \input{./wykresy/assoc_float.tex}
 \caption{Wykres zależności współczynnika $\Delta((XY)V-X(YV))$ od wielkości macierzy w arytmetyce single}

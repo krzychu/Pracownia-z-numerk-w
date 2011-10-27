@@ -61,7 +61,7 @@ void test(){
   cout << "# test dokładności, pierwsze 3 kolumny dla równania ^(X*(X^-1) - I)\n";
   cout << "# następne 3 kolumny dla równania ^((X^-1)*X - I)\n";
   cout << "# rozmiar delta_std delta_strassen delta_mutant  itd\n";
-  for(int i = RANGE_START; i <= RANGE_END; i+=1){
+  for(int i = RANGE_START; i <= RANGE_END; i+=4){
     pair< Matrix<T>, Matrix<T> > ps = generate<T>(i);
     MatrixIdentity<T> id(i);
     Matrix<T> strassen_error1, std_error1, mutant_error1;
@@ -75,7 +75,7 @@ void test(){
     std_error2 = std_mul(ps.second, ps.first) - id;
     mutant_error2 = fast_mul(ps.second, ps.first, 16) - id;
    
-  
+    cerr << i << "\n"; 
     cout << i << " ";
     
     cout << std_error1.delta() << " ";
@@ -100,7 +100,7 @@ int main(int argc, char **argv){
     return -1;
   }
 
-  if(strcmp(argv[1], "double")){  
+  if(0 == strcmp(argv[1], "double")){  
     cout << "# precyzja : double\n";
     test<double>();
   }

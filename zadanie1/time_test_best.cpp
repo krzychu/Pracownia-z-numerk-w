@@ -15,13 +15,14 @@ int main(int argc, char** argv){
   // data file header
   cout << "#  size  standard  mutant\n";
 
-  for(int size = RANGE_START; size <= RANGE_END; size++){
+  for(int size = RANGE_START; size <= RANGE_END; size+=4){
     Matrix<float> a(size);
     Matrix<float> b(size);
     a.randomize(-1,1);
     b.randomize(-1,1);
 
     cout << size << "  ";
+    cerr << size << "\n";
 
     start_timer();
     Matrix<float> c = std_mul(a,b);

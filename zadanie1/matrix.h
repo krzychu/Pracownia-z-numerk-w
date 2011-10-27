@@ -4,7 +4,7 @@
 #include <iostream>
 #include <algorithm>
 #include <cstdlib>
-
+#include <cassert>
 
 /*
 	This class holds actual matrix data, and keeps number of matrices
@@ -88,25 +88,22 @@ template<class T>
 Matrix<T> std_mul (const Matrix<T>& a, const Matrix<T>& b){
 	Matrix<T> m(a.getSize());
 
-  const int rows = std::max(a.getRealRows(), b.getRealRows());
-  const int cols = std::max(a.getRealCols(), b.getRealCols());
-  const int travel = std::min(a.getRealCols(), b.getRealRows());
-
   T* a_index = a.getIndex();
   T* b_index = b.getIndex();
-  T* a_limit = a.m_data->m_data + a.m_data->m_size*a.m_data->m_size;
-  T* b_limit = b.m_data->m_data + b.m_data->m_size*b.m_data->m_size;
+
+  const int as = a.m_data->m_size - a.m_rowShift;
+  const int bs = b.m_data->m_size - b.m_rowShift;
+  const int travel = std::min(as,bs);
 
 
-  for(int i=0 ; i < rows; i++){
-		for(int j=0; j < cols ; j++){
+  for(int i=0 ; i < as; i++){
+		for(int j=0; j < bs ; j++){
 			T acc = 0;
 			T* ai = a_index;
       T* bi = b_index;
       for(int k = 0; k < travel ; k++){
-        if(a_index >= a_limit || b_index >= b_limit)
-          break;
-        acc += (*a_index) * (*b_index);
+        acc += *a_index * *b_index;
+
         a_index++;
         b_index += b.m_data->m_size;
 			}
@@ -121,6 +118,34 @@ Matrix<T> std_mul (const Matrix<T>& a, const Matrix<T>& b){
 	return m;
 }
 
+/*
+template<class T>
+Matrix<T> std_mul (const Matrix<T>& a, const Matrix<T>& b){
+	Matrix<T> m(a.getSize());
+
+  const int rows = std::max(a.getRealRows(), b.getRealRows());
+  const int cols = std::max(a.getRealCols(), b.getRealCols());
+  const int travel = std::min(a.getRealCols(), b.getRealRows());
+
+  T* a_index = a.getIndex();
+  T* b_index = b.getIndex();
+  T* a_limit = a.m_data->m_data + a.m_data->m_size*a.m_data->m_size;
+  T* b_limit = b.m_data->m_data + b.m_data->m_size*b.m_data->m_size;
+
+
+  for(int i=0 ; i < rows; i++){
+		for(int j=0; j < cols ; j++){
+			T acc = 0;
+      for(int k = 0; k < travel ; k++){
+        acc += a.get(i,k) * b.get(k,j);
+			}
+			m.set(i,j,acc);
+		}
+	}
+
+	return m;
+}
+*/
 
 
 /*

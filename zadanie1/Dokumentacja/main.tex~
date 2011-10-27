@@ -1,4 +1,4 @@
-\documentclass[12pt,a4paper,wide,authortitle]{mwart}
+\documentclass[12pt,a4paper,authortitle]{mwart}
 
 \usepackage{polski}
 %\usepackage[polish]{babel}
@@ -13,7 +13,7 @@
 %\usepackage{times}
 \linespread{1.3}
 \usepackage{multirow}
-\usepackage[small, bf]{caption}
+% \usepackage[small, bf]{caption}
 \newtheorem{lm}{Lemat}
 \usepackage{graphicx}
 \usepackage{wrapfig}
