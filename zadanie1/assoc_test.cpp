@@ -12,7 +12,7 @@ void test(){
   cout << "# test łączności dodawania\b";
   cout << "# rozmiar standard strassen mutant\b";
 
-  for(int i= RANGE_START ; i<=RANGE_END; i++){
+  for(int i= RANGE_START ; i<=RANGE_END; i+=2){
     cout << i << " ";
     Matrix<T> a(i);
     Matrix<T> b(i);

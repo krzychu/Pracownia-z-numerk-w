@@ -7,8 +7,8 @@
 using namespace std;
 
 
-#define RANGE_START 2
-#define RANGE_END 512
+#define RANGE_START 50
+#define RANGE_END 55
 
 template<class T>
 pair< Matrix<T>, Matrix<T> > generate(int n){
@@ -69,11 +69,11 @@ void test(){
     
     strassen_error1 = fast_mul(ps.first, ps.second) - id;
     std_error1 = std_mul(ps.first, ps.second) - id;
-    mutant_error1 = fast_mul(ps.first, ps.second, 128) - id;
+    mutant_error1 = fast_mul(ps.first, ps.second, 16) - id;
    
     strassen_error2 = fast_mul(ps.second, ps.first) - id;
     std_error2 = std_mul(ps.second, ps.first) - id;
-    mutant_error2 = fast_mul(ps.second, ps.first, 128) - id;
+    mutant_error2 = fast_mul(ps.second, ps.first, 16) - id;
    
   
     cout << i << " ";
