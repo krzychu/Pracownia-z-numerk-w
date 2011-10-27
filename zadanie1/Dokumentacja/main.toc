@@ -1,9 +1,9 @@
-\select@language {polish}
-\contentsline {section}{\numberline {1}Wst\IeC {\k e}p}{2}{section.1}
-\contentsline {section}{\numberline {2}Opis algorytm\IeC {\'o}w}{2}{section.2}
-\contentsline {subsection}{\numberline {2.1}Agorytm naturalny mno\IeC {\.z}enia macierzy}{2}{subsection.2.1}
-\contentsline {subsection}{\numberline {2.2}Algorytm Strassena mno\IeC {\.z}enia macierzy}{3}{subsection.2.2}
-\contentsline {section}{\numberline {3}Przebieg do\IeC {\'s}wiadczenia numerycznego}{4}{section.3}
-\contentsline {subsection}{\numberline {3.1}Por\IeC {\'o}wnanie szybko\IeC {\'s}ci algorytm\IeC {\'o}w}{4}{subsection.3.1}
-\contentsline {subsection}{\numberline {3.2}Por\IeC {\'o}wnanie dok\IeC {\l }adno\IeC {\'s}ci algorytm\IeC {\'o}w}{5}{subsection.3.2}
-\contentsline {section}{\numberline {4}Wnioski}{5}{section.4}
+\contentsline {section}{\numberline {1\relax .\kern .5em }Wst\IeC {\k e}p}{2}{section.1}
+\contentsline {section}{\numberline {2\relax .\kern .5em }Opis algorytm\IeC {\'o}w}{2}{section.2}
+\contentsline {subsection}{\numberline {2.1\relax .\kern .5em }Agorytm naturalny mno\IeC {\.z}enia macierzy}{2}{subsection.2.1}
+\contentsline {subsection}{\numberline {2.2\relax .\kern .5em }Algorytm Strassena mno\IeC {\.z}enia macierzy}{3}{subsection.2.2}
+\contentsline {section}{\numberline {3\relax .\kern .5em }Przebieg do\IeC {\'s}wiadczenia numerycznego}{4}{section.3}
+\contentsline {subsection}{\numberline {3.1\relax .\kern .5em }Por\IeC {\'o}wnanie szybko\IeC {\'s}ci algorytm\IeC {\'o}w}{4}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2\relax .\kern .5em }Por\IeC {\'o}wnanie dok\IeC {\l }adno\IeC {\'s}ci algorytm\IeC {\'o}w}{5}{subsection.3.2}
+\contentsline {section}{\numberline {4\relax .\kern .5em }Wnioski}{9}{section.4}
+\contentsline {section}{Literatura}{10}{section*.10}

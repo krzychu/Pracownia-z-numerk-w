@@ -1,8 +1,24 @@
 \section{Wstęp}
-Macierze stosuje się do reprezentacji danych i obliczeń w wielu dziedzinach naukowych i technicznych m. in. w matematyce, fizyce czy grafice komputerowej. Często istotne jest również przprowadzanie działań na macierzach, takich jak mnożenie, dodatkowo w jak najkrótszym czasie. Nie dziwi nas więc fakt, że powstało wiele algorytmów obliczjących iloczyn macierzy. W naszej pracy przedstawimy i zbadamy doświadczalnie dwa spośród nich.
+Macierze stosuje się do reprezentacji danych i obliczeń w wielu dziedzinach
+naukowych i technicznych m. in. w matematyce, fizyce czy grafice komputerowej.
+Często istotne jest również przprowadzanie działań na macierzach, takich jak
+mnożenie, dodatkowo w jak najkrótszym czasie i jak największej dokładności. Nie dziwi nas więc fakt, że
+powstało wiele algorytmów obliczjących iloczyny macierzy. W naszej pracy
+przedstawimy i zbadamy doświadczalnie dwa spośród nich.
 
-Głównym celem naszego zadania jest porównanie pod względem dokładności i szybkości dwuch algorytmów mnożenia macierzy rozmiaru $n \in [4, 500]$: algorytmu naturalnego i algorytmu Strassena. Stawiamy przed sobą dodatkowe zadanie jakim jest rozszerzenie zakresu wielkości danych oraz znalezienie przedziałów wielkości macierzy dla których określony algorytm daje dokładniejsze wyniki czy też jest wydajniejszy czasowo.
+Głównym celem naszego zadania jest porównanie pod względem dokładności i
+szybkości dwuch algorytmów mnożenia macierzy rozmiaru $n \in [4, 500]$:
+algorytmu naturalnego i algorytmu Strassena. Stawiamy przed sobą dodatkowe
+zadanie jakim jest rozszerzenie zakresu wielkości macierzy oraz znalezienie
+przedziałów wielkości macierzy dla których określony algorytm daje
+dokładniejsze wyniki czy też jest wydajniejszy czasowo.
 
-W rozdziale \S2 znajduje się krótki opis algorytmów, następny rozdział przedstawia realizację zadania. Tam znajduje się raport z przeprowadzonych doświadczeń, jak również przegląd otrzymanych wyników w postaci tabel i wykresów. Rozdział \S 5 zawiera nie tylko wnioski oraz obserwacje zebrane przez nas podczas rozwiązywania problemu, ale także został wzbogacony o rozważania teoretyczne, które pozwoliły nam uzyskać szersze spojrzenie na obydwa algorytmy.
-
-Do obliczeń wykorzystaliśmy napisany przez nas program w języku C++, implementujący dwie wspomniane powyżej metody liczenia iloczynu macierzy. Pliki z wszstkimi testami oraz wynikami zostały umieszczone w katalogu \textit{testy}.   
+W rozdziale \S2 znajduje się krótki opis algorytmów, następny rozdział przedstawia realizację postawionego przed nami zadania. Tam znajduje się między innymi raport
+z przeprowadzonych doświadczeń, jak i również przegląd otrzymanych wyników w
+postaci wykresów. Rozdział \S 4 zawiera wnioski oraz obserwacje zebrane przez nas podczas rozwiązywania problemu, postaraliśmy się w nim także przedsawić nasze hipotezy, przemyślenia odnośnie przyczyn, jakie mogły wystąpić i spowodować takie, a nie inne wyniki badań.
+Do obliczeń wykorzystaliśmy napisany przez nas program w języku C++, implementujący
+dwie wspomniane powyżej metody obliczania iloczynu macierzy. Pliki z wszstkimi testami
+oraz wynikami, które zostały przez nas wykorzystane do wygenerowania wykresów, znajdują
+się w folderze {\textit wykresy} pod nazwami \textit{assoc\_double.dat, assoc\_float.dat, time\_all.dat,
+time\_best.dat, inverse\_double.dat, inverse\_float.dat}.
+W plikach tych podana została również krótka informacja o danych w nich zawartych.
