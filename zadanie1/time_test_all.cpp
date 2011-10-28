@@ -1,3 +1,13 @@
+/*
+
+Pracownia z analizy numerycznej
+Aleksandra Spyra i Krzysztof Chrobak
+zadanie 25
+
+Implementacja testu szybkości wszystkich metod
+
+*/
+
 #include "matrix.h"
 #include "benchmark.h"
 #include <iostream>

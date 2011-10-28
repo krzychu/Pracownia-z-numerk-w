@@ -1,3 +1,13 @@
+/*
+
+Pracownia z analizy numerycznej
+Aleksandra Spyra i Krzysztof Chrobak
+zadanie 25
+
+Implementacja dokładnego timera
+
+*/
+
 #include <sys/time.h>
 #include "benchmark.h"
 #include <iostream>

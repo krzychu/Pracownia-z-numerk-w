@@ -1,3 +1,14 @@
+/*
+
+Pracownia z analizy numerycznej
+Aleksandra Spyra i Krzysztof Chrobak
+zadanie 25
+
+Implementacja testu szbkości metody standardowej i 
+zmodyfikowanej strassena
+
+*/
+
 #include "matrix.h"
 #include "benchmark.h"
 #include <iostream>
