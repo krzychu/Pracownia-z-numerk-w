@@ -1,0 +1,12 @@
+
+Testy należy wywoływać poleceniem:
+
+ $ make nazwa_testu
+
+gdzie nazwa_testu może przyjmować następujące wartości:
+  
+  time_test_all (porównuje wszystkie metody pod względem szybkości)
+  time_test_best (porównuje 2 najlepsze metody pod względem szybkości)
+  
+  assoc_test (porównuje wszystkie metody pod względem dokładności)
+  inverse_test (porównuje wszystkie metody pod względem dokładności)

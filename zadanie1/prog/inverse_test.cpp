@@ -1,3 +1,15 @@
+/*
+
+Pracownia z analizy numerycznej
+Aleksandra Spyra i Krzysztof Chrobak
+zadanie 25
+
+Implementacja testu mnożenia macierzy przez jej odwrotność
+
+*/
+
+
+
 #include <iostream>
 #include "matrix.h"
 #include <cstdlib>

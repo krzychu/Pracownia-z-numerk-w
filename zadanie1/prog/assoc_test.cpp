@@ -1,3 +1,13 @@
+/*
+
+Pracownia z analizy numerycznej
+Aleksandra Spyra i Krzysztof Chrobak
+zadanie 25
+
+Implementacja testu łączności mnożenia
+
+*/
+
 #include <cstring>
 #include <iostream>
 #include "matrix.h"
