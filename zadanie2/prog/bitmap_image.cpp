@@ -1,34 +1,10 @@
-#include "bitmap.h"
+#include "bitmap_image.h"
+#include "bitmap_channel.h"
+#include "bitmap_format.h"
+
 #include <cstdio>
 
 using namespace Bitmap;
-
-std::ostream& Bitmap::operator<< (std::ostream& out, const BitmapError& err){
-  out << "File : " << err.filename << "\n";
-  out << "Error : " << err.error << "\n";
-  return out;
-}
-
-//--------------------------------------------------------------------------------
-//                                  Channel
-//--------------------------------------------------------------------------------
-
-std::ostream& Bitmap::operator << (std::ostream& out, const Channel& channel){
-  out << "\n";
-  uint8_t* ptr = channel.data;
-  for(int y = channel.height-1; y >=0 ; y--){
-    for(int x = 0; x < channel.width; x++){
-      out << " " << (int)*ptr++; 
-    }
-    out << "\n";
-  }
-  return out;
-}
-
-
-//--------------------------------------------------------------------------------
-//                                  Image
-//--------------------------------------------------------------------------------
 
 Bitmap::Image::Image(const char* filename) throw(BitmapError){
   // try to open file
@@ -220,3 +196,11 @@ std::ostream& Bitmap::operator << (std::ostream& out, const Image& bitmap){
 
   return out;
 }
+
+
+std::ostream& Bitmap::operator<< (std::ostream& out, const BitmapError& err){
+  out << "File : " << err.filename << "\n";
+  out << "Error : " << err.error << "\n";
+  return out;
+}
+
