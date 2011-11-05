@@ -71,11 +71,13 @@ namespace Bitmap{
   //                                  Channel
   //--------------------------------------------------------------------------------
   struct Channel{
+    int n_refs;
     int width;
     int height;
     uint8_t *data;
-  
+
     Channel(uint32_t w, uint32_t h){
+      n_refs = 1;
       width = w;
       height = h;
       data = new uint8_t[w*h];
@@ -83,6 +85,16 @@ namespace Bitmap{
 
     ~Channel(){
       delete[] data;
+    }
+
+    void incRefs(){
+      n_refs++;
+    }
+
+    void decRefs(){
+      n_refs--;
+      if(n_refs <= 0)
+        delete this;
     }
   };
 
@@ -92,7 +104,36 @@ namespace Bitmap{
   //                                  Image
   //--------------------------------------------------------------------------------
 
+  class Image{
+    private:
+      // true if image is monochromatic
+      bool isMono;
 
+      int width;
+      int height;
+
+      Channel* red;
+      Channel* green;
+      Channel* blue;
+
+      Channel* gray;
+
+      void set(const Image& other);
+      void decAllRefs();
+      void incAllRefs();
+    
+    public:
+      Image(const char* filename) throw(BitmapError);
+      Image(Channel* r, Channel* g, Channel*b);
+      Image(Channel* g);
+      Image(const Image& other);
+      void operator =(const Image& other);
+      ~Image();
+
+    friend std::ostream& operator << (std::ostream& out, const Image& image);
+  };
+
+  std::ostream& operator << (std::ostream& out, const Image& image);
 };
 
 
