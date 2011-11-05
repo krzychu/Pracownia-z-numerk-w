@@ -61,12 +61,11 @@ Bitmap::Image::Image(const char* filename) throw(BitmapError){
   width = info_header.width;
   height = info_header.height;
   
-  int w = info_header.width + 4 - info_header.width % 4;
   isMono = true;
   uint8_t color[3];
 
   for(int y = 0 ; y < height ; y++){
-    for(int x = 0 ; x < w ; x++){
+    for(int x = 0 ; x < width ; x++){
       n_read = fread(&color, sizeof(uint8_t), 3, file);
 
       if(n_read != 3){
@@ -74,14 +73,13 @@ Bitmap::Image::Image(const char* filename) throw(BitmapError){
         throw err;
       }
 
-      if(x < width){
-        red->data[x + y*height] = color[2];
-        green->data[x + y*height] = color[1];
-        blue->data[x + y*height] = color[0];
-        if(color[0] != color[1] || color[1] != color[2])
-          isMono = false;
-      }
+      red->data[x + y*width] = color[2];
+      green->data[x + y*width] = color[1];
+      blue->data[x + y*width] = color[0];
+      if(color[0] != color[1] || color[1] != color[2])
+        isMono = false;
     }
+    fseek(file, getRowLen() - 3*width, SEEK_CUR);
   }
   fclose(file);
 
@@ -178,6 +176,89 @@ void Bitmap::Image::set(const Image& other){
   incAllRefs();
 }
 
+
+int Bitmap::Image::getRowLen(){
+  if(width % 4 == 0){
+    return 3*width;
+  }
+  else{
+    return 3*width + 4 - (3*width)%4;
+  }
+}
+
+
+void Bitmap::Image::save(const char* filename) throw(BitmapError){
+  // try to open destination file
+  FILE * file = fopen(filename, "wb");
+  if(file == NULL){
+    BitmapError ex(filename, "Unable to open file for writing");
+    throw ex;
+  }
+
+
+  int row_len = getRowLen();
+
+  Identification id;
+  id.magic[0] = 'B';
+  id.magic[1] = 'M';
+
+  Header header;
+  header.creator1 = 0;
+  header.creator2 = 0;
+  header.data_offset = sizeof(Identification) + sizeof(Header) + sizeof(InfoHeader);
+  header.file_size = header.data_offset + row_len*height;
+  
+  InfoHeader info;
+  info.header_size = sizeof(InfoHeader);
+  info.width = width;
+  info.height = height;
+  info.nplanes = 1;
+  info.bitspp = 24;
+  info.compression_type = BI_RGB;
+  info.bmp_bytesize = 0;
+  info.horizontal_resolution = 0;
+  info.vertical_resolution = 0;
+  info.ncolors = 0;
+  info.nimpcolors = 0;
+
+  // write header to file
+  size_t written = fwrite(&id, sizeof(Identification), 1, file);
+  written += fwrite(&header, sizeof(Header), 1, file);
+  written += fwrite(&info, sizeof(InfoHeader), 1, file);
+
+  if(written != 3){
+    BitmapError err(filename, "Unable to write file header");
+    throw err;
+  }
+
+  // write contents to file
+  uint8_t color[3];
+  uint8_t zeros[3] = {0,0,0};
+  for(int y=0 ; y < height; y++){
+    for(int x=0 ; x < width; x++){
+
+      if(!isMono){
+        color[2] = red->data[x + y*width];
+        color[1] = green->data[x + y*width];
+        color[0] = blue->data[x + y*width];
+      }
+      else{
+        color[0] = gray->data[x + y*width];
+        color[1] = color[0];
+        color[2] = color[0];
+      }
+     
+      written = fwrite(color, sizeof(uint8_t), 3, file);
+      if(written != 3){
+        BitmapError err(filename, "Unable to write bitmap contents to file");
+        throw err;
+      }
+    }
+    fwrite(zeros, sizeof(uint8_t), getRowLen() - 3*width, file);
+  }
+
+  fclose(file);
+}
 
 
 std::ostream& Bitmap::operator << (std::ostream& out, const Image& bitmap){
