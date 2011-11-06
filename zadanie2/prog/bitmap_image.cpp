@@ -6,7 +6,7 @@
 
 using namespace Bitmap;
 
-Bitmap::Image::Image(const char* filename) throw(BitmapError){
+Image* Bitmap::Image::load(const char* filename) throw(BitmapError){
   // try to open file
   FILE *file = fopen(filename, "rb");
   
@@ -54,14 +54,14 @@ Bitmap::Image::Image(const char* filename) throw(BitmapError){
   // load channels
   fseek(file, header.data_offset, SEEK_SET);
   
-  red = new Channel(info_header.width, info_header.height);
-  green = new Channel(info_header.width, info_header.height);
-  blue = new Channel(info_header.width, info_header.height);
+  Channel* red = new Channel(info_header.width, info_header.height);
+  Channel* green = new Channel(info_header.width, info_header.height);
+  Channel* blue = new Channel(info_header.width, info_header.height);
 
-  width = info_header.width;
-  height = info_header.height;
+  int width = info_header.width;
+  int height = info_header.height;
   
-  isMono = true;
+  bool isMono = true;
   uint8_t color[3];
 
   for(int y = 0 ; y < height ; y++){
@@ -79,105 +79,91 @@ Bitmap::Image::Image(const char* filename) throw(BitmapError){
       if(color[0] != color[1] || color[1] != color[2])
         isMono = false;
     }
-    fseek(file, getRowLen() - 3*width, SEEK_CUR);
+    fseek(file, getRowLen(width) - 3*width, SEEK_CUR);
   }
   fclose(file);
 
   if(isMono){
-    gray = red;
-    delete blue;
+    BWImage* img = new BWImage(red);
     delete green;
-    red = NULL;
-    green = NULL;
-    blue = NULL;
+    delete blue;
+    return img;
   }
   else{
-    gray = NULL;
+    RGBImage* img = new RGBImage(red, green, blue);
+    return img;
   }
 }
 
 
-Bitmap::Image::Image(const Image& other){
-  set(other);
-}
 
-void Bitmap::Image::operator = (const Image& other){
-  set(other);
-}  
-
-Bitmap::Image::Image(Channel* r, Channel* g, Channel*b){
-  isMono = false;
-  
+//------------------------------------------------------------------RGB
+Bitmap::RGBImage::RGBImage(Channel* r, Channel* g, Channel* b){
   red = r;
-  r->incRefs();
-
   green = g;
-  g->incRefs();
-
   blue = b;
-  b->incRefs();
-
-  gray = NULL;
 
   width = r->width;
   height = r->height;
 }
 
+void Bitmap::RGBImage::save(const char* filename) throw(BitmapError){
+  save_to_file(filename, red, green, blue, NULL);
+}
 
-Bitmap::Image::Image(Channel* g){
-  isMono = true;
+Bitmap::RGBImage::~RGBImage(){
+  if(red)
+    delete red;
+  if(green)
+    delete green;
+  if(blue)
+    delete blue;
+}
+
+std::ostream& Bitmap::operator << (std::ostream& out, const RGBImage& bitmap){
+  out << "Width : " << bitmap.width << "\n";
+  out << "Height : " << bitmap.height << "\n";
+  
+  out << "Red : " << *bitmap.red;
+  out << "Green : " << *bitmap.green;
+  out << "Blue : " << *bitmap.blue;
+
+  return out;
+}
+
+
+//------------------------------------------------------------------BW
+Bitmap::BWImage::BWImage(Channel* g){
   gray = g;
-  g->incRefs();
-  
-  red = NULL;
-  green = NULL;
-  blue = NULL;
+
+  width = g->width;
+  height = g->height;
 }
 
-Bitmap::Image::~Image(){
-  decAllRefs();
+void Bitmap::BWImage::save(const char* filename) throw(BitmapError){
+  save_to_file(filename, NULL, NULL, NULL, gray);
 }
 
-void Bitmap::Image::decAllRefs(){
-  if(red)
-    red->decRefs();
-  if(green)
-    green->decRefs();
-  if(blue)
-    blue->decRefs();
+Bitmap::BWImage::~BWImage(){
   if(gray)
-    gray->decRefs();
+    delete gray;
 }
 
-
-void Bitmap::Image::incAllRefs(){
-  if(red)
-    red->incRefs();
-  if(green)
-    green->incRefs();
-  if(blue)
-    blue->incRefs();
-  if(gray)
-    gray->incRefs();
-}
-
-void Bitmap::Image::set(const Image& other){
-  decAllRefs();
-
-  isMono = other.isMono;
-  width = other.width;
-  height = other.height;
+std::ostream& Bitmap::operator << (std::ostream& out, const BWImage& bitmap){
+  out << "Width : " << bitmap.width << "\n";
+  out << "Height : " << bitmap.height << "\n";
   
-  gray = other.gray;
-  red = other.red;
-  green = other.green;
-  blue = other.blue;
-  
-  incAllRefs();
+  out << "Gray : " << *bitmap.gray;
+
+  return out;
 }
 
 
-int Bitmap::Image::getRowLen(){
+
+//--------------------------------------------------------------------------image
+
+
+int Bitmap::Image::getRowLen(int width){
   if(width % 4 == 0){
     return 3*width;
   }
@@ -187,7 +173,9 @@ int Bitmap::Image::getRowLen(){
 }
 
 
-void Bitmap::Image::save(const char* filename) throw(BitmapError){
+void Bitmap::Image::save_to_file(const char* filename, Channel* red, Channel* green, 
+    Channel* blue, Channel* gray) throw(BitmapError)
+{
   // try to open destination file
   FILE * file = fopen(filename, "wb");
   if(file == NULL){
@@ -196,7 +184,7 @@ void Bitmap::Image::save(const char* filename) throw(BitmapError){
   }
 
 
-  int row_len = getRowLen();
+  int row_len = getRowLen(width);
 
   Identification id;
   id.magic[0] = 'B';
@@ -232,6 +220,7 @@ void Bitmap::Image::save(const char* filename) throw(BitmapError){
   }
 
   // write contents to file
+  bool isMono = gray != NULL;
   uint8_t color[3];
   uint8_t zeros[3] = {0,0,0};
   for(int y=0 ; y < height; y++){
@@ -254,29 +243,13 @@ void Bitmap::Image::save(const char* filename) throw(BitmapError){
         throw err;
       }
     }
-    fwrite(zeros, sizeof(uint8_t), getRowLen() - 3*width, file);
+    fwrite(zeros, sizeof(uint8_t), getRowLen(width) - 3*width, file);
   }
 
   fclose(file);
 }
 
 
-std::ostream& Bitmap::operator << (std::ostream& out, const Image& bitmap){
-  out << "Width : " << bitmap.width << "\n";
-  out << "Height : " << bitmap.height << "\n";
-  out << "isMono : " << bitmap.isMono << "\n";
-  
-  if(bitmap.isMono){
-    out << "Gray : " << *bitmap.gray;
-  }
-  else{
-    out << "Red : " << *bitmap.red;
-    out << "Green : " << *bitmap.green;
-    out << "Blue : " << *bitmap.blue;
-  }
-
-  return out;
-}
 
 
 std::ostream& Bitmap::operator<< (std::ostream& out, const BitmapError& err){

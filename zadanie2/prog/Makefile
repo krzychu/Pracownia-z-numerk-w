@@ -24,6 +24,8 @@ procedural_bitmap_test.run: $(LIBS) procedural_bitmap_test.cpp
 	g++ $(CFLAGS) procedural_bitmap_test.cpp -o procedural_bitmap_test.o
 	g++ $(LDFLAGS) $(LIBS) procedural_bitmap_test.o -o procedural_bitmap_test.run 
 
+bitmap_load_test: bitmap_load_test.run
+	./bitmap_load_test.run
 
 procedural_bitmap_test: procedural_bitmap_test.run
 	./procedural_bitmap_test.run 

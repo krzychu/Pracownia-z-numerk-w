@@ -3,7 +3,9 @@
 
 #include <cmath>
 
-Bitmap::SinImage::SinImage(int w, int h){
+using namespace Bitmap;
+
+BWImage* Bitmap::sinImage(int w, int h){
   Channel* channel = new Channel(w,h); 
   double fx = 10.0 * M_PI / double(w-1);
   double fy = 10.0 * M_PI / double(h-1);
@@ -12,20 +14,12 @@ Bitmap::SinImage::SinImage(int w, int h){
       channel->data[x + y*w] = 128 + sin(fy*double(y))*sin(fx*double(x))*127;
     }
   }
-
-  isMono = true;
-  red = NULL;
-  green = NULL;
-  blue = NULL;
-  gray = channel;
-
-  width = w;
-  height = h;
-
+  
+  return new BWImage(channel);
 }
 
 
-Bitmap::SawImage::SawImage(int w, int h){
+BWImage* Bitmap::sawImage(int w, int h){
   Channel* channel = new Channel(w,h); 
   double fx = 1000.0 / double(w-1);
   double fy = 1000.0 / double(h-1);
@@ -35,18 +29,10 @@ Bitmap::SawImage::SawImage(int w, int h){
     }
   }
 
-  isMono = true;
-  red = NULL;
-  green = NULL;
-  blue = NULL;
-  gray = channel;
-
-  width = w;
-  height = h;
-
+  return new BWImage(channel);
 }
 
-Bitmap::RungeImage::RungeImage(int w, int h){
+BWImage* Bitmap::rungeImage(int w, int h){
   Channel* channel = new Channel(w,h); 
   double fx = 5.0 / double(w-1);
   double fy = 5.0 / double(h-1);
@@ -62,13 +48,5 @@ Bitmap::RungeImage::RungeImage(int w, int h){
     }
   }
 
-  isMono = true;
-  red = NULL;
-  green = NULL;
-  blue = NULL;
-  gray = channel;
-
-  width = w;
-  height = h;
-
+  return new BWImage(channel);
 }

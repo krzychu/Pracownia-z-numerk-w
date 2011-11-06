@@ -7,8 +7,9 @@ using namespace Bitmap;
 int main(){
   
   try{
-    Image img("../obrazki/test2.bmp");
-    std::cout << img;
+    RGBImage* img = (RGBImage*)Image::load("../obrazki/test2.bmp");
+    std::cout << *img;
+    delete img;
   }
   catch(BitmapError err){
     std::cout << err;  

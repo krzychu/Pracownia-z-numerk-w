@@ -26,44 +26,64 @@ namespace Bitmap{
 
 
 
+
   class Image{
     protected:
-      // true if image is monochromatic
-      bool isMono;
-
       int width;
       int height;
+      static int getRowLen(int w);    
+      
+      void save_to_file(const char* filename, Channel* r, Channel* g, 
+          Channel* b, Channel* gray) throw(BitmapError);
+    public:
+      virtual ~Image(){};
+      
+      // loading
+      static Image* load(const char* filename) throw(BitmapError);
 
+      // saving
+      virtual void save(const char* filename) throw(BitmapError) = 0;
+  };
+
+
+
+
+  class RGBImage : public Image{
+    private:
       Channel* red;
       Channel* green;
       Channel* blue;
-
-      Channel* gray;
-
-      void set(const Image& other);
-      void decAllRefs();
-      void incAllRefs();
-      int getRowLen();    
+      
     public:
+      RGBImage(Channel* r, Channel* g, Channel* b);
+   
+      virtual void save(const char* filename) throw(BitmapError);
+      virtual ~RGBImage();
 
-      // constructors, copying etc.
-      Image(){}
-      Image(const char* filename) throw(BitmapError);
-      Image(Channel* r, Channel* g, Channel*b);
-      Image(Channel* g);
-      Image(const Image& other);
-      void operator =(const Image& other);
-      ~Image();
-      
-      // saving
-      void save(const char* filename) throw(BitmapError);
-      
-
-    friend std::ostream& operator << (std::ostream& out, const Image& image);
+    friend std::ostream& operator << (std::ostream& out, const RGBImage& image);
   };
 
-  std::ostream& operator << (std::ostream& out, const Image& image);
+  std::ostream& operator << (std::ostream& out, const RGBImage& image);
 
-}
+
+
+
+  class BWImage : public Image{
+    private:
+      Channel* gray;
+ 
+    public:
+      BWImage(Channel* g);
+    
+      virtual ~BWImage();
+
+      virtual void save(const char* filename) throw(BitmapError);
+
+    friend std::ostream& operator << (std::ostream& out, const BWImage& image);
+  };
+  
+  std::ostream& operator << (std::ostream& out, const BWImage& image);
+
+};
 
 #endif
