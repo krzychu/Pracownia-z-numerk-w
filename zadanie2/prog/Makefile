@@ -1,9 +1,11 @@
 CFLAGS = -c -g -Wall
 LDFLAGS = -lm
-LIBS = bitmap_channel.o bitmap_image.o bitmap_image_procedural.o 
+LIBS = bitmap_channel.o bitmap_image.o bitmap_image_procedural.o \
+       resizers_base.o
 
-all: procedural_bitmap_test
 
+resizers_base.o: resizers_base.cpp resizers_base.h
+	g++ $(CFLAGS) resizers_base.cpp -o resizers_base.o 
 
 bitmap_channel.o: bitmap_channel.cpp bitmap_channel.h
 	g++ $(CFLAGS) bitmap_channel.cpp -o bitmap_channel.o 
@@ -23,6 +25,8 @@ bitmap_load_test.run: $(LIBS) bitmap_load_test.cpp
 procedural_bitmap_test.run: $(LIBS) procedural_bitmap_test.cpp
 	g++ $(CFLAGS) procedural_bitmap_test.cpp -o procedural_bitmap_test.o
 	g++ $(LDFLAGS) $(LIBS) procedural_bitmap_test.o -o procedural_bitmap_test.run 
+
+
 
 bitmap_load_test: bitmap_load_test.run
 	./bitmap_load_test.run
