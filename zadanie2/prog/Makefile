@@ -1,8 +1,10 @@
 CFLAGS = -c -g -Wall
 LDFLAGS = -lm
 LIBS = bitmap_channel.o bitmap_image.o bitmap_image_procedural.o \
-       resizers_base.o
+       resizers_base.o resizers_closest.o
 
+resizers_closest.o: resizers_closest.cpp resizers_closest.h
+	g++ $(CFLAGS) resizers_closest.cpp -o resizers_closest.o 
 
 resizers_base.o: resizers_base.cpp resizers_base.h
 	g++ $(CFLAGS) resizers_base.cpp -o resizers_base.o 
@@ -26,7 +28,9 @@ procedural_bitmap_test.run: $(LIBS) procedural_bitmap_test.cpp
 	g++ $(CFLAGS) procedural_bitmap_test.cpp -o procedural_bitmap_test.o
 	g++ $(LDFLAGS) $(LIBS) procedural_bitmap_test.o -o procedural_bitmap_test.run 
 
-
+resizers_test.run: $(LIBS) resizers_test.cpp
+	g++ $(CFLAGS) resizers_test.cpp -o resizers_test.o
+	g++ $(LDFLAGS) $(LIBS) resizers_test.o -o resizers_test.run 
 
 bitmap_load_test: bitmap_load_test.run
 	./bitmap_load_test.run
@@ -37,6 +41,9 @@ procedural_bitmap_test: procedural_bitmap_test.run
 	eog ../obrazki/saw_test.bmp
 	eog ../obrazki/runge_test.bmp
 
+resizers_test: resizers_test.run
+	./resizers_test.run ../obrazki/pizza.bmp closest 50 100 ../obrazki/pizza_out.bmp
+	eog ../obrazki/pizza_out.bmp
 
 clean:
 	rm *.o

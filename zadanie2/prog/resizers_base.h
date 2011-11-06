@@ -20,10 +20,10 @@ namespace Resizers{
       long get_time();
     
     protected:
-      virtual Bitmap::Channel* do_resize_x(const Bitmap::Channel* src, 
-         const Bitmap::Channel* dst) = 0;
-      virtual Bitmap::Channel* do_resize_y(const Bitmap::Channel* src, 
-         const Bitmap::Channel* dst) = 0;
+      virtual void do_resize_x(const Bitmap::Channel* src, 
+         Bitmap::Channel* dst) = 0;
+      virtual void do_resize_y(const Bitmap::Channel* src, 
+         Bitmap::Channel* dst) = 0;
 
     public:
       Result resize_x(const Bitmap::Channel* src, int new_width);

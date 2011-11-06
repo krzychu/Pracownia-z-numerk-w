@@ -131,6 +131,33 @@ std::ostream& Bitmap::operator << (std::ostream& out, const RGBImage& bitmap){
   return out;
 }
 
+ResizeStats Bitmap::RGBImage::resize_x_px(int newsize, Resizers::Resizer* resizer){
+  Resizers::Result res_red, res_green, res_blue;
+
+  res_red = resizer->resize_x(red, newsize);
+  res_green = resizer->resize_x(green, newsize);
+  res_blue = resizer->resize_x(blue, newsize);
+  
+  ResizeStats res;
+  res.time = res_red.time + res_green.time + res_blue.time;
+  res.img = new RGBImage(res_red.channel, res_green.channel, res_blue.channel);
+
+  return res;
+}
+
+ResizeStats Bitmap::RGBImage::resize_y_px(int newsize, Resizers::Resizer* resizer){
+  Resizers::Result res_red, res_green, res_blue;
+
+  res_red = resizer->resize_y(red, newsize);
+  res_green = resizer->resize_y(green, newsize);
+  res_blue = resizer->resize_y(blue, newsize);
+  
+  ResizeStats res;
+  res.time = res_red.time + res_green.time + res_blue.time;
+  res.img = new RGBImage(res_red.channel, res_green.channel, res_blue.channel);
+
+  return res;
+}
 
 //------------------------------------------------------------------BW
 Bitmap::BWImage::BWImage(Channel* g){
@@ -159,8 +186,46 @@ std::ostream& Bitmap::operator << (std::ostream& out, const BWImage& bitmap){
 }
 
 
+ResizeStats Bitmap::BWImage::resize_x_px(int newsize, Resizers::Resizer* resizer){
+  Resizers::Result res_gray;
+
+  res_gray = resizer->resize_x(gray, newsize);
+  
+  ResizeStats res;
+  res.time = res_gray.time;
+  res.img = new BWImage(res_gray.channel);
+
+  return res;
+}
+
+ResizeStats Bitmap::BWImage::resize_y_px(int newsize, Resizers::Resizer* resizer){
+  Resizers::Result res_gray;
+
+  res_gray = resizer->resize_y(gray, newsize);
+  
+  ResizeStats res;
+  res.time = res_gray.time;
+  res.img = new BWImage(res_gray.channel);
+
+  return res;
+}
+
 
 //--------------------------------------------------------------------------image
+
+ResizeStats Bitmap::Image::resize_x_percent(int percent, Resizers::Resizer* resizer){
+  double new_size = double(percent) / 100.0 * double(width);
+  if(new_size < 2)
+    new_size = 2;
+  return resize_x_px((int) new_size, resizer);
+}
+
+ResizeStats Bitmap::Image::resize_y_percent(int percent, Resizers::Resizer* resizer){
+  double new_size = double(percent) / 100.0 * double(height);
+  if(new_size < 2)
+    new_size = 2;
+  return resize_y_px((int) new_size, resizer);
+}
 
 
 int Bitmap::Image::getRowLen(int width){

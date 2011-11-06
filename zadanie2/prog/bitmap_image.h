@@ -4,6 +4,7 @@
 #include <iostream>
 #include <inttypes.h>
 #include "bitmap_channel.h"
+#include "resizers_base.h"
 
 namespace Bitmap{
   
@@ -24,7 +25,11 @@ namespace Bitmap{
   
   std::ostream& operator << (std::ostream& out, const BitmapError& err);
 
-
+  class Image;  
+  struct ResizeStats{
+    long time;
+    Image* img;
+  };
 
 
   class Image{
@@ -43,6 +48,13 @@ namespace Bitmap{
 
       // saving
       virtual void save(const char* filename) throw(BitmapError) = 0;
+  
+      // resizing
+      virtual ResizeStats resize_x_px(int newsize, Resizers::Resizer* resizer) = 0;
+      virtual ResizeStats resize_y_px(int newsize, Resizers::Resizer* resizer) = 0;
+      
+      ResizeStats resize_x_percent(int percent, Resizers::Resizer* resizer);
+      ResizeStats resize_y_percent(int percent, Resizers::Resizer* resizer);
   };
 
 
@@ -59,6 +71,9 @@ namespace Bitmap{
    
       virtual void save(const char* filename) throw(BitmapError);
       virtual ~RGBImage();
+      
+      virtual ResizeStats resize_x_px(int newsize, Resizers::Resizer* resizer);
+      virtual ResizeStats resize_y_px(int newsize, Resizers::Resizer* resizer);
 
     friend std::ostream& operator << (std::ostream& out, const RGBImage& image);
   };
@@ -74,10 +89,12 @@ namespace Bitmap{
  
     public:
       BWImage(Channel* g);
-    
       virtual ~BWImage();
 
       virtual void save(const char* filename) throw(BitmapError);
+      
+      virtual ResizeStats resize_x_px(int newsize, Resizers::Resizer* resizer);
+      virtual ResizeStats resize_y_px(int newsize, Resizers::Resizer* resizer);
 
     friend std::ostream& operator << (std::ostream& out, const BWImage& image);
   };
