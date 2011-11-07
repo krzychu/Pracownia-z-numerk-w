@@ -1,10 +1,13 @@
-CFLAGS = -c -g -Wall
+CFLAGS = -c -g -Wall -O2
 LDFLAGS = -lm
 LIBS = bitmap_channel.o bitmap_image.o bitmap_image_procedural.o \
-       resizers_base.o resizers_closest.o
+       resizers_base.o resizers_closest.o resizers_linear.o
 
 resizers_closest.o: resizers_closest.cpp resizers_closest.h
 	g++ $(CFLAGS) resizers_closest.cpp -o resizers_closest.o 
+
+resizers_linear.o: resizers_linear.cpp resizers_linear.h
+	g++ $(CFLAGS) resizers_linear.cpp -o resizers_linear.o 
 
 resizers_base.o: resizers_base.cpp resizers_base.h
 	g++ $(CFLAGS) resizers_base.cpp -o resizers_base.o 
@@ -42,8 +45,15 @@ procedural_bitmap_test: procedural_bitmap_test.run
 	eog ../obrazki/runge_test.bmp
 
 resizers_test: resizers_test.run
-	./resizers_test.run ../obrazki/pizza.bmp closest 50 100 ../obrazki/pizza_out.bmp
-	eog ../obrazki/pizza_out.bmp
+	./resizers_test.run ../obrazki/pizza.bmp linear 250 250 ../obrazki/pizza_out_linear.bmp
+	./resizers_test.run ../obrazki/pizza.bmp closest 250 250 ../obrazki/pizza_out_closest.bmp
+	
+	convert '(' ../obrazki/pizza.bmp +append ')' \
+	'(' ../obrazki/pizza_out_linear.bmp ../obrazki/pizza_out_closest.bmp +append ')' \
+	-append ../obrazki/all.bmp
+	
+	eog ../obrazki/all.bmp
+
 
 clean:
 	rm *.o

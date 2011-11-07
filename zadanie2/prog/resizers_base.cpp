@@ -19,7 +19,6 @@ long Resizers::Resizer::stop_timer(){
   return get_time() - start_time;
 }
 
-
 Result Resizers::Resizer::resize_x(const Channel* src, int new_width){
   Result res;
   res.channel = new Channel(new_width, src->height);

@@ -20,6 +20,10 @@ namespace Resizers{
       long get_time();
     
     protected:
+      inline int round(double x){
+        return int(x + 0.5);
+      }
+
       virtual void do_resize_x(const Bitmap::Channel* src, 
          Bitmap::Channel* dst) = 0;
       virtual void do_resize_y(const Bitmap::Channel* src, 

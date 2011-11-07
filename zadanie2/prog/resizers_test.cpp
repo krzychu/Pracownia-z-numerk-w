@@ -35,6 +35,10 @@ int main(int argc, char** argv){
     resizer = new Closest();
     cout << "closest point\n";
   }
+  else if(0 == strcmp(argv[2], "linear")){
+    resizer = new Linear();
+    cout << "linear\n";
+  }
   else{
     cout << "Unknown resize method\n"; 
     return -1;

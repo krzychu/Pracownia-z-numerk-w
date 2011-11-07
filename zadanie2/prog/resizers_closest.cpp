@@ -4,9 +4,6 @@
 using namespace Bitmap;
 using namespace Resizers;
 
-inline int round(double x){
-  return (int)(0.5 + x);
-}
 
 void Resizers::Closest::do_resize_x(const Channel* src, Channel* dst){
   double x_pos;
