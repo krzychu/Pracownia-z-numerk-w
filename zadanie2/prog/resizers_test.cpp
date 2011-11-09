@@ -39,6 +39,10 @@ int main(int argc, char** argv){
     resizer = new Linear();
     cout << "linear\n";
   }
+  else if(0 == strcmp(argv[2], "cubic")){
+    resizer = new Cubic();
+    cout << "cubic\n";
+  }
   else{
     cout << "Unknown resize method\n"; 
     return -1;
