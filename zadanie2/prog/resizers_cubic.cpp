@@ -98,8 +98,6 @@ void Resizers::Cubic::do_resize_y(const Channel* src, Channel* dst){
   double y_pos = 0;
   double step = double(src->height - 1) / double(dst->height - 1);
   
-  uint8_t *dst_data = dst->data;
-  
   for(int x = 0; x < src->width; x++){
     CubicInterpolator inter(src->data + x, src->height, src->width);
     y_pos = 0;

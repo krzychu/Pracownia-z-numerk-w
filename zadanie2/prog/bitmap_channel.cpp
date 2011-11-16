@@ -11,6 +11,17 @@ Bitmap::Channel::~Channel(){
 }
 
 
+double Bitmap::Channel::norm(){
+  uint8_t* ptr = data;
+  int n = width*height;
+  double norm = 0;
+  for(int i = 0; i<n ; i++){
+    norm += double(*ptr * *ptr);
+    ptr++;
+  }
+  return norm;
+}
+
 std::ostream& Bitmap::operator << (std::ostream& out, const Channel& channel){
   out << "\n";
   uint8_t* ptr = channel.data;

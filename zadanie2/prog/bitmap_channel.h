@@ -13,6 +13,8 @@ namespace Bitmap{
 
     Channel(uint32_t w, uint32_t h);
     ~Channel();
+  
+    double norm();
   };
 
   std::ostream& operator << (std::ostream& out, const Channel& channel);
