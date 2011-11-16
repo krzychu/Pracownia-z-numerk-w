@@ -48,12 +48,14 @@ procedural_bitmap_test: procedural_bitmap_test.run
 	eog ../obrazki/runge_test.bmp
 
 X = 200
-Y = 200
+Y = 50
+ORDER = xy
+
 
 resizers_test: resizers_test.run
-	./resizers_test.run ../obrazki/pizza.bmp linear $(X) $(Y) ../obrazki/pizza_out_linear.bmp
-	./resizers_test.run ../obrazki/pizza.bmp closest $(X) $(Y) ../obrazki/pizza_out_closest.bmp
-	./resizers_test.run ../obrazki/pizza.bmp cubic $(X) $(Y) ../obrazki/pizza_out_cubic.bmp
+	./resizers_test.run ../obrazki/pizza.bmp linear $(ORDER) $(X) $(Y) ../obrazki/pizza_out_linear.bmp
+	./resizers_test.run ../obrazki/pizza.bmp closest $(ORDER) $(X) $(Y) ../obrazki/pizza_out_closest.bmp
+	./resizers_test.run ../obrazki/pizza.bmp cubic $(ORDER) $(X) $(Y) ../obrazki/pizza_out_cubic.bmp
 	
 	convert '(' ../obrazki/pizza.bmp ../obrazki/pizza_out_cubic.bmp +append ')' \
 	'(' ../obrazki/pizza_out_linear.bmp ../obrazki/pizza_out_closest.bmp +append ')' \

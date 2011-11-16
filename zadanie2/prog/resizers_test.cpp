@@ -11,8 +11,8 @@ using namespace Bitmap;
 
 
 int main(int argc, char** argv){
-  if(argc != 6){
-    cout << "usage: resizers_test.run infile method \%x \%y outfile\n" ;
+  if(argc != 7){
+    cout << "usage: resizers_test.run infile method order \%x \%y outfile\n" ;
     return -1;
   }
   
@@ -47,31 +47,52 @@ int main(int argc, char** argv){
     cout << "Unknown resize method\n"; 
     return -1;
   }
-  
+
+  // guess resize order
+  #define X_FIRST 1
+  #define Y_FIRST 2
+  int order;
+  if( 0 == strcmp(argv[3], "xy")){
+    order = X_FIRST;
+  }
+  else{
+    order = Y_FIRST;
+  }
+
   // format other parameters
-  int x_percent = atoi(argv[3]);
-  int y_percent = atoi(argv[4]);
+  int x_percent = atoi(argv[4]);
+  int y_percent = atoi(argv[5]);
   cout << "x resize : " << x_percent << " \%\n";
   cout << "y resize : " << y_percent << " \%\n";
 
 
   // resize
-  ResizeStats rs = img->resize_x_percent(x_percent, resizer);
-  cout << "X resize time in us : " << rs.time << "\n";
-  rs = rs.img->resize_y_percent(y_percent, resizer);
-  cout << "Y resize time in us : " << rs.time << "\n";
+  ResizeStats rs;
+  if(order == X_FIRST){
+    rs = img->resize_x_percent(x_percent, resizer);
+    cout << "X resize time in us : " << rs.time << "\n";
+    rs = rs.img->resize_y_percent(y_percent, resizer);
+    cout << "Y resize time in us : " << rs.time << "\n";
+  }
+  else{
+    rs = img->resize_y_percent(y_percent, resizer);
+    cout << "Y resize time in us : " << rs.time << "\n";
+    rs = rs.img->resize_x_percent(x_percent, resizer);
+    cout << "X resize time in us : " << rs.time << "\n";
+  }
+  
   delete resizer;
 
   // save 
   try{
-    rs.img->save(argv[5]);
+    rs.img->save(argv[6]);
   }
   catch(BitmapError ex){
     cout << ex;
     return -1;
   }
 
-  cout << "file : " << argv[5] << " was saved successfuly\n";
+  cout << "file : " << argv[6] << " was saved successfuly\n";
 
   delete rs.img;
   delete img;
