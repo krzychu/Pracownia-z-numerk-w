@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plot
 import math
+import random
 
 def p3(x):
   return x*x*x
@@ -9,7 +10,7 @@ def float_range(begin, end, n_points):
   return [begin + step*k for k in range(0,n_points)]
 
 
-def spline(ys, first_x):
+def spline(ys):
   n = len(ys) - 1
   
   # calculate divided diffrences
@@ -39,7 +40,7 @@ def spline(ys, first_x):
 
   # spline function
   def f(x):
-    k = 1 + int(x - first_x)
+    k = 1 + int(x)
     if k <= 0:
       k = 1
     elif k > n:
@@ -49,17 +50,18 @@ def spline(ys, first_x):
     B = 1.0 / 6.0 * M[k]
     C = ys[k-1] - 1.0 / 6.0 * M[k-1] 
     D = ys[k] - 1.0 / 6.0 * M[k]
-    val = A*p3(xs[k] - x) + B*p3(x - xs[k-1]) + C*(xs[k] - x) + D*(x - xs[k-1])
+    h = k - x
+    val = A*p3(h) + B*p3(1 - h) + C*(h) + D*(1-h)
     return val 
 
   # display knots
-  xs = [first_x + k for k in range(0,len(ys))]
+  xs = [k for k in range(0,len(ys))]
   plot.plot(xs,ys,"ro")
   
   # display spline
-  spline_xs = float_range(first_x-1, first_x + n + 1, n*100)
+  spline_xs = float_range(-1, n + 1, n*100)
   spline_ys = [f(x) for x in spline_xs]
   plot.plot(spline_xs,spline_ys,"b-")
   plot.show()
 
-spline([1.0,20.0,4.0,-3.0,166.0],2.0)
+spline([random.uniform(-10,10) for k in range(0,20)])

@@ -34,6 +34,7 @@ namespace Resizers{
       Result resize_y(const Bitmap::Channel* src, int new_height);
   };
 
+
 };
 
 #endif

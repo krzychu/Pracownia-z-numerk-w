@@ -2,7 +2,10 @@ CFLAGS = -c -g -Wall -O2
 LDFLAGS = -lm
 LIBS = bitmap_channel.o bitmap_image.o bitmap_image_procedural.o \
        resizers_base.o resizers_closest.o resizers_linear.o resizers_cubic.o \
-       resizers_combined.o
+       resizers_combined.o resizers_utils.o
+
+resizers_utils.o: resizers_utils.cpp resizers_utils.h
+	g++ $(CFLAGS) resizers_utils.cpp -o resizers_utils.o 
 
 resizers_combined.o: resizers_combined.cpp resizers_combined.h
 	g++ $(CFLAGS) resizers_combined.cpp -o resizers_combined.o 
@@ -51,10 +54,10 @@ procedural_bitmap_test: procedural_bitmap_test.run
 	eog ../obrazki/saw_test.bmp
 	eog ../obrazki/runge_test.bmp
 
-X = 50
-Y = 50
+X = 500
+Y = 500
 ORDER = xy
-IMAGE = pokemon
+IMAGE = runge_test
 
 resizers_test: resizers_test.run
 	./resizers_test.run ../obrazki/$(IMAGE).bmp linear $(ORDER) $(X) $(Y) ../obrazki/$(IMAGE)_out_linear.bmp

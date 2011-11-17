@@ -6,5 +6,6 @@
 #include "resizers_linear.h"
 #include "resizers_cubic.h"
 #include "resizers_combined.h"
+#include "resizers_utils.h"
 
 #endif
