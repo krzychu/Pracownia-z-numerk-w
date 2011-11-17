@@ -60,12 +60,22 @@ resizers_test: resizers_test.run
 	./resizers_test.run ../obrazki/$(IMAGE).bmp linear $(ORDER) $(X) $(Y) ../obrazki/$(IMAGE)_out_linear.bmp
 	./resizers_test.run ../obrazki/$(IMAGE).bmp closest $(ORDER) $(X) $(Y) ../obrazki/$(IMAGE)_out_closest.bmp
 	./resizers_test.run ../obrazki/$(IMAGE).bmp cubic $(ORDER) $(X) $(Y) ../obrazki/$(IMAGE)_out_cubic.bmp
+	./resizers_test.run ../obrazki/$(IMAGE).bmp combined $(ORDER) $(X) $(Y) ../obrazki/$(IMAGE)_out_combined.bmp
 	
 	convert \
-	'(' ../obrazki/$(IMAGE)_out_cubic.bmp  ../obrazki/$(IMAGE)_out_linear.bmp ../obrazki/$(IMAGE)_out_closest.bmp +append ')' \
+	'(' ../obrazki/$(IMAGE)_out_cubic.bmp  ../obrazki/$(IMAGE)_out_linear.bmp +append ')' \
+	'(' ../obrazki/$(IMAGE)_out_closest.bmp ../obrazki/$(IMAGE)_out_combined.bmp +append ')' \
 	-append ../obrazki/all.bmp
 	
 	eog ../obrazki/all.bmp
+
+
+time_test.run: $(LIBS) time_test.cpp
+	g++ $(CFLAGS) time_test.cpp -o time_test.o
+	g++ $(LDFLAGS) $(LIBS) time_test.o -o time_test.run 
+	
+time_test: time_test.run
+	./time_test.run 10 1000 5 ../obrazki/pizza.bmp
 
 
 clean:

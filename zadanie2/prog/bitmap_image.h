@@ -56,6 +56,10 @@ namespace Bitmap{
       // diffrence
       virtual Image* diff(const Image* other) const = 0;
 
+      // size
+      int getWidth() const;
+      int getHeight() const;
+
       ResizeStats resize_x_percent(int percent, Resizers::Resizer* resizer);
       ResizeStats resize_y_percent(int percent, Resizers::Resizer* resizer);
   };

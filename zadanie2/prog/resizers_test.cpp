@@ -43,6 +43,10 @@ int main(int argc, char** argv){
     resizer = new Cubic();
     cout << "cubic\n";
   }
+  else if(0 == strcmp(argv[2], "combined")){
+    resizer = new Combined();
+    cout << "cubic\n";
+  }
   else{
     cout << "Unknown resize method\n"; 
     return -1;
@@ -67,25 +71,25 @@ int main(int argc, char** argv){
 
 
   // resize
-  ResizeStats rs;
+  ResizeStats rs,rs2;
   if(order == X_FIRST){
     rs = img->resize_x_percent(x_percent, resizer);
     cout << "X resize time in us : " << rs.time << "\n";
-    rs = rs.img->resize_y_percent(y_percent, resizer);
-    cout << "Y resize time in us : " << rs.time << "\n";
+    rs2 = rs.img->resize_y_percent(y_percent, resizer);
+    cout << "Y resize time in us : " << rs2.time << "\n";
   }
   else{
     rs = img->resize_y_percent(y_percent, resizer);
     cout << "Y resize time in us : " << rs.time << "\n";
-    rs = rs.img->resize_x_percent(x_percent, resizer);
-    cout << "X resize time in us : " << rs.time << "\n";
+    rs2 = rs.img->resize_x_percent(x_percent, resizer);
+    cout << "X resize time in us : " << rs2.time << "\n";
   }
   
   delete resizer;
 
   // save 
   try{
-    rs.img->save(argv[6]);
+    rs2.img->save(argv[6]);
   }
   catch(BitmapError ex){
     cout << ex;
@@ -95,6 +99,7 @@ int main(int argc, char** argv){
   cout << "file : " << argv[6] << " was saved successfuly\n";
 
   delete rs.img;
+  delete rs2.img;
   delete img;
   return 0;
 }

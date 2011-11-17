@@ -95,6 +95,13 @@ Image* Bitmap::Image::load(const char* filename) throw(BitmapError){
   }
 }
 
+int Bitmap::Image::getWidth() const{
+  return width;
+}
+
+int Bitmap::Image::getHeight() const{
+  return height;
+}
 
 
 //------------------------------------------------------------------RGB
