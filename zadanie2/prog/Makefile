@@ -1,7 +1,11 @@
 CFLAGS = -c -g -Wall -O2
 LDFLAGS = -lm
 LIBS = bitmap_channel.o bitmap_image.o bitmap_image_procedural.o \
-       resizers_base.o resizers_closest.o resizers_linear.o resizers_cubic.o
+       resizers_base.o resizers_closest.o resizers_linear.o resizers_cubic.o \
+       resizers_combined.o
+
+resizers_combined.o: resizers_combined.cpp resizers_combined.h
+	g++ $(CFLAGS) resizers_combined.cpp -o resizers_combined.o 
 
 resizers_cubic.o: resizers_cubic.cpp resizers_cubic.h
 	g++ $(CFLAGS) resizers_cubic.cpp -o resizers_cubic.o 
@@ -47,18 +51,18 @@ procedural_bitmap_test: procedural_bitmap_test.run
 	eog ../obrazki/saw_test.bmp
 	eog ../obrazki/runge_test.bmp
 
-X = 200
+X = 50
 Y = 50
 ORDER = xy
-
+IMAGE = pokemon
 
 resizers_test: resizers_test.run
-	./resizers_test.run ../obrazki/pizza.bmp linear $(ORDER) $(X) $(Y) ../obrazki/pizza_out_linear.bmp
-	./resizers_test.run ../obrazki/pizza.bmp closest $(ORDER) $(X) $(Y) ../obrazki/pizza_out_closest.bmp
-	./resizers_test.run ../obrazki/pizza.bmp cubic $(ORDER) $(X) $(Y) ../obrazki/pizza_out_cubic.bmp
+	./resizers_test.run ../obrazki/$(IMAGE).bmp linear $(ORDER) $(X) $(Y) ../obrazki/$(IMAGE)_out_linear.bmp
+	./resizers_test.run ../obrazki/$(IMAGE).bmp closest $(ORDER) $(X) $(Y) ../obrazki/$(IMAGE)_out_closest.bmp
+	./resizers_test.run ../obrazki/$(IMAGE).bmp cubic $(ORDER) $(X) $(Y) ../obrazki/$(IMAGE)_out_cubic.bmp
 	
-	convert '(' ../obrazki/pizza.bmp ../obrazki/pizza_out_cubic.bmp +append ')' \
-	'(' ../obrazki/pizza_out_linear.bmp ../obrazki/pizza_out_closest.bmp +append ')' \
+	convert \
+	'(' ../obrazki/$(IMAGE)_out_cubic.bmp  ../obrazki/$(IMAGE)_out_linear.bmp ../obrazki/$(IMAGE)_out_closest.bmp +append ')' \
 	-append ../obrazki/all.bmp
 	
 	eog ../obrazki/all.bmp

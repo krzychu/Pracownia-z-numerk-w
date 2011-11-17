@@ -6,7 +6,10 @@
 
 namespace Resizers{
   
+  class Combined;
+  
   class Cubic : public Resizer{
+    friend class Combined;
     protected:
       virtual void do_resize_x(const Bitmap::Channel* src, 
          Bitmap::Channel* dst) ;
