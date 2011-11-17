@@ -80,6 +80,14 @@ time_test.run: $(LIBS) time_test.cpp
 time_test: time_test.run
 	./time_test.run 10 1000 5 ../obrazki/pizza.bmp
 
+visual_order_test.run: $(LIBS) visual_order_test.cpp
+	g++ $(CFLAGS) visual_order_test.cpp -o visual_order_test.o
+	g++ $(LDFLAGS) $(LIBS) visual_order_test.o -o visual_order_test.run 
+	
+visual_order_test: visual_order_test.run
+	./visual_order_test.run ../obrazki/saw_test.bmp linear 50 200 ../obrazki/saw_test_diff.bmp
+	eog ../obrazki/saw_test_diff.bmp
+
 
 clean:
 	rm *.o
