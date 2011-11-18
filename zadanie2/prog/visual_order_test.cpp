@@ -52,7 +52,7 @@ int main(int argc, char** argv){
     return -1;
   }
 
-  
+  delete resizer;  
   delete diff;
   delete xy.img;
   delete yx.img;

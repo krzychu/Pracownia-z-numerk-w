@@ -3,7 +3,11 @@ LDFLAGS = -lm
 LIBS = bitmap_channel.o bitmap_image.o bitmap_image_procedural.o \
        resizers_base.o resizers_closest.o resizers_linear.o resizers_cubic.o \
        resizers_combined.o resizers_utils.o
+SHOW = eog
 
+################################################################################
+#                              Compilation
+################################################################################
 resizers_utils.o: resizers_utils.cpp resizers_utils.h
 	g++ $(CFLAGS) resizers_utils.cpp -o resizers_utils.o 
 
@@ -50,43 +54,69 @@ bitmap_load_test: bitmap_load_test.run
 
 procedural_bitmap_test: procedural_bitmap_test.run
 	./procedural_bitmap_test.run 
-	eog ../obrazki/sin_test.bmp
-	eog ../obrazki/saw_test.bmp
-	eog ../obrazki/runge_test.bmp
-
-X = 500
-Y = 500
-ORDER = xy
-IMAGE = runge_test
-
-resizers_test: resizers_test.run
-	./resizers_test.run ../obrazki/$(IMAGE).bmp linear $(ORDER) $(X) $(Y) ../obrazki/$(IMAGE)_out_linear.bmp
-	./resizers_test.run ../obrazki/$(IMAGE).bmp closest $(ORDER) $(X) $(Y) ../obrazki/$(IMAGE)_out_closest.bmp
-	./resizers_test.run ../obrazki/$(IMAGE).bmp cubic $(ORDER) $(X) $(Y) ../obrazki/$(IMAGE)_out_cubic.bmp
-	./resizers_test.run ../obrazki/$(IMAGE).bmp combined $(ORDER) $(X) $(Y) ../obrazki/$(IMAGE)_out_combined.bmp
-	
-	convert \
-	'(' ../obrazki/$(IMAGE)_out_cubic.bmp  ../obrazki/$(IMAGE)_out_linear.bmp +append ')' \
-	'(' ../obrazki/$(IMAGE)_out_closest.bmp ../obrazki/$(IMAGE)_out_combined.bmp +append ')' \
-	-append ../obrazki/all.bmp
-	
-	eog ../obrazki/all.bmp
-
+	$(SHOW) ../obrazki/sin_test.bmp
+	$(SHOW) ../obrazki/saw_test.bmp
+	$(SHOW) ../obrazki/runge_test.bmp
 
 time_test.run: $(LIBS) time_test.cpp
 	g++ $(CFLAGS) time_test.cpp -o time_test.o
 	g++ $(LDFLAGS) $(LIBS) time_test.o -o time_test.run 
-	
-time_test: time_test.run
-	./time_test.run 10 1000 5 ../obrazki/pizza.bmp
+
 
 visual_order_test.run: $(LIBS) visual_order_test.cpp
 	g++ $(CFLAGS) visual_order_test.cpp -o visual_order_test.o
 	g++ $(LDFLAGS) $(LIBS) visual_order_test.o -o visual_order_test.run 
+
+
+
+################################################################################
+#                              Tests
+################################################################################
+
+
+X = 500
+Y = 500
+ORDER = xy
+IMAGE = pizza
+OUTFILE = all
+
+resizers_test: resizers_test.run
+	./resizers_test.run ../obrazki/$(IMAGE).bmp linear $(ORDER) $(X) $(Y) \
+	../obrazki/$(IMAGE)_out_linear.bmp
+	./resizers_test.run ../obrazki/$(IMAGE).bmp closest $(ORDER) $(X) $(Y) \
+	../obrazki/$(IMAGE)_out_closest.bmp
+	./resizers_test.run ../obrazki/$(IMAGE).bmp cubic $(ORDER) $(X) $(Y) \
+	../obrazki/$(IMAGE)_out_cubic.bmp
+	./resizers_test.run ../obrazki/$(IMAGE).bmp combined $(ORDER) $(X) $(Y) \
+	../obrazki/$(IMAGE)_out_combined.bmp
+
+	convert \
+	'(' ../obrazki/$(IMAGE)_out_cubic.bmp  ../obrazki/$(IMAGE)_out_linear.bmp +append ')' \
+	'(' ../obrazki/$(IMAGE)_out_closest.bmp ../obrazki/$(IMAGE)_out_combined.bmp +append ')' \
+	-append ../obrazki/$(OUTFLIE).bmp
 	
+	rm ../obrazki/$(IMAGE)_out_linear.bmp
+	rm ../obrazki/$(IMAGE)_out_cubic.bmp
+	rm ../obrazki/$(IMAGE)_out_closest.bmp
+	rm ../obrazki/$(IMAGE)_out_combined.bmp
+	
+	$(SHOW) ../obrazki/$(OUTFILE).bmp
+
+
+
+IMAGE = pizza
+time_test: time_test.run
+	./time_test.run 10 1000 5 ../obrazki/$(IMAGE).bmp > ../data/time_test.dat
+
+
+X = 500
+Y = 50
+INFILE = pizza
+OUTFILE = all
+
 visual_order_test: visual_order_test.run
-	./visual_order_test.run ../obrazki/saw_test.bmp linear 50 200 ../obrazki/saw_test_diff.bmp
-	eog ../obrazki/saw_test_diff.bmp
+	./visual_order_test.run ../obrazki/$(INFILE).bmp cubic 50 500 ../obrazki/$(OUTFLIE).bmp
+	$(SHOW) ../obrazki/$(OUTFLIE).bmp
 
 
 clean:

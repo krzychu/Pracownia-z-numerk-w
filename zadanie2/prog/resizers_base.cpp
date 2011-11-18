@@ -1,7 +1,6 @@
 #include "resizers_base.h"
 #include <sys/time.h>
 
-
 using namespace Resizers;
 using namespace Bitmap;
 

@@ -1,0 +1,24 @@
+Zakładam, że na komputerze na którym działa program jest zainstalowana przeglądarka zdjęć
+eog. Jeśli tak nie jest, należy ustawić zmienną SHOW w Makefile tak, by zawierała nazwę 
+pokazywaczki.
+
+Obrazki wejściowe i wyjściowe powinny znajdować się w folderze obrazki.
+
+programy testujące:
+
+ - make time_test
+    generuje plik dla gnuplota z porównaniem wydajności 4 metod, nazwę wejściowego obrazka można
+    zmienić w Makefile
+
+ - make resizers_test
+    wyświetla mozaikę składającą się z obrazków skalowanych różnymi metodami,
+    o następującym układzie
+    
+    | funkcja sklejana  | funkcja liniowa    |
+    +-------------------+--------------------+
+    | najbliższy        | metoda kombinowana |
+
+    parametry można zmienić w Makefile
+
+ - make visual_order_test
+    wyświetla
