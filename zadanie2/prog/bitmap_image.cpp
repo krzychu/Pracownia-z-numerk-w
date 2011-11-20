@@ -172,6 +172,11 @@ Image* Bitmap::RGBImage::diff(const Image* img) const{
   rgb->green->diff(green), rgb->blue->diff(blue));
 }
 
+double Bitmap::RGBImage::norm() const{
+  return red->norm() + green->norm() + blue->norm();
+}
+
+
 //------------------------------------------------------------------BW
 Bitmap::BWImage::BWImage(Channel* g){
   gray = g;
@@ -226,6 +231,10 @@ ResizeStats Bitmap::BWImage::resize_y_px(int newsize, Resizers::Resizer* resizer
 Image* Bitmap::BWImage::diff(const Image* img) const {
   BWImage* bw = (BWImage*) img;
   return new BWImage(bw->gray->diff(gray));
+}
+
+double Bitmap::BWImage::norm() const{
+  return gray->norm();
 }
 
 //--------------------------------------------------------------------------image

@@ -68,6 +68,11 @@ visual_order_test.run: $(LIBS) visual_order_test.cpp
 	g++ $(LDFLAGS) $(LIBS) visual_order_test.o -o visual_order_test.run 
 
 
+procedural_resize_test.run: $(LIBS) procedural_resize_test.cpp
+	g++ $(CFLAGS) procedural_resize_test.cpp -o procedural_resize_test.o
+	g++ $(LDFLAGS) $(LIBS) procedural_resize_test.o -o procedural_resize_test.run 
+
+
 
 ################################################################################
 #                              Tests
@@ -117,6 +122,10 @@ OUTFILE = all
 visual_order_test: visual_order_test.run
 	./visual_order_test.run ../obrazki/$(INFILE).bmp cubic 50 500 ../obrazki/$(OUTFLIE).bmp
 	$(SHOW) ../obrazki/$(OUTFLIE).bmp
+
+
+procedural_resize_test: procedural_resize_test.run
+	./procedural_resize_test.run linear sin > ../data/linear_sin.dat
 
 
 clean:

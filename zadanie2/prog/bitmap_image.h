@@ -60,6 +60,9 @@ namespace Bitmap{
       int getWidth() const;
       int getHeight() const;
 
+      // norm
+      virtual double norm() const = 0;
+
       ResizeStats resize_x_percent(int percent, Resizers::Resizer* resizer);
       ResizeStats resize_y_percent(int percent, Resizers::Resizer* resizer);
   };
@@ -82,6 +85,8 @@ namespace Bitmap{
       virtual ResizeStats resize_x_px(int newsize, Resizers::Resizer* resizer);
       virtual ResizeStats resize_y_px(int newsize, Resizers::Resizer* resizer);
       virtual Image* diff(const Image* other) const;
+      virtual double norm() const;
+
 
     friend std::ostream& operator << (std::ostream& out, const RGBImage& image);
   };
@@ -104,6 +109,7 @@ namespace Bitmap{
       virtual ResizeStats resize_x_px(int newsize, Resizers::Resizer* resizer);
       virtual ResizeStats resize_y_px(int newsize, Resizers::Resizer* resizer);
       virtual Image* diff(const Image* other) const;
+      virtual double norm() const;
 
     friend std::ostream& operator << (std::ostream& out, const BWImage& image);
   };
