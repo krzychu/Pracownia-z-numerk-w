@@ -68,6 +68,11 @@ visual_order_test.run: $(LIBS) visual_order_test.cpp
 	g++ $(LDFLAGS) $(LIBS) visual_order_test.o -o visual_order_test.run 
 
 
+data_loss_test.run: $(LIBS) data_loss_test.cpp
+	g++ $(CFLAGS) data_loss_test.cpp -o data_loss_test.o
+	g++ $(LDFLAGS) $(LIBS) data_loss_test.o -o data_loss_test.run 
+
+
 procedural_resize_test.run: $(LIBS) procedural_resize_test.cpp
 	g++ $(CFLAGS) procedural_resize_test.cpp -o procedural_resize_test.o
 	g++ $(LDFLAGS) $(LIBS) procedural_resize_test.o -o procedural_resize_test.run 
@@ -118,10 +123,11 @@ X = 10
 Y = 10
 INFILE = pokemon
 OUTFILE = all
-
 visual_order_test: visual_order_test.run
 	./visual_order_test.run ../obrazki/$(INFILE).bmp cubic 50 500 ../obrazki/$(OUTFLIE).bmp
 	$(SHOW) ../obrazki/$(OUTFLIE).bmp
+
+
 
 
 procedural_resize_test: procedural_resize_test.run
@@ -136,6 +142,18 @@ procedural_resize_test: procedural_resize_test.run
 	./procedural_resize_test.run linear runge > ../data/linear_runge.dat
 	./procedural_resize_test.run cubic runge > ../data/cubic_runge.dat
 	./procedural_resize_test.run closest runge > ../data/closest_runge.dat
+
+
+
+
+X = 10
+Y = 10
+INFILE = pokemon
+OUTFILE = pokemon_diff
+
+data_loss_test: data_loss_test.run
+	./data_loss_test.run ../obrazki/$(INFILE).bmp cubic $(X) $(Y) ../obrazki/$(OUTFILE)_linear.bmp
+	$(SHOW) ../obrazki/$(OUTFILE)_linear.bmp
 
 
 clean:

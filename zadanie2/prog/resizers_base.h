@@ -11,6 +11,7 @@ namespace Resizers{
     Bitmap::Channel* channel;
   };
 
+
   class Resizer{
     private:
       long start_time;
