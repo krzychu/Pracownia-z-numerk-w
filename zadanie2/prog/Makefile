@@ -82,7 +82,7 @@ procedural_resize_test.run: $(LIBS) procedural_resize_test.cpp
 X = 500
 Y = 500
 ORDER = xy
-IMAGE = pizza
+IMAGE = pokemon
 OUTFILE = all
 
 resizers_test: resizers_test.run
@@ -98,7 +98,7 @@ resizers_test: resizers_test.run
 	convert \
 	'(' ../obrazki/$(IMAGE)_out_cubic.bmp  ../obrazki/$(IMAGE)_out_linear.bmp +append ')' \
 	'(' ../obrazki/$(IMAGE)_out_closest.bmp ../obrazki/$(IMAGE)_out_combined.bmp +append ')' \
-	-append ../obrazki/$(OUTFLIE).bmp
+	-append ../obrazki/$(OUTFILE).bmp
 	
 	rm ../obrazki/$(IMAGE)_out_linear.bmp
 	rm ../obrazki/$(IMAGE)_out_cubic.bmp
@@ -109,14 +109,14 @@ resizers_test: resizers_test.run
 
 
 
-IMAGE = pizza
+IMAGE = pokemon
 time_test: time_test.run
 	./time_test.run 10 1000 5 ../obrazki/$(IMAGE).bmp > ../data/time_test.dat
 
 
 X = 500
-Y = 50
-INFILE = pizza
+Y = 500
+INFILE = pokemon
 OUTFILE = all
 
 visual_order_test: visual_order_test.run
