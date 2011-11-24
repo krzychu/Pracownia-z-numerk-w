@@ -31,6 +31,8 @@ void Resizers::Linear::do_resize_x(const Channel* src, Channel* dst){
   }
 }
 
+
+
 void Resizers::Linear::do_resize_y(const Channel* src, Channel* dst){
   double step = double(src->height - 1) / double(dst->height - 1);
   
@@ -39,7 +41,7 @@ void Resizers::Linear::do_resize_y(const Channel* src, Channel* dst){
   
   double prev, next;
 
-  double y_pos = step;
+  double y_pos = 0;
   int y_pos_int;
   for(int y = 0; y < dst->height-1; y++){
     y_pos_int = src->width * int(y_pos);

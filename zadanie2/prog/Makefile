@@ -114,8 +114,8 @@ time_test: time_test.run
 	./time_test.run 10 1000 5 ../obrazki/$(IMAGE).bmp > ../data/time_test.dat
 
 
-X = 500
-Y = 500
+X = 10
+Y = 10
 INFILE = pokemon
 OUTFILE = all
 
@@ -126,6 +126,16 @@ visual_order_test: visual_order_test.run
 
 procedural_resize_test: procedural_resize_test.run
 	./procedural_resize_test.run linear sin > ../data/linear_sin.dat
+	./procedural_resize_test.run cubic sin > ../data/cubic_sin.dat
+	./procedural_resize_test.run closest sin > ../data/closest_sin.dat
+
+	./procedural_resize_test.run linear saw > ../data/linear_saw.dat
+	./procedural_resize_test.run cubic saw > ../data/cubic_saw.dat
+	./procedural_resize_test.run closest saw > ../data/closest_saw.dat
+
+	./procedural_resize_test.run linear runge > ../data/linear_runge.dat
+	./procedural_resize_test.run cubic runge > ../data/cubic_runge.dat
+	./procedural_resize_test.run closest runge > ../data/closest_runge.dat
 
 
 clean:
