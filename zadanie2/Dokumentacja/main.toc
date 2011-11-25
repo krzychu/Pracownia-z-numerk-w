@@ -4,5 +4,5 @@
 \contentsline {section}{\numberline {3\relax .\kern .5em }Por\IeC {\'o}wnanie algorytm\IeC {\'o}w pod wzgl\IeC {\k e}dem jako\IeC {\'s}ci}{3}
 \contentsline {section}{\numberline {4\relax .\kern .5em }Sprawdzenie znaczenia kolejno\IeC {\'s}ci wykonywania zmian obrazu}{3}
 \contentsline {section}{\numberline {5\relax .\kern .5em }Por\IeC {\'o}wnanie algorytm\IeC {\'o}w pod wzgl\IeC {\k e}dem szybko\IeC {\'s}ci}{3}
-\contentsline {section}{\numberline {6\relax .\kern .5em }Zestawienie z profesjonalnym programem do obr\IeC {\'o}bki obraz\IeC {\'o}w}{3}
-\contentsline {section}{\numberline {7\relax .\kern .5em }Wnioski}{3}
+\contentsline {section}{\numberline {6\relax .\kern .5em }Zestawienie z profesjonalnym programem do obr\IeC {\'o}bki obraz\IeC {\'o}w}{4}
+\contentsline {section}{\numberline {7\relax .\kern .5em }Wnioski}{5}

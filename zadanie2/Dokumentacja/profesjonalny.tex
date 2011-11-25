@@ -1,1 +1,19 @@
 \section{Zestawienie z profesjonalnym programem do obróbki obrazów}
+Używane w profesjonalnych programach do obróbki obrazu algorytmy skalowania
+różnią się od tych przedstawionych przez nas. W zależności od tego jakich
+efektów ubocznych chcemy uniknąć (czy efektu schodków, czy rozmycia) oraz jak
+bardzo zależy nam na szybkości wykonywanch skalowań, wybiera się różne metody.
+Najczęściej spotykanymi rowiązaniami są metody
+\textbf{'bilinear interpolation'}oraz \textbf{'bicubic interpolation'}.
+Główną różnicą między nimi, a
+rozwiązaniami przedstawionymi przez nas jest to, że dla danego punktu nie
+patrzą one jedynie na punkty w poziomie (pionie), ale na całe otoczenie.
+Pierwsza z nich uwzględnia najbliższych 4 sąsiadów w pionie i poziomie
+($2\times2$) i przyporządkowuje rozważąnemu pikselowi ich średnią ważoną.
+W rezultacie uzyskujemy wyraźnie gładsze obrazy niż np. w metodzie
+najbliższego sąsiedztwa.Metoda zwana 'bicubic interpolation' zaś idzie jeszcze krok dalej, uwzględniając 16 ($4\times4$) otaczających rozawżany punkt sąsiadów. Tu również
+liczonajest średnia ważona, jednakże dalsze punkty uzysują mniejszą wagę.
+Algorytm ten daje dostrzegawczo ostrzejsze obrazy i jest bliskim ideału
+kompromisem między złożonością czasową, a zachowniem jakości. Stąd jest on
+podstawą wielu takich programów, jak przykładowo Adobe Photoshop.
+
