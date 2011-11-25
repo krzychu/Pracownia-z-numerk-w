@@ -11,12 +11,15 @@ using namespace std;
 #define ARG_X_PERCENT 3 
 #define ARG_Y_PERCENT 4
 #define ARG_METHOD 2 
-#define ARG_OUTFILE 5
+#define ARG_DIFF_OUT 5
+#define ARG_IMG_OUT 6
+
+
 
 int main(int argc, char** argv){
   
-  if(argc != 6){
-    cout << "usage: infile method x y outfile\n";
+  if(argc != 7){
+    cout << "usage: infile method x y outfile_diff outfile_image\n";
     return -1;
   }
 
@@ -58,7 +61,8 @@ int main(int argc, char** argv){
   Image *diff = r2.img->diff(img);
 
   try{
-    diff->save(argv[ARG_OUTFILE]);
+    diff->save(argv[ARG_DIFF_OUT]);
+    r2.img->save(argv[ARG_IMG_OUT]);
   }
   catch(BitmapError ex){
     cout << ex;

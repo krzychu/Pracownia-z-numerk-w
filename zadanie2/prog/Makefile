@@ -84,47 +84,47 @@ procedural_resize_test.run: $(LIBS) procedural_resize_test.cpp
 ################################################################################
 
 
-X = 500
-Y = 500
+X_res = 80
+Y_res = 80
 ORDER = xy
-IMAGE = pokemon
-OUTFILE = all
+IMAGE_res = tekst
+OUTFILE_res = tekst_80
 
 resizers_test: resizers_test.run
-	./resizers_test.run ../obrazki/$(IMAGE).bmp linear $(ORDER) $(X) $(Y) \
-	../obrazki/$(IMAGE)_out_linear.bmp
-	./resizers_test.run ../obrazki/$(IMAGE).bmp closest $(ORDER) $(X) $(Y) \
-	../obrazki/$(IMAGE)_out_closest.bmp
-	./resizers_test.run ../obrazki/$(IMAGE).bmp cubic $(ORDER) $(X) $(Y) \
-	../obrazki/$(IMAGE)_out_cubic.bmp
-	./resizers_test.run ../obrazki/$(IMAGE).bmp combined $(ORDER) $(X) $(Y) \
-	../obrazki/$(IMAGE)_out_combined.bmp
+	./resizers_test.run ../obrazki/$(IMAGE_res).bmp linear $(ORDER) $(X_res) $(Y_res) \
+	../obrazki/$(IMAGE_res)_out_linear.bmp
+	./resizers_test.run ../obrazki/$(IMAGE_res).bmp closest $(ORDER) $(X_res) $(Y_res) \
+	../obrazki/$(IMAGE_res)_out_closest.bmp
+	./resizers_test.run ../obrazki/$(IMAGE_res).bmp cubic $(ORDER) $(X_res) $(Y_res) \
+	../obrazki/$(IMAGE_res)_out_cubic.bmp
+	./resizers_test.run ../obrazki/$(IMAGE_res).bmp combined $(ORDER) $(X_res) $(Y_res) \
+	../obrazki/$(IMAGE_res)_out_combined.bmp
 
 	convert \
-	'(' ../obrazki/$(IMAGE)_out_cubic.bmp  ../obrazki/$(IMAGE)_out_linear.bmp +append ')' \
-	'(' ../obrazki/$(IMAGE)_out_closest.bmp ../obrazki/$(IMAGE)_out_combined.bmp +append ')' \
-	-append ../obrazki/$(OUTFILE).bmp
+	'(' ../obrazki/$(IMAGE_res)_out_cubic.bmp  ../obrazki/$(IMAGE_res)_out_linear.bmp +append ')' \
+	'(' ../obrazki/$(IMAGE_res)_out_closest.bmp ../obrazki/$(IMAGE_res)_out_combined.bmp +append ')' \
+	-append ../obrazki/$(OUTFILE_res).bmp
 	
-	rm ../obrazki/$(IMAGE)_out_linear.bmp
-	rm ../obrazki/$(IMAGE)_out_cubic.bmp
-	rm ../obrazki/$(IMAGE)_out_closest.bmp
-	rm ../obrazki/$(IMAGE)_out_combined.bmp
+	rm ../obrazki/$(IMAGE_res)_out_linear.bmp
+	rm ../obrazki/$(IMAGE_res)_out_cubic.bmp
+	rm ../obrazki/$(IMAGE_res)_out_closest.bmp
+	rm ../obrazki/$(IMAGE_res)_out_combined.bmp
 	
-	$(SHOW) ../obrazki/$(OUTFILE).bmp
+	$(SHOW) ../obrazki/$(OUTFILE_res).bmp
 
 
 
-IMAGE = pokemon
+IMAGE_time = liscie_male
 time_test: time_test.run
-	./time_test.run 10 1000 5 ../obrazki/$(IMAGE).bmp > ../data/time_test.dat
+	./time_test.run 10 1000 5 ../obrazki/$(IMAGE_time).bmp > ../data/time_test.dat
 
 
-X = 10
-Y = 10
-INFILE = pokemon
-OUTFILE = all
+X_ord = 10
+Y_ord = 10
+IMAGE_ord = pokemon
+OUTFILE_ord = all
 visual_order_test: visual_order_test.run
-	./visual_order_test.run ../obrazki/$(INFILE).bmp cubic 50 500 ../obrazki/$(OUTFLIE).bmp
+	./visual_order_test.run ../obrazki/$(IMAGE_ord).bmp cubic 50 500 ../obrazki/$(OUTFLIE).bmp
 	$(SHOW) ../obrazki/$(OUTFLIE).bmp
 
 
@@ -150,11 +150,22 @@ X = 10
 Y = 10
 INFILE = pokemon
 OUTFILE = pokemon_diff
+ALL = all
 
 data_loss_test: data_loss_test.run
-	./data_loss_test.run ../obrazki/$(INFILE).bmp cubic $(X) $(Y) ../obrazki/$(OUTFILE)_linear.bmp
-	$(SHOW) ../obrazki/$(OUTFILE)_linear.bmp
+	./data_loss_test.run ../obrazki/$(INFILE).bmp linear $(X) $(Y) \
+	../obrazki/$(OUTFILE)_diff_linear.bmp ../obrazki/$(OUTFILE)_img_linear.bmp
+	./data_loss_test.run ../obrazki/$(INFILE).bmp cubic $(X) $(Y) \
+	../obrazki/$(OUTFILE)_diff_cubic.bmp ../obrazki/$(OUTFILE)_img_cubic.bmp
+	./data_loss_test.run ../obrazki/$(INFILE).bmp closest $(X) $(Y) \
+	../obrazki/$(OUTFILE)_diff_closest.bmp ../obrazki/$(OUTFILE)_img_closest.bmp
 
+	convert \
+	'(' ../obrazki/$(OUTFILE)_diff_cubic.bmp  ../obrazki/$(OUTFILE)_img_cubic.bmp +append ')' \
+	'(' ../obrazki/$(OUTFILE)_diff_linear.bmp  ../obrazki/$(OUTFILE)_img_linear.bmp +append ')' \
+	'(' ../obrazki/$(OUTFILE)_diff_cubic.bmp  ../obrazki/$(OUTFILE)_img_cubic.bmp +append ')' \
+	-append ../obrazki/$(ALL).bmp
+	$(SHOW) ../obrazki/$(ALL).bmp
 
 clean:
 	rm *.o
