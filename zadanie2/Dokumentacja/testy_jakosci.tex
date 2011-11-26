@@ -1,1 +1,85 @@
 \section{Porównanie algorytmów pod względem jakości}
+Pierwszym zadaniem, które wykonaliśmy, polegało na porównaniu jakości obrazów po
+zmianie jego rozdzielczości za pomocą trzech powyżej opisanych metod. Rysunek
+\textbf{3.1} jest obrazem, którego użyliśmy przy wstępnych badaniach.
+\begin{figure}[h!tb]
+\begin{center}
+\includegraphics{../obrazki/liscie.jpg}
+\caption{Liście - pierwszy rysunek testowy.}
+\end{center}
+\end{figure}
+
+Powiększyliśmy ten obraz o pięciokrotnie w pionie i poziomie używając
+kolejnych algorytmów. Wynik tej operacji prezentuje rysunek \textbf{3.2}.
+\begin{figure}[h!tb]
+\begin{center}
+\subfigure[NS]{
+\includegraphics[width=4cm]{../obrazki/liscie_500_round.jpg}
+}
+\subfigure[AFS(I)]{
+\includegraphics[width=4cm]{../obrazki/liscie_500_linear.jpg}
+}
+\subfigure[AFS(III)]{
+\includegraphics[width=4cm]{../obrazki/liscie_500_cubic.jpg}
+}
+\caption{Fragmenty obrazków będących pięciokrotnym powiększeniem rysunku \textbf{3.1}.}
+\end{center}
+\end{figure}
+
+Jak można odrazu zauważyć, metoda NS dała najgorszy pod względem wizualnym wynik.
+Widoszny jest efekt "schodków", czyli wygląd krawędzi daleko odbiega od naszych
+oczekiwań. Gdy spojrzymy na pozostałe dwie metody, dają one wynik dość zbliżony,
+przy czym AFS(III) zdaje się dawać mniejszy efekt rozmycia.
+
+Po wykonaniu tego wstępnego rozpozania problemu, postanowiliśmy sprawdzić, jak
+poszczególne algorytmy zachowają się wobec pisanego tekstu.
+Fragment tekstu, którego użyliśmy do naszych eksperymentów znajduje się w pliku
+o nazwie \textit{tekst.bmp}.
+
+Tym razem rozpoczęlismy od zmniejszania obrazka. Spośród sprawdzonych wartości,
+jako przykład do prezentacji wybraliśmy skalowanie do $70\%$ oryginalnego
+rozmiaru, ponieważ tekst wtedy dla wszystkich metod pozostaje czytelny, a
+widoczne są już uboczne efekty zmiany rozdzielczości. Fragment otrzymanych
+wyników przedstawiw rysunek \textbf{3.3}. Ponownie dla metody NS obserwujemy
+efekt "schodków" i przez to wyraźną stratę na jakości obrazu. Metoda AFS(I)
+wydaje się zaś rozmazywać poszczególne znaki. Choć nieidealna, metoda AFS(III),
+zdaje się radzić sobie najlepiej jeśli chodzi o jakość wyniku. Analogiczne efekty
+otrzymujemy przy powiększaniu tekstu. Rysunek \textbf{3.4} prezentuje
+fragmenty powyższego fragmentu dokumentu powiększone pięciokrotnie. Chcąc
+podsumować nasze wizuane obserwacje, najgorszym algorytmem pod względem zachowania
+jakości jest algorytm NS, najlepszym zaś zdaje się być algorytm AFS(III).
+\begin{figure}[h!tb]
+\begin{center}
+\subfigure[NS]{
+\includegraphics[width=5cm]{../obrazki/tekst_70_round.jpg}
+}
+\subfigure[AFS(I)]{
+\includegraphics[width=5cm]{../obrazki/tekst_70_linear.jpg}
+}
+\subfigure[AFS(III)]{
+\includegraphics[width=5cm]{../obrazki/tekst_70_cubic.jpg}
+}
+\caption{Pomniejszenie tekstu za pomocą trzech metod.}
+\end{center}
+\end{figure}
+\begin{figure}[h!tb]
+\begin{center}
+\subfigure[NS]{
+\includegraphics[width=10cm]{../obrazki/tekst_500_round.jpg}
+}
+\subfigure[AFS(I)]{
+\includegraphics[width=10cm]{../obrazki/tekst_500_linear.jpg}
+}
+\subfigure[AFS(III)]{
+\includegraphics[width=10cm]{../obrazki/tekst_500_linear.jpg}
+}
+\caption{Powiększenie tekstu za pomocą trzech metod.}
+\end{center}
+\end{figure}
+
+
+
+
+
+
+

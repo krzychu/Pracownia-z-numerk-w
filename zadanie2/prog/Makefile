@@ -84,11 +84,11 @@ procedural_resize_test.run: $(LIBS) procedural_resize_test.cpp
 ################################################################################
 
 
-X_res = 80
-Y_res = 80
+X_res = 500
+Y_res = 500
 ORDER = xy
 IMAGE_res = tekst
-OUTFILE_res = tekst_80
+OUTFILE_res = tekst_500
 
 resizers_test: resizers_test.run
 	./resizers_test.run ../obrazki/$(IMAGE_res).bmp linear $(ORDER) $(X_res) $(Y_res) \
