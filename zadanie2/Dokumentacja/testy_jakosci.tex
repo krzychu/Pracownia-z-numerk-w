@@ -45,8 +45,8 @@ efekt "schodków" i przez to wyraźną stratę na jakości obrazu. Metoda AFS(I)
 wydaje się zaś rozmazywać poszczególne znaki. Choć nieidealna, metoda AFS(III),
 zdaje się radzić sobie najlepiej jeśli chodzi o jakość wyniku. Analogiczne efekty
 otrzymujemy przy powiększaniu tekstu. Rysunek \textbf{3.4} prezentuje
-fragmenty powyższego fragmentu dokumentu powiększone pięciokrotnie. Chcąc
-podsumować nasze wizuane obserwacje, najgorszym algorytmem pod względem zachowania
+fragmenty powyższego fragmentu dokumentu powiększone dwukrotnie. Chcąc
+podsumować nasze wizualne obserwacje, najgorszym algorytmem pod względem zachowania
 jakości jest algorytm NS, najlepszym zaś zdaje się być algorytm AFS(III).
 \begin{figure}[h!tb]
 \begin{center}
@@ -62,22 +62,104 @@ jakości jest algorytm NS, najlepszym zaś zdaje się być algorytm AFS(III).
 \caption{Pomniejszenie tekstu za pomocą trzech metod.}
 \end{center}
 \end{figure}
-\begin{figure}[h!tb]
+\begin{figure}
 \begin{center}
 \subfigure[NS]{
-\includegraphics[width=10cm]{../obrazki/tekst_500_round.jpg}
+\includegraphics{../obrazki/tekst_200_round.jpg}
 }
 \subfigure[AFS(I)]{
-\includegraphics[width=10cm]{../obrazki/tekst_500_linear.jpg}
+\includegraphics{../obrazki/tekst_200_linear.jpg}
 }
 \subfigure[AFS(III)]{
-\includegraphics[width=10cm]{../obrazki/tekst_500_linear.jpg}
+\includegraphics{../obrazki/tekst_200_cubic.jpg}
 }
 \caption{Powiększenie tekstu za pomocą trzech metod.}
 \end{center}
 \end{figure}
 
+Aby nie opierać się wyłącznie na wizualnych obserwacjach, zbadaliśmy
+metody zmiany rozdzielczości obrazka również od strony matematycznej. Załóżmy
+bowiem, że mamy obrazek zadany przez dwuwymiarową funkcję. Wówczas znamy
+dokładną wartość, jaką powinna ona przyjąć po przeskalowaniu. Uznaliśmy, że
+wykorzystując ten fakt, możemy zbadać odchylenie standardowe wyniku działania
+poszczególnych algorytmów w przypadku zmieniania rozdzielczości obrazu będącego
+wykresem dwuwyimarowej funkcji. Oznaczmy więc przez $F$ funkcję odpowiadającą
+obrazowi o zmienionych rozmiarach, których wartości t $N_x$ i $N_y$. Niech
+jednocześnie $M$ będzie funkcją, która przyporządkowuje danemu pikselowi jego
+wartość wyznaczoną przez jedną z metod, wtedy odchylenie standardowe określamy
+jako
+$$d(M)=\sqrt{\frac{\sum_{x=0}^{N_x-1}{\sum_{y=0}^{N_y-1}{(M(x,y)-F(x,y))^2}}}{N_xN_y}}.$$
+Im większa wartość tego współczynnika tym bardziej uzyskany za pomocą określonej
+metody skalowania wynik odbiega od wyniku porządanego. Obliczyliśmy wartość tego
+współczynnika dla wartości skalowania od $10\%$ do $500\%$ dla dwuwymiarowych
+wkresów piły Weierstarssa i funkcji sinus. Tabele na rysunku \textbf{3.5}
+przedstawiają wybrane wyniki dla odpowiednio piły Weierstrassa i funkcji sinus.
+Jak widać wyniki zgadzają się z nazymi intuicjami. Największą wartość odchylenia
+standardowego jest uzyskiana przez NS zaś odchylenia AFS(I) i AFS(III) są do siebie zbliżone. Jak można
+zauważyć, wartość tego odchylenia niewielkim stopniu od tego, jak zmieniamy obraz.
+Pełen zestaw zgromadzonych danych znajduje się w odpowiednich plikach w katalogu
+\textit{data}.
+\begin{figure}[h!tb]
+\begin{center}
+\subfigure[Piła Weierstrassa]{
+\begin{tabular}{|c|c||c|c|c|}
+    \hline
+    OX & OY & d(NS) & d(AFS(I)) & d(AFS(III))\\
+    \hline
+    \hline
+    10\% & 50\% & 19.7684 & 16.1438 & 15.8878\\
+    \hline
+    50\% & 10\% & 19.7684 & 16.1488 & 15.7155\\
+    \hline
+    50\% & 250\% & 19.3463 & 15.6816 & 15.1441\\
+    \hline
+    150\% & 450\% & 20.9178 & 15.844 & 15.3858\\
+    \hline
+    250\% & 50\% & 19.3463  & 15.6864 & 15.2307\\
+    \hline
+    450\% & 150\% & 20.9178 & 15.8438 & 15.3248\\
+    \hline
+\end{tabular}
+}
+\subfigure[Funkcja Rungego]{
+\begin{tabular}{|c|c||c|c|c|}
+    \hline
+    OX & OY & d(NS) & d(AFS(I)) & d(AFS(III))\\
+    \hline
+    \hline
+    10\% & 50\% & 3.38851 & 1.06066 & 1.12161\\
+    \hline
+    50\% & 10\% & 3.388515 & 1.0616 & 1.13159\\
+    \hline
+    50\% & 250\% & 4.08785 & 1.1073 & 1.13852\\
+    \hline
+    150\% & 450\% & 4.10309 & 1.11169 & 1.14702\\
+    \hline
+    250\% & 50\% & 4.08785 & 1.10646 & 1.13993\\
+    \hline
+    450\% & 150\% & 4.10309 & 1.11306 & 1.14848\\
+    \hline
+\end{tabular}
+}
+\caption{Tabele przedstawiające wartość odchylenia standardowego dla metod skalowania.}
+\end{center}
+\end{figure}
 
+Zbadaliśmy pod względem wielkości odchylenia również funkcję Rungego. W tym przypadku spotkało
+nas zaskoczenie. Wartości odchylenia standardowego dla algorytmu naturalnego sąsiedztwa wniosły
+w przybliżeniu \textbf{0.65}, dla AFS(I) około \textbf{0.8}, a dla AFS(III) \textbf{1.1}, a więc
+odwrotnie, niż by to mówiły wcześniejsze badania. Przyjrzyjmy się więc, jak wygląda wykres tej funkcji
+(zosał on zamieszczony na rysunku \textbf{3.6}). Jak widać przejścia pomiędzy poszczególnymi odcieniami
+są na tym rysunku gładkie, stąd metoda NS czy liniowa są jak najberdziej wskazane w tym przypadku do użycia.
+Wynika stąd, że to jakiej metody warto użyć do sklowania obrazu zależy także od tego, co sam obraz prszedstawia,
+czy posiada ostre czy rozmyte kontury.
+\begin{figure}[h!tb]
+\begin{center}
+\includegraphics{../obrazki/runge_test.jpg}
+\caption{Wykres funkcji Rungego}
+\end{center}
+\end{figure}
+ 
 
 
 
