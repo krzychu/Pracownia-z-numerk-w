@@ -22,7 +22,7 @@ double Bitmap::Channel::norm() const{
     norm += double(*ptr * *ptr);
     ptr++;
   }
-  return sqrt(norm) / double(n);
+  return sqrt(norm / double(n));
 }
 
 static uint8_t abs(uint8_t a, uint8_t b){
