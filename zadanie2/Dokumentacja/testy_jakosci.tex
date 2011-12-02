@@ -4,7 +4,7 @@ zmianie jego rozdzielczości za pomocą trzech powyżej opisanych metod. Rysunek
 \textbf{3.1} jest obrazem, którego użyliśmy przy wstępnych badaniach.
 \begin{figure}[h!tb]
 \begin{center}
-\includegraphics{../obrazki/liscie.jpg}
+\includegraphics{../obrazki/liscie_1/liscie.jpg}
 \caption{Liście - pierwszy rysunek testowy.}
 \end{center}
 \end{figure}
@@ -14,50 +14,49 @@ kolejnych algorytmów. Wynik tej operacji prezentuje rysunek \textbf{3.2}.
 \begin{figure}[h!tb]
 \begin{center}
 \subfigure[NS]{
-\includegraphics[width=4cm]{../obrazki/liscie_500_round.jpg}
+\includegraphics[width=4cm]{../obrazki/liscie_1/liscie_500_round.jpg}
 }
 \subfigure[AFS(I)]{
-\includegraphics[width=4cm]{../obrazki/liscie_500_linear.jpg}
+\includegraphics[width=4cm]{../obrazki/liscie_1/liscie_500_linear.jpg}
 }
 \subfigure[AFS(III)]{
-\includegraphics[width=4cm]{../obrazki/liscie_500_cubic.jpg}
+\includegraphics[width=4cm]{../obrazki/liscie_1/liscie_500_cubic.jpg}
 }
 \caption{Fragmenty obrazków będących pięciokrotnym powiększeniem rysunku \textbf{3.1}.}
 \end{center}
 \end{figure}
 
-Jak można odrazu zauważyć, metoda NS dała najgorszy pod względem wizualnym wynik.
-Widoszny jest efekt "schodków", czyli wygląd krawędzi daleko odbiega od naszych
+Całościowe wyniki tego doświadczenia znajdują się w katalogu \textit{obrazki$\slash$liscie\_1}. Jak można odrazu zauważyć, metoda NS dała najgorszy pod względem wizualnym wynik.
+Widoszny jest efekt 'schodków', czyli wygląd krawędzi daleko odbiega od naszych
 oczekiwań. Gdy spojrzymy na pozostałe dwie metody, dają one wynik dość zbliżony,
-przy czym AFS(III) zdaje się dawać mniejszy efekt rozmycia.
+przy czym AFS(III) zdaje się w mniejszym stopniu powodować efekt rozmycia.
 
 Po wykonaniu tego wstępnego rozpozania problemu, postanowiliśmy sprawdzić, jak
 poszczególne algorytmy zachowają się wobec pisanego tekstu.
-Fragment tekstu, którego użyliśmy do naszych eksperymentów znajduje się w pliku
-o nazwie \textit{tekst.bmp}.
+Fragment tekstu, którego użyliśmy do naszych eksperymentów, jak i uzyskane wyniki znajdują się w katalogu \textit{obrazki$slash$tekst}.
 
 Tym razem rozpoczęlismy od zmniejszania obrazka. Spośród sprawdzonych wartości,
 jako przykład do prezentacji wybraliśmy skalowanie do $70\%$ oryginalnego
 rozmiaru, ponieważ tekst wtedy dla wszystkich metod pozostaje czytelny, a
 widoczne są już uboczne efekty zmiany rozdzielczości. Fragment otrzymanych
-wyników przedstawiw rysunek \textbf{3.3}. Ponownie dla metody NS obserwujemy
-efekt "schodków" i przez to wyraźną stratę na jakości obrazu. Metoda AFS(I)
+wyników przedstawia rysunek \textbf{3.3}. Ponownie dla metody NS obserwujemy
+efekt 'schodków' i przez to wyraźną stratę na jakości obrazu. Metoda AFS(I)
 wydaje się zaś rozmazywać poszczególne znaki. Choć nieidealna, metoda AFS(III),
 zdaje się radzić sobie najlepiej jeśli chodzi o jakość wyniku. Analogiczne efekty
 otrzymujemy przy powiększaniu tekstu. Rysunek \textbf{3.4} prezentuje
-fragmenty powyższego fragmentu dokumentu powiększone dwukrotnie. Chcąc
-podsumować nasze wizualne obserwacje, najgorszym algorytmem pod względem zachowania
+fragmenty powyższego dokumentu powiększone dwukrotnie za pomocą wszystkich trzech metod. Chcąc
+podsumować nasze wizualne obserwacje, możemy stwierdzić, że najgorszym algorytmem pod względem zachowania
 jakości jest algorytm NS, najlepszym zaś zdaje się być algorytm AFS(III).
 \begin{figure}[h!tb]
 \begin{center}
 \subfigure[NS]{
-\includegraphics[width=5cm]{../obrazki/tekst_70_round.jpg}
+\includegraphics[width=5cm]{../obrazki/tekst/tekst_70_round.jpg}
 }
 \subfigure[AFS(I)]{
-\includegraphics[width=5cm]{../obrazki/tekst_70_linear.jpg}
+\includegraphics[width=5cm]{../obrazki/tekst/tekst_70_linear.jpg}
 }
 \subfigure[AFS(III)]{
-\includegraphics[width=5cm]{../obrazki/tekst_70_cubic.jpg}
+\includegraphics[width=5cm]{../obrazki/tekst/tekst_70_cubic.jpg}
 }
 \caption{Pomniejszenie tekstu za pomocą trzech metod.}
 \end{center}
@@ -65,15 +64,15 @@ jakości jest algorytm NS, najlepszym zaś zdaje się być algorytm AFS(III).
 \begin{figure}
 \begin{center}
 \subfigure[NS]{
-\includegraphics{../obrazki/tekst_200_round.jpg}
+\includegraphics{../obrazki/tekst/tekst_200_round.jpg}
 }
 \subfigure[AFS(I)]{
-\includegraphics{../obrazki/tekst_200_linear.jpg}
+\includegraphics{../obrazki/tekst/tekst_200_linear.jpg}
 }
 \subfigure[AFS(III)]{
-\includegraphics{../obrazki/tekst_200_cubic.jpg}
+\includegraphics{../obrazki/tekst/tekst_200_cubic.jpg}
 }
-\caption{Powiększenie tekstu za pomocą trzech metod.}
+\caption{Powiększenie tekstu dwukrotnie za pomocą trzech metod.}
 \end{center}
 \end{figure}
 
@@ -81,8 +80,8 @@ Aby nie opierać się wyłącznie na wizualnych obserwacjach, zbadaliśmy
 metody zmiany rozdzielczości obrazka również od strony matematycznej. Załóżmy
 bowiem, że mamy obrazek zadany przez dwuwymiarową funkcję. Wówczas znamy
 dokładną wartość, jaką powinna ona przyjąć po przeskalowaniu. Uznaliśmy, że
-wykorzystując ten fakt, możemy zbadać odchylenie standardowe wyniku działania
-poszczególnych algorytmów w przypadku zmieniania rozdzielczości obrazu będącego
+wykorzystując ten fakt, możemy zbadać odchylenie standardowe wyników uzyskanych przy pomocy
+poszczególnych algorytmów w przypadku zmieniania rozdzielczości obrazu, który jest
 wykresem dwuwyimarowej funkcji. Oznaczmy więc przez $F$ funkcję odpowiadającą
 obrazowi o zmienionych rozmiarach, których wartości t $N_x$ i $N_y$. Niech
 jednocześnie $M$ będzie funkcją, która przyporządkowuje danemu pikselowi jego
@@ -90,18 +89,18 @@ wartość wyznaczoną przez jedną z metod, wtedy odchylenie standardowe określ
 jako
 $$d(M)=\sqrt{\frac{\sum_{x=0}^{N_x-1}{\sum_{y=0}^{N_y-1}{(M(x,y)-F(x,y))^2}}}{N_xN_y}}.$$
 Im większa wartość tego współczynnika tym bardziej uzyskany za pomocą określonej
-metody skalowania wynik odbiega od wyniku porządanego. Obliczyliśmy wartość tego
+metody skalowania wynik odbiega od wyniku pożądanego. Obliczyliśmy wartość tego
 współczynnika dla wartości skalowania od $10\%$ do $500\%$ dla dwuwymiarowych
-wkresów piły Weierstarssa i funkcji sinus. Tabele na rysunku \textbf{3.5}
-przedstawiają wybrane wyniki dla odpowiednio piły Weierstrassa i funkcji sinus.
-Jak widać wyniki zgadzają się z nazymi intuicjami. Największą wartość odchylenia
+wkresów piły i funkcji sinus. Tabele na rysunku \textbf{3.5}
+przedstawiają wybrane wyniki dla odpowiednio piły i funkcji sinus.
+Jak widać wyniki zgadzają się z naszymi intuicjami. Największą wartość odchylenia
 standardowego jest uzyskiana przez NS zaś odchylenia AFS(I) i AFS(III) są do siebie zbliżone. Jak można
 zauważyć, wartość tego odchylenia niewielkim stopniu od tego, jak zmieniamy obraz.
 Pełen zestaw zgromadzonych danych znajduje się w odpowiednich plikach w katalogu
 \textit{data}.
 \begin{figure}[h!tb]
 \begin{center}
-\subfigure[Piła Weierstrassa]{
+\subfigure[Piła]{
 \begin{tabular}{|c|c||c|c|c|}
     \hline
     OX & OY & d(NS) & d(AFS(I)) & d(AFS(III))\\
@@ -155,11 +154,12 @@ Wynika stąd, że to jakiej metody warto użyć do sklowania obrazu zależy tak�
 czy posiada ostre czy rozmyte kontury.
 \begin{figure}[h!tb]
 \begin{center}
-\includegraphics{../obrazki/runge_test.jpg}
+\includegraphics{../obrazki/funkcje/runge_test.jpg}
 \caption{Wykres funkcji Rungego}
 \end{center}
 \end{figure}
- 
+
+Po wykonaniu tego doświadczenia zastanowiliśmy się, co stanie się z obrazkiem, gdy zmniejszymy go i ponownie powiększymy do oryginalnego rozmiaru.
 
 
 

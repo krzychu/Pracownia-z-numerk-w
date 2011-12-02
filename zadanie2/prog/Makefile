@@ -84,11 +84,11 @@ procedural_resize_test.run: $(LIBS) procedural_resize_test.cpp
 ################################################################################
 
 
-X_res = 500
-Y_res = 500
+X_res = 200
+Y_res = 200
 ORDER = xy
-IMAGE_res = tekst
-OUTFILE_res = tekst_500
+IMAGE_res = linia_50_linear	
+OUTFILE_res = linia_50_200_linear
 
 resizers_test: resizers_test.run
 	./resizers_test.run ../obrazki/$(IMAGE_res).bmp linear $(ORDER) $(X_res) $(Y_res) \
@@ -121,7 +121,7 @@ time_test: time_test.run
 
 X_ord = 10
 Y_ord = 10
-IMAGE_ord = pokemon
+IMAGE_ord = pokemon_bw
 OUTFILE_ord = all
 visual_order_test: visual_order_test.run
 	./visual_order_test.run ../obrazki/$(IMAGE_ord).bmp cubic 50 500 ../obrazki/$(OUTFLIE).bmp
@@ -146,10 +146,10 @@ procedural_resize_test: procedural_resize_test.run
 
 
 
-X = 10
-Y = 10
-INFILE = pokemon
-OUTFILE = pokemon_diff
+X = 20
+Y = 20
+INFILE = lab 
+OUTFILE = lab_diff
 ALL = all
 
 data_loss_test: data_loss_test.run
@@ -163,7 +163,7 @@ data_loss_test: data_loss_test.run
 	convert \
 	'(' ../obrazki/$(OUTFILE)_diff_cubic.bmp  ../obrazki/$(OUTFILE)_img_cubic.bmp +append ')' \
 	'(' ../obrazki/$(OUTFILE)_diff_linear.bmp  ../obrazki/$(OUTFILE)_img_linear.bmp +append ')' \
-	'(' ../obrazki/$(OUTFILE)_diff_cubic.bmp  ../obrazki/$(OUTFILE)_img_cubic.bmp +append ')' \
+	'(' ../obrazki/$(OUTFILE)_diff_closest.bmp  ../obrazki/$(OUTFILE)_img_closest.bmp +append ')' \
 	-append ../obrazki/$(ALL).bmp
 	$(SHOW) ../obrazki/$(ALL).bmp
 
