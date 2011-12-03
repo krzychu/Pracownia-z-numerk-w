@@ -2,7 +2,8 @@
 \contentsline {section}{\numberline {1\relax .\kern .5em }Wst\IeC {\k e}p}{2}
 \contentsline {section}{\numberline {2\relax .\kern .5em }Opis metod}{2}
 \contentsline {section}{\numberline {3\relax .\kern .5em }Jako\IeC {\'s}\IeC {\'c} algorytm\IeC {\'o}w}{3}
-\contentsline {section}{\numberline {4\relax .\kern .5em }Sprawdzenie znaczenia kolejno\IeC {\'s}ci wykonywania zmian obrazu}{8}
+\contentsline {section}{\numberline {4\relax .\kern .5em }Kolejno\IeC {\'s}\IeC {\'c} wykonywania zmian obrazu}{8}
 \contentsline {section}{\numberline {5\relax .\kern .5em }Por\IeC {\'o}wnanie szybko\IeC {\'s}ci algorytm\IeC {\'o}w}{8}
 \contentsline {section}{\numberline {6\relax .\kern .5em }Zestawienie z profesjonalnym programem do obr\IeC {\'o}bki obraz\IeC {\'o}w}{10}
 \contentsline {section}{\numberline {7\relax .\kern .5em }Wnioski}{11}
+\contentsline {section}{Literatura}{12}

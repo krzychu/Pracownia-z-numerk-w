@@ -1,1 +1,23 @@
 \section{Wnioski}
+Dzięki zrealizowania postawionych przed nami zadań, zdołaliśmy zebrać wiele
+cennych informacji, które w tym rozdziale postaramy się skompletować.
+
+Po pierwsze, jeśli chodzi o ocenę badanych przez nas algortmów, najlepszy
+pod względem jakości okazał się być AFS(III), jednakże wiązało się to z długim czasem
+realizacji skalowania. Jednocześnie najgorszy pod względem jakości algorytm NS,
+był niewątpliwie najszbszy. Niekiedy jednak obserwuje się przypadki odbiegające od tej reguły.
+Niekiedy to, jaką metodę powinniśmy zastosować, zależy od tego, co przedstawia obraz,
+czy kontury są wyraźne, czy raczej rozmyte, czy mamy wiele szczegółów, czy nie itp. Zauważyliśmy, jak bardzo badane przez nas algorytmy mogą zmienić
+oryginalny rysunek, zmniejszając go a następnie powiększając do początkowych wielkości. Skutki takiego działania okazały się katastrofalne.
+Dobrą informacą było jednak to, że w pierwszej kolejności zwiększając obraz, a następnie
+go zmniejszając, otrzymujemy obrazy identyczne z oryginalnym dla wszystkich metod.
+Powiększanie jest więc bezstratne.
+
+Ważną obserwacją było również to, że wyniki skalowań nie zależą od tego czy
+najpierw zmienimy obraz w pionie, czy w poziomie. Zauważyliśmy także, że czas
+działania algorytmów badanych przez nas, nie jest zależny od tego, co jest
+na nim przedstawione. Na długość trwania obliczeń ma bowiem wpływ wielkość rysunku, który skalujemy.
+
+Dowiedzieliśmy się, że algorytmy, które w rzeczywistości wykorzysuje się do zmiany obrazu, znacznie różnią się o tych, które badaliśmy.
+Przede wszystki nie opierają się wyłącznie na informacji o punktach na tej samej osi, ale patrzą na najbliższe punkty otaczające dany piksel ze wszystkich stron.
+Jak się okazało jest to istotne, algorytmy dwuliniowy i dwusześćienny okazały dawać bardziej zadowalające wyniki, niż najlepszy z testowanych przez na algorytmów, a czyli AFS(III).
