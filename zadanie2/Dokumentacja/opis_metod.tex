@@ -8,9 +8,9 @@ obrazów mających wymiary $M$ na 1 punktów.
 Obraz taki w naturalny sposób można traktować jako ciąg kolorów w punktach
 $t_1=1,t_2=2,...,t_M=M$ (w przypadku obrazów kolorowych, ponieważ jest to w
 istocie nałożenie na siebie trzech obrazów jednobarwnych, rozważamy 3 takie
-ciągi)\footnote{W dalszej częci opisu algorytmów będziemy pomijać dodatkowe
-rozważenie przypadku obrazów kolorowych. Wynika to z faktu, że polaga ono na
-wkonaniu analogicznych działań, a jedyną różnicą jest, że wykonujemy je na
+ciągi)\footnote{W dalszej części opisu algorytmów będziemy pomijać dodatkowe
+rozważenie przypadku obrazów kolorowych. Wynika to z faktu, że polega ono na
+wykonaniu analogicznych działań, a jedyną różnicą jest, że wykonujemy je na
 trzech ciągach.}. Zmiana rozmiaru polega jedynie na wyznaczeniu wartości koloru
 $K(.)$ w punktach
 $$p_i=1+(i-1)\frac{M-1}{N-1},$$
@@ -21,7 +21,7 @@ Pierwsza z nich, nazywana dalej \textit{metodą najbliższego sąsiedztwa} lub \
 na wyznaczeniu wartości $K(p_i)$ przy pomocy wzoru
 $$K(p_i)=K(round(p_i)), (i=1,2,...,N).$$
 Intuicyjnie, algorytm ten polega na tym, że dla danego punktu szukamy najbliższy
-mu punkt oryginalnego obrazka i przypożądkowujemy mu jego kolor.
+mu punkt oryginalnego obrazka i przyporządkowujemy mu jego kolor.
 
 Następny algorytm opiera się na konstrukcji funkcji sklejanej S pierwszego
 stopnia (będziemy go nazywać \textit{AFS(I)}), której wartości w węzłach $S(t_i)
@@ -30,9 +30,9 @@ stopnia (będziemy go nazywać \textit{AFS(I)}), której wartości w węzłach $
 Ostatnia metoda, którą oznaczać będziemy \textit{AFS(III)}, to stworzenie
 funkcji sklejanej trzeciego stopnia $Z$, takiej, że $Z(t_i)=K(t_i)$ dla
 $i=1,2,...,M$, przy czym przyjmujemy, analogicznie do poprzedniej metody,
-$K(p_i)=S(p_i) (i=1,2,...,N)$. Jeżeli wyzanczane wartości przekraczają
+$K(p_i)=S(p_i) (i=1,2,...,N)$. Jeżeli wyznaczane wartości przekraczają
 dopuszczalny zakres wartości (czyli nie są liczbami z przedziału $[0,255]$)
-zstępujemy odpowiednio liczby ujemnye przez wartość $0$, zaś liczby większe od
+zstępujemy odpowiednio liczby ujemne przez wartość $0$, zaś liczby większe od
 $255$ przez $255$.
 
 Gdy obrazy mają obydwa wymiary większe od $1$ to nasze metody stosujemy najpierw

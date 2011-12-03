@@ -26,16 +26,17 @@ kolejnych algorytmów. Wynik tej operacji prezentuje rysunek \textbf{3.2}.
 \end{center}
 \end{figure}
 
-Całościowe wyniki tego doświadczenia znajdują się w katalogu \textit{obrazki$\slash$liscie\_1}. Jak można odrazu zauważyć, metoda NS dała najgorszy pod względem wizualnym wynik.
-Widoszny jest efekt 'schodków', czyli wygląd krawędzi daleko odbiega od naszych
+Całościowe wyniki tego doświadczenia znajdują się w katalogu \textit{obrazki$\slash$liscie\_1}. 
+Jak można od razu zauważyć, metoda NS dała najgorszy pod względem wizualnym wynik.
+Widoczny jest efekt 'schodków', czyli wygląd krawędzi daleko odbiega od naszych
 oczekiwań. Gdy spojrzymy na pozostałe dwie metody, dają one wynik dość zbliżony,
 przy czym AFS(III) zdaje się w mniejszym stopniu powodować efekt rozmycia.
 
-Po wykonaniu tego wstępnego rozpozania problemu, postanowiliśmy sprawdzić, jak
+Po wykonaniu tego wstępnego rozpoznania problemu, postanowiliśmy sprawdzić, jak
 poszczególne algorytmy zachowają się wobec pisanego tekstu.
 Fragment tekstu, którego użyliśmy do naszych eksperymentów, jak i uzyskane wyniki znajdują się w katalogu \textit{obrazki$slash$tekst}.
 
-Tym razem rozpoczęlismy od zmniejszania obrazka. Spośród sprawdzonych wartości,
+Tym razem rozpoczęliśmy od zmniejszania obrazka. Spośród sprawdzonych wartości,
 jako przykład do prezentacji wybraliśmy skalowanie do $70\%$ oryginalnego
 rozmiaru, ponieważ tekst wtedy dla wszystkich metod pozostaje czytelny, a
 widoczne są już uboczne efekty zmiany rozdzielczości. Fragment otrzymanych
@@ -82,8 +83,8 @@ bowiem, że mamy obrazek zadany przez dwuwymiarową funkcję. Wówczas znamy
 dokładną wartość, jaką powinna ona przyjąć po przeskalowaniu. Uznaliśmy, że
 wykorzystując ten fakt, możemy zbadać odchylenie standardowe wyników uzyskanych przy pomocy
 poszczególnych algorytmów w przypadku zmieniania rozdzielczości obrazu, który jest
-wykresem dwuwyimarowej funkcji. Oznaczmy więc przez $F$ funkcję odpowiadającą
-obrazowi o zmienionych rozmiarach, których wartości t $N_x$ i $N_y$. Niech
+wykresem dwuwymiarowej funkcji. Oznaczmy więc przez $F$ funkcję odpowiadającą
+obrazowi o zmienionych rozmiarach, których wartości to $N_x$ i $N_y$. Niech
 jednocześnie $M$ będzie funkcją, która przyporządkowuje danemu pikselowi jego
 wartość wyznaczoną przez jedną z metod, wtedy odchylenie standardowe określamy
 jako
@@ -91,10 +92,10 @@ $$d(M)=\sqrt{\frac{\sum_{x=0}^{N_x-1}{\sum_{y=0}^{N_y-1}{(M(x,y)-F(x,y))^2}}}{N_
 Im większa wartość tego współczynnika tym bardziej uzyskany za pomocą określonej
 metody skalowania wynik odbiega od wyniku pożądanego. Obliczyliśmy wartość tego
 współczynnika dla wartości skalowania od $10\%$ do $500\%$ dla dwuwymiarowych
-wkresów piły i funkcji sinus. Tabele na rysunku \textbf{3.5}
+wykresów piły i funkcji sinus. Tabele na rysunku \textbf{3.5}
 przedstawiają wybrane wyniki dla odpowiednio piły i funkcji sinus.
 Jak widać wyniki zgadzają się z naszymi intuicjami. Największą wartość odchylenia
-standardowego jest uzyskiana przez NS zaś odchylenia AFS(I) i AFS(III) są do siebie zbliżone. Jak można
+standardowego jest uzyskana przez NS zaś odchylenia AFS(I) i AFS(III) są do siebie zbliżone. Jak można
 zauważyć, wartość tego odchylenia niewielkim stopniu od tego, jak zmieniamy obraz.
 Pełen zestaw zgromadzonych danych znajduje się w odpowiednich plikach w katalogu
 \textit{data}.
@@ -148,9 +149,9 @@ Zbadaliśmy pod względem wielkości odchylenia również funkcję Rungego. W ty
 nas zaskoczenie. Wartości odchylenia standardowego dla algorytmu naturalnego sąsiedztwa wniosły
 w przybliżeniu \textbf{0.65}, dla AFS(I) około \textbf{0.8}, a dla AFS(III) \textbf{1.1}, a więc
 odwrotnie, niż by to mówiły wcześniejsze badania. Przyjrzyjmy się więc, jak wygląda wykres tej funkcji
-(zosał on zamieszczony na rysunku \textbf{3.6}). Jak widać przejścia pomiędzy poszczególnymi odcieniami
-są na tym rysunku gładkie, stąd metoda NS czy liniowa są jak najberdziej wskazane w tym przypadku do użycia.
-Wynika stąd, że to jakiej metody warto użyć do sklowania obrazu zależy także od tego, co sam obraz prszedstawia,
+(został on zamieszczony na rysunku \textbf{3.6}). Jak widać przejścia pomiędzy poszczególnymi odcieniami
+są na tym rysunku gładkie, stąd metoda NS czy liniowa są jak najbardziej wskazane w tym przypadku do użycia.
+Wynika stąd, że to jakiej metody warto użyć do skalowania obrazu zależy także od tego, co sam obraz przedstawia,
 czy posiada ostre czy rozmyte kontury.
 \begin{figure}[h!tb]
 \begin{center}
@@ -167,10 +168,12 @@ Wyniki tych badań znajdują się w folderach \textit{obrazki$\slash$rybki\_zm\_
 Pierwszy z podanych folderów zawiera zmieniony przez metody czarno-biały obrazek
 przedstawiający rybki, mający wiele małych szczegółów. Jak widać, wszystkie
 trzy algorytmy spowodowały znaczne ubytki na jakości. Od razu rzuca się w oczy,
-że metoda NS daje najgorsze efekty. Rysunek niemal całkowicie stracił swój poprzedni wygląd, obraz jest mało płynny, na krawędzich pojawiają sie całe kwadraty. Metoda AFS(I) rozmywa i rozjaśni obraz, ponownie więc metoda AFS(III) daje najbardziej pozytywny wynik, choć i tak bardzo zniekształcony w porównaniu z oryginałem.
+że metoda NS daje najgorsze efekty. Rysunek niemal całkowicie stracił swój poprzedni wygląd, obraz jest mało płynny, 
+na krawędziach pojawiają się całe kwadraty. Metoda AFS(I) rozmywa i rozjaśni obraz, ponownie więc metoda 
+AFS(III) daje najbardziej pozytywny wynik, choć i tak bardzo zniekształcony w porównaniu z oryginałem.
 
 Drugi folder zawiera obrazki przedstawiające prostą czarną linię na biały,m tle.
-Wszystkie trzy algorytmy powodują porubienie się linii. Algorytmy, wykorzystujące
+Wszystkie trzy algorytmy powodują pogrubienie się linii. Algorytmy, wykorzystujące
 funkcje sklejane dodatkowo niekorzystnie wpływają na wygląd krawędzi, stają się
 one bardzo rozmyte.
 
@@ -195,7 +198,7 @@ obrazku metody AFS(I) niewątpliwie obraz jest w dużym stopniu rozmyty.
 
 Widać więc,że zmiana obrazu opisana powyżej ma katastrofalne skutki. Można sobie
 zadać teraz pytanie: a co, gdy zmienimy kolejność działania? Inaczej mówiąc,
-co stanie się z obrazem gdy najpierw pięciokrotnie go powiękczymy, a potem pomniejszymy do początkowych wymiarów?
+co stanie się z obrazem gdy najpierw pięciokrotnie go powiększymy, a potem pomniejszymy do początkowych wymiarów?
 Teoretycznie przecież, przy zwiększaniu obrazu nie tracimy żadnych informacji.
 W celu zbadania tego problemu wykonaliśmy eksperymenty, których wyniki zawierają foldery
 \textit{obrazki$\slash$rybki\_zw\_zm} i \textit{obrazki$\slash$labirynt\_zw\_zm}.
@@ -205,9 +208,10 @@ wszystkie testowane przez nas algorytmy nie zmieniają początkowego obrazu.
 Ostatnim badaniem jakie przeprowadziliśmy odnośnie jakości polegało na przyjrzeniu się,
 jak nasze algorytmy poradzą sobie z obrazkami kolorowymi. Rysunek \textbf{3.8}
 przedstawia kolejno od góry wynik pięciokrotnego pomniejszenia, a następnie
-powiększenia obrazka \textit{pokemon.bmp} do początkowych wymiarów przez algorytm AFS(III), AFS(I), NS. Po lewej stronie umieszczone zostały obrazy różnicowe dla odpowiednich metod. Jak widzimy, uzyskaliśmy podobne efekty,
+powiększenia obrazka \textit{pokemon.bmp} do początkowych wymiarów przez algorytm AFS(III), 
+AFS(I), NS. Po lewej stronie umieszczone zostały obrazy różnicowe dla odpowiednich metod. Jak widzimy, uzyskaliśmy podobne efekty,
 jak przy skalowaniu obrazów monochromatycznych, dodatkowo jednak można zaobserwować
-dla wszyskich metod zanik barw widoczny zwłaszcza przy czarnych krawędziach
+dla wszystkich metod zanik barw widoczny zwłaszcza przy czarnych krawędziach
 Czarny kontur postaci przedstawionej na rysunku traci bowiem ciągłość.
 \begin{figure}[h!tb]
 \begin{center}

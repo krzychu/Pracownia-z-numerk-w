@@ -1,18 +1,21 @@
 \section{Porównanie szybkości algorytmów}
 W celu porównania badanych przez nas metod pod względem szybkości obliczeń,
-przeprowadziliśmy testy skalowania obrazu o wymiarach $180\times135$ pikseli\footnote{Zważywszy na to, jak metody, które badamy konstruują wynik, wiemy, że czas działania algorytmu nie zależy od tego, co znajduje się na obrazku. Zależy jedynie od jego rozmiaru.},zmieniając go tak samo na osi $X$ i $Y$. Skala naszych badań objęła zakres
+przeprowadziliśmy testy skalowania obrazu o wymiarach $180\times135$ pikseli
+\footnote{Zważywszy na to, jak metody, które badamy konstruują wynik, wiemy, że 
+czas działania algorytmu nie zależy od tego, co znajduje się na obrazku. Zależy 
+jedynie od jego rozmiaru.},zmieniając go tak samo na osi $X$ i $Y$. Skala naszych badań objęła zakres
 $[10\%, 1100\%]$ krokiem co $5\%$. Oznacza to, że zmienialiśmy jego szerokość
 oraz długość do $10\%, 15\%, ... ,1100\%$. Wyniki prezentuje wykres \textbf{5.1}.
 \begin{figure}[h!tb]
 \begin{center}
 \input{./Wykresy/time_plot.tex}
-\caption{Zależność czasu działania algorytmów od wilekości zmiany obrazu (jednakowo w pionie i poziomie, jednostka osi 0X: $\%$).}
+\caption{Zależność czasu działania algorytmów od wielkości zmiany obrazu (jednakowo w pionie i poziomie, jednostka osi 0X: $\%$).}
 \end{center}
 \end{figure}
 
 Ze zgromadzonych danych można wywnioskować, że najszybszą z przebadanych przez
 metod okazuje się metoda najbliższego sąsiedztwa. Jak widać to na wykresie, jest
-ona niemal czterkokrotnie szybsza od AFS(I) i nawet osiemnastokrotnie od AFS(III).
+ona niemal czterokrotnie szybsza od AFS(I) i nawet osiemnastokrotnie od AFS(III).
 Pamiętamy jednakże, że metoda ta daje najbardziej zniekształcone wyniki, więc
 za szybkie działanie płacimy w tym przypadku właśnie jakością obrazu.
 Najwolniejszym algorytmem okazuje się być algorytm wykorzystujący naturalną

@@ -2,32 +2,34 @@
 Używane w profesjonalnych programach do obróbki obrazu algorytmy skalowania
 różnią się od tych przedstawionych przez nas. W zależności od tego jakich
 efektów ubocznych chcemy uniknąć (czy efektu schodków, czy rozmycia) oraz jak
-bardzo zależy nam na szybkości wykonywanch skalowań, wybiera się różne metody.
-Najczęściej spotykanymi rowiązaniami są metody
+bardzo zależy nam na szybkości wykonywanych skalowań, wybiera się różne metody.
+Najczęściej spotykanymi rozwiązaniami są metody
 \textbf{dwuliniowa}oraz \textbf{dwusześcienna}.
 Główną różnicą między nimi, a
 rozwiązaniami przedstawionymi przez nas jest to, że dla danego punktu nie
 patrzą one jedynie na punkty w poziomie (pionie), ale na całe otoczenie.
 Pierwsza z nich uwzględnia najbliższych 4 sąsiadów w pionie i poziomie
-($2\times2$) i przyporządkowuje rozważąnemu pikselowi ich średnią ważoną.
+($2\times2$) i przyporządkowuje rozważanemu pikselowi ich średnią ważoną.
 W rezultacie uzyskujemy wyraźnie gładsze obrazy niż np. w metodzie
-najbliższego sąsiedztwa.Metoda zwana 'bicubic interpolation' zaś idzie jeszcze krok dalej, uwzględniając 16 ($4\times4$) otaczających rozawżany punkt sąsiadów. Tu również
-liczonajest średnia ważona, jednakże dalsze punkty uzysują mniejszą wagę.
-Algorytm ten daje dostrzegawczo ostrzejsze obrazy i jest bliskim ideału
-kompromisem między złożonością czasową, a zachowniem jakości. Stąd jest on
+najbliższego sąsiedztwa.Metoda zwana 'bicubic interpolation' zaś idzie jeszcze krok 
+dalej, uwzględniając 16 ($4\times4$) otaczających rozważany punkt sąsiadów. Tu również
+liczona jest średnia ważona, jednakże dalsze punkty uzyskują mniejszą wagę.
+Algorytm ten daje dostrzegalnie ostrzejsze obrazy i jest bliskim ideału
+kompromisem między złożonością czasową, a zachowaniem jakości. Stąd jest on
 podstawą wielu takich programów, jak przykładowo Adobe Photoshop.
 
 W rozdziale tym postaramy się porównać działanie najlepszego z testowanych przez
-nas algorytmów, a więc AFS(III), z działaniem programu AdobePhotoshot, przy czym zadaniw to
+nas algorytmów, a więc AFS(III), z działaniem programu Adobe Photoshop, przy czym zadaniu to
 wykonamy zarówno dla obrazów czarno-białych, jak i kolorowych. Zaczniemy od obrazów
 monochromatycznych. Dwukrotnie zmniejszyliśmy, a następnie zwiększyliśmy obraz
 \textit{liscie.bmp} za pomocą badanej przez nas metody AFS(III) i metod dwuliniowej
 i dwusześćiennej. Fragmenty wyniku przedstawia rysunek \textbf{6.1}. Pełne wyniki
 testu znajdują się w folderze \textit{obrazki$\slash$liscie\_2}. Jak widzimy, w
-tym przypadku najlepiej sprawdza się metoda dwusześcienna. Niewątpliwie, metody z profesjanalnego programu
+tym przypadku najlepiej sprawdza się metoda dwusześcienna. Niewątpliwie, metody z profesjonalnego programu
 dają lepszej jakości obrazy po przeskalowaniu. Niewidoczne są efekty 'schodów',
-które dostrzegamy w obrazie wynikowym algrytmu AFS(III), linie są gładkie. Wynika stąd, że patrzenie nie tylko na punkty w jednej lini, ale interpolacja
-funkcji w dwuch wymiarach przyczynia się do lepszego wizualnie efektu.
+które dostrzegamy w obrazie wynikowym algrytmu AFS(III), linie są gładkie. Wynika stąd, że 
+patrzenie nie tylko na punkty w jednej linii, ale interpolacja
+funkcji w dwóch wymiarach przyczynia się do lepszego wizualnie efektu.
 \begin{figure}[h!tb]
 \begin{center}
 \subfigure[AFS(III)]{
@@ -45,8 +47,8 @@ funkcji w dwuch wymiarach przyczynia się do lepszego wizualnie efektu.
 
 Po tym eksperymencie, przeskalowaliśmy w ten sam obrazek kolorowy \textit{pokemon.bmp}.
 Wyniki doświadczenia obrazuje rysunek \textbf{6.2} (pełne wyniki zawiera folder \textit{obrazki$\slash$pokemon}).
-Ponownie najlepszą okazuje się być metoda dwusześcienna programu AdobePhotoshop. W metodzie dwuliniowej
-obserwujemy już częsciowy zanik krawędzi i lekkie rozmycie. Metoda AFS(III) daje jednak
+Ponownie najlepszą okazuje się być metoda dwusześcienna programu Adobe Photoshop. W metodzie dwuliniowej
+obserwujemy już częściowy zanik krawędzi i lekkie rozmycie. Metoda AFS(III) daje jednak
 wyniki najmniej zadowalające, widoczne jest zniekształcenie krawędzi.
 \begin{figure}[h!tb]
 \begin{center}
@@ -59,7 +61,7 @@ wyniki najmniej zadowalające, widoczne jest zniekształcenie krawędzi.
 \subfigure[Dwusześcienna]{
 \includegraphics[width=4cm]{../obrazki/pokemon/dwuszescienna.jpg}
 }
-\caption{Obrazki kolorowe przeskalowane za pomocą AFS(III) i metod z AdobePhotoshop}
+\caption{Obrazki kolorowe przeskalowane za pomocą AFS(III) i metod z Adobe Photoshop}
 \end{center}
 \end{figure}
 
