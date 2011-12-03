@@ -4,7 +4,7 @@ różnią się od tych przedstawionych przez nas. W zależności od tego jakich
 efektów ubocznych chcemy uniknąć (czy efektu schodków, czy rozmycia) oraz jak
 bardzo zależy nam na szybkości wykonywanch skalowań, wybiera się różne metody.
 Najczęściej spotykanymi rowiązaniami są metody
-\textbf{'bilinear interpolation'}oraz \textbf{'bicubic interpolation'}.
+\textbf{dwuliniowa}oraz \textbf{dwusześcienna}.
 Główną różnicą między nimi, a
 rozwiązaniami przedstawionymi przez nas jest to, że dla danego punktu nie
 patrzą one jedynie na punkty w poziomie (pionie), ale na całe otoczenie.
@@ -18,7 +18,48 @@ kompromisem między złożonością czasową, a zachowniem jakości. Stąd jest 
 podstawą wielu takich programów, jak przykładowo Adobe Photoshop.
 
 W rozdziale tym postaramy się porównać działanie najlepszego z testowanych przez
-nas algorytmów, a więc AFS(III), z działaniem programu GIMP, przy czym zadaniw to
+nas algorytmów, a więc AFS(III), z działaniem programu AdobePhotoshot, przy czym zadaniw to
 wykonamy zarówno dla obrazów czarno-białych, jak i kolorowych. Zaczniemy od obrazów
-monochromatycznych. 
+monochromatycznych. Dwukrotnie zmniejszyliśmy, a następnie zwiększyliśmy obraz
+\textit{liscie.bmp} za pomocą badanej przez nas metody AFS(III) i metod dwuliniowej
+i dwusześćiennej. Fragmenty wyniku przedstawia rysunek \textbf{6.1}. Pełne wyniki
+testu znajdują się w folderze \textit{obrazki$\slash$liscie\_2}. Jak widzimy, w
+tym przypadku najlepiej sprawdza się metoda dwusześcienna. Niewątpliwie, metody z profesjanalnego programu
+dają lepszej jakości obrazy po przeskalowaniu. Niewidoczne są efekty 'schodów',
+które dostrzegamy w obrazie wynikowym algrytmu AFS(III), linie są gładkie. Wynika stąd, że patrzenie nie tylko na punkty w jednej lini, ale interpolacja
+funkcji w dwuch wymiarach przyczynia się do lepszego wizualnie efektu.
+\begin{figure}[h!tb]
+\begin{center}
+\subfigure[AFS(III)]{
+\includegraphics[width=3cm]{../obrazki/liscie_2/cubic.jpg}
+}
+\subfigure[Dwuliniowa]{
+\includegraphics[width=3cm]{../obrazki/liscie_2/liscie_dwuliniowa.jpg}
+}
+\subfigure[Dwusześcienna]{
+\includegraphics[width=3cm]{../obrazki/liscie_2/dwuszescienna.jpg}
+}
+\caption{Fragmenty obrazków przeskalowanych}
+\end{center}
+\end{figure}
+
+Po tym eksperymencie, przeskalowaliśmy w ten sam obrazek kolorowy \textit{pokemon.bmp}.
+Wyniki doświadczenia obrazuje rysunek \textbf{6.2} (pełne wyniki zawiera folder \textit{obrazki$\slash$pokemon}).
+Ponownie najlepszą okazuje się być metoda dwusześcienna programu AdobePhotoshop. W metodzie dwuliniowej
+obserwujemy już częsciowy zanik krawędzi i lekkie rozmycie. Metoda AFS(III) daje jednak
+wyniki najmniej zadowalające, widoczne jest zniekształcenie krawędzi.
+\begin{figure}[h!tb]
+\begin{center}
+\subfigure[AFS(III)]{
+\includegraphics[width=4cm]{../obrazki/pokemon/cubic.jpg}
+}
+\subfigure[Dwuliniowa]{
+\includegraphics[width=4cm]{../obrazki/pokemon/dwuliniowa.jpg}
+}
+\subfigure[Dwusześcienna]{
+\includegraphics[width=4cm]{../obrazki/pokemon/dwuszescienna.jpg}
+}
+\caption{Obrazki kolorowe przeskalowane za pomocą AFS(III) i metod z AdobePhotoshop}
+\end{center}
+\end{figure}
 

@@ -1,7 +1,6 @@
-\section{Porównanie algorytmów pod względem szybkości}
-W celu porównania badanych przez nas metod pod  względem szybkości obliczeń,
-przeprowadziliśmy testy skalowania obrazu o wymiarach $180\times135$ pikseli,
-zmieniając go tak samo na osi $X$ i $Y$. Skala naszych badań objęła zakres
+\section{Porównanie szybkości algorytmów}
+W celu porównania badanych przez nas metod pod względem szybkości obliczeń,
+przeprowadziliśmy testy skalowania obrazu o wymiarach $180\times135$ pikseli\footnote{Zważywszy na to, jak metody, które badamy konstruują wynik, wiemy, że czas działania algorytmu nie zależy od tego, co znajduje się na obrazku. Zależy jedynie od jego rozmiaru.},zmieniając go tak samo na osi $X$ i $Y$. Skala naszych badań objęła zakres
 $[10\%, 1100\%]$ krokiem co $5\%$. Oznacza to, że zmienialiśmy jego szerokość
 oraz długość do $10\%, 15\%, ... ,1100\%$. Wyniki prezentuje wykres \textbf{5.1}.
 \begin{figure}[h!tb]
@@ -11,13 +10,13 @@ oraz długość do $10\%, 15\%, ... ,1100\%$. Wyniki prezentuje wykres \textbf{5
 \end{center}
 \end{figure}
 
-Ze zgromadzonych danych można wywnioskować, że najszybszyą z przebadanych przez
+Ze zgromadzonych danych można wywnioskować, że najszybszą z przebadanych przez
 metod okazuje się metoda najbliższego sąsiedztwa. Jak widać to na wykresie, jest
 ona niemal czterkokrotnie szybsza od AFS(I) i nawet osiemnastokrotnie od AFS(III).
-Pamiętamy jednakże, że metoda ta dawaje najbardziej zniekształcone wyniki, więc
+Pamiętamy jednakże, że metoda ta daje najbardziej zniekształcone wyniki, więc
 za szybkie działanie płacimy w tym przypadku właśnie jakością obrazu.
 Najwolniejszym algorytmem okazuje się być algorytm wykorzystujący naturalną
-funkcję sklejaną trzeciego stopnia. Około pięciokrotnie gorszy od algorytmu AFS(I),
-w jego przypadku występuje odwrotna sytuacja: przez uzyskanie lepszej jakości,
+funkcję sklejaną trzeciego stopnia. Jest około pięciokrotnie wolniejszy od algorytmu AFS(I).
+W jego przypadku występuje więc odwrotna sytuacja: przez uzyskanie lepszej jakości,
 tracimy na czasie działania programu.
 

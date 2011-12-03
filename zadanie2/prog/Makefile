@@ -146,10 +146,10 @@ procedural_resize_test: procedural_resize_test.run
 
 
 
-X = 20
-Y = 20
-INFILE = lab 
-OUTFILE = lab_diff
+X = 50 
+Y = 50
+INFILE = pokemon
+OUTFILE = pokemon_diff
 ALL = all
 
 data_loss_test: data_loss_test.run
