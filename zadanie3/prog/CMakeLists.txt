@@ -1,0 +1,3 @@
+project(ANALIZA_NUMERYCZNA)
+
+

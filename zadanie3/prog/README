@@ -1,0 +1,18 @@
+1. Kompilacja
+  
+  Potrzebne biblioteki i programy:
+    
+    - Boost : program korzysta z klasy shared_ptr, by w efektywny i przejrzysty 
+      sposób zaimplementować kopiowanie i przypisywanie macierzy, których dane
+      są zapisane w stercie.
+
+    - CMake : znacznie upraszcza proces kompilacji programu
+
+  Przebieg:
+
+    Aby skompilować program, należy wydać następujące polecenia:
+      - cd build
+      - cmake ..
+      - make
+
+2. Testy
