@@ -2,7 +2,6 @@
 #include <matlib>
 
 using std::cout;
-using MatLib::Matrix;
 
 
 int main(){
