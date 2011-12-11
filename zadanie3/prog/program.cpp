@@ -1,5 +1,5 @@
 #include <iostream>
-#include <matlib>
+#include <matrix.h>
 
 using std::cout;
 
