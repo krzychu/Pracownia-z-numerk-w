@@ -4,9 +4,12 @@
     
     - Boost : program korzysta z klasy shared_ptr, by w efektywny i przejrzysty 
       sposób zaimplementować kopiowanie i przypisywanie macierzy, których dane
-      są zapisane w stercie.
+      są zapisane w stercie. Jako że nasz program jest biblioteką dla pythona, 
+      korzystamy również z biblioteki boost::python, która umożliwia łatwe 
+      udostępnianie klas C++ temu językowi skryptowemu.
 
-    - CMake : znacznie upraszcza proces kompilacji programu
+    - CMake : znacznie upraszcza proces kompilacji programu i automatycznie
+      znajduje biblioteki.
 
   Przebieg:
 

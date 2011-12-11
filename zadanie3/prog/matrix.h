@@ -25,7 +25,7 @@ class Matrix{
     double frobeniusNorm() const;
     double scaledFrobeniusNorm() const;
     double firstNorm() const;
-    double inifinityNorm() const;
+    double infNorm() const;
 
     // entire array manipulation
     void zero();  // sets all elements to be 0

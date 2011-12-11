@@ -1,4 +1,5 @@
 #include <matrix.h>
+#include <cmath>
 
 using boost::shared_array;
 
@@ -36,5 +37,26 @@ double Matrix::scaledFrobeniusNorm() const{
   return frobeniusNorm() / size;
 }
 
+double Matrix::firstNorm() const{
+  double result = 0;
+  for(int column = 0; column < m_size; column++){
+    double sum = 0;
+    for(int row = 0; row < m_size; row++){
+      sum += fabs(m_data[row*m_size + column]);
+    }
+    result = fmax(result, sum);
+  }
+}
+
+double Matrix::infNorm() const{
+  double result = 0;
+  for(int row = 0; row < m_size; row++){
+    double sum = 0;
+    for(int column = 0; column < m_size; column++){
+      sum += fabs(m_data[row*m_size + column]);
+    }
+    result = fmax(result, sum);
+  }
+}
 
 Matrix::~Matrix(){}
