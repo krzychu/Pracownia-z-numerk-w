@@ -1,14 +1,12 @@
 #include <iostream>
 #include <matrix.h>
 
-using std::cout;
-
 
 int main(){
- 
-  Matrix m(200);
+  Matrix m(3);
   m.one();
-  cout << "hello world\n";
-
+  Matrix z(3);
+  z.one();
+  std::cout << m - z;
   return 0;
 }
