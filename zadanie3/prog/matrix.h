@@ -18,8 +18,13 @@ class Matrix{
     const Matrix operator - (const Matrix& other) const;
 
     // element manipulation
-    void set(int row, int column, double value);
-    double get(int row, int col) const;
+    inline void set(int row, int column, double value){
+      m_data[row*m_size + column] = value;
+    }
+
+    inline double get(int row, int col) const{
+      return m_data[row*m_size + col];
+    }
     
     // norms
     double frobeniusNorm() const;
@@ -28,11 +33,14 @@ class Matrix{
     double infNorm() const;
 
     // entire array manipulation
-    void zero();  // sets all elements to be 0
-    void one();   // identity matrix
+    void zero();    // sets all elements to be 0
+    void one();     // identity matrix
+    void hermite(); // hermite matrix
+
 
     virtual ~Matrix();
-  
+
+   
     // less typing
     typedef boost::shared_array<double> MatrixData;
 

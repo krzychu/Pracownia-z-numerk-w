@@ -21,6 +21,16 @@ void Matrix::one(){
   }
 }
 
+void Matrix::hermite(){
+  for(int row = 0; row < m_size; row++){
+    for(int column = 0; column < m_size; column++){
+      m_data[row*m_size + column] = 
+        1.0l / double(row + column + 1);
+    } 
+  }
+}
+
+
 inline double sq(double x){
   return x * x;
 }
@@ -58,5 +68,23 @@ double Matrix::infNorm() const{
     result = fmax(result, sum);
   }
 }
+
+
+const Matrix Matrix::operator+(const Matrix& other) const{
+  Matrix result(m_size);  
+  for(int i = 0; i < m_size * m_size ; i++){
+    result.m_data[i] = m_data[i] + other.m_data[i];
+  }
+}
+
+
+const Matrix Matrix::operator-(const Matrix& other) const{
+  Matrix result(m_size);  
+  for(int i = 0; i < m_size * m_size ; i++){
+    result.m_data[i] = m_data[i] - other.m_data[i];
+  }
+}
+
+
 
 Matrix::~Matrix(){}
