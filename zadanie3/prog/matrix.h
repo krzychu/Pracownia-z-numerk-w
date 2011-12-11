@@ -21,16 +21,7 @@ class Matrix{
     const Matrix operator * (const Matrix& other) const;
     const Matrix operator + (const Matrix& other) const;
     const Matrix operator - (const Matrix& other) const;
-
-    // element manipulation
-    inline void set(int row, int column, double value){
-      m_data[row*m_size + column] = value;
-    }
-
-    inline double get(int row, int col) const{
-      return m_data[row*m_size + col];
-    }
-    
+   
     // norms
     double frobeniusNorm() const;
     double scaledFrobeniusNorm() const;
@@ -41,16 +32,19 @@ class Matrix{
     void zero();    // sets all elements to be 0
     void one();     // identity matrix
     void hilbert(); // hermite matrix
+    
+    // upper triangular matrix operations
+    bool isUpperTriangular() const;
+    const Matrix invertUpperTriangular() const;   
 
-
+    // destructor, does nothing interesting
     virtual ~Matrix();
-
    
     // less typing
     typedef boost::shared_array<double> MatrixData;
-    
+   
+    // output
     friend std::ostream& operator << (std::ostream& os, const Matrix& mat); 
-  
   private:
     int m_size; 
     MatrixData m_data;

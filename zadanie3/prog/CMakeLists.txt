@@ -10,7 +10,12 @@ include_directories(.)
 
 
 # compile python bindings
-add_library(pymatrix SHARED matrix.cpp python_bindings.cpp)
+add_library(pymatrix SHARED 
+  matrix_utils.cpp 
+  matrix_arithmetic.cpp
+  matrix_norm.cpp
+  matrix_upper_triangular.cpp
+  python_bindings.cpp)
 set_target_properties(pymatrix PROPERTIES PREFIX "")
 target_link_libraries(pymatrix 
   ${Boost_LIBRARIES} ${PYTHON_LIBRARIES})
