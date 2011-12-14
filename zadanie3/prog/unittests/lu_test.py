@@ -21,4 +21,13 @@ class TestLUDecomposition(unittest.TestCase):
     (l,u) = m.lu()
     self.assertTrue(m.isAlmostEqual(l*u))
 
+  def testRandom(self):
+    l = Matrix(5)
+    l.randomLowerTriangular(5)
+    u = Matrix(5)
+    u.randomUpperTriangular(5)
+    m = l*u
+    (x,y) = m.lu()
+    self.assertTrue(m.isAlmostEqual(x*y))
+
 unittest.main()

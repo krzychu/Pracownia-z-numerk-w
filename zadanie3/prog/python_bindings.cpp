@@ -3,6 +3,7 @@
 #include <matrix.h>
 #include <string>
 #include <utility>
+#include <cstdlib>
 
 using namespace boost::python;
 
@@ -50,14 +51,41 @@ class PyMatrix : public Matrix{
       return diff.frobeniusNorm() < 0.0001;
     }
     
-    tuple pythonLu() const{
-      std::pair<Matrix, Matrix> p = lu();
-      PyMatrix l(p.first);
-      PyMatrix u(p.second);
-      return make_tuple(l,u);
-    }
+    void random(int seed);
+    void randomUpperTriangular(int seed);
+    void randomLowerTriangular(int seed);
+
+    tuple pythonLu() const;
 };
 
+
+void PyMatrix::random(int seed){
+  srand(seed);
+  for(int i=0 ; i<m_size * m_size; i++){
+    m_data[i] = double(rand()) * 100.0 / double(RAND_MAX) - 50.0;
+  }
+}
+
+void PyMatrix::randomUpperTriangular(int seed){
+  random(seed);
+  for(int i=0; i<m_size; i++)
+    for(int j=0; j<i ; j++)
+      set(i,j,0);
+}
+
+void PyMatrix::randomLowerTriangular(int seed){
+  random(seed);
+  for(int i=0; i<m_size; i++)
+    for(int j=i+1; j < m_size; j++)
+      set(i,j,0);
+}
+
+tuple PyMatrix::pythonLu() const{
+  std::pair<Matrix, Matrix> p = lu();
+  PyMatrix l(p.first);
+  PyMatrix u(p.second);
+  return make_tuple(l,u);
+}
 
 
 
@@ -86,9 +114,9 @@ BOOST_PYTHON_MODULE(pymatrix){
 
     // for tests
     .def("isAlmostEqual", &PyMatrix::isAlmostEqual)
-//    .def("randomUpperTriangular", &PyMatrix::randomUpperTriangular)
-//    .def("randomLowerTriangular", &PyMatrix::randomLowerTriangular)
-
+    .def("randomUpperTriangular", &PyMatrix::randomUpperTriangular)
+    .def("randomLowerTriangular", &PyMatrix::randomLowerTriangular)
+    .def("random", &PyMatrix::random)
 
     // arithmetic
     .def(self + self)
