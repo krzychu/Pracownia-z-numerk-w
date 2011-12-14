@@ -10,3 +10,9 @@ bool Matrix::isUpperTriangular() const{
   }
   return true;
 }
+
+const Matrix Matrix::invertUpperTriangular() const{
+  Matrix result(m_size);
+
+  return result;
+}

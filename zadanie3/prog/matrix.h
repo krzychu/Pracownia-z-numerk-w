@@ -3,6 +3,7 @@
 
 #include <boost/shared_array.hpp>
 #include <iostream>
+#include <utility>
 
 class Matrix{
   public:
@@ -31,7 +32,7 @@ class Matrix{
     // entire array manipulation
     void zero();    // sets all elements to be 0
     void one();     // identity matrix
-    void hilbert(); // hermite matrix
+    void hilbert(); // hilbert matrix
     
     // upper triangular matrix operations
     bool isUpperTriangular() const;

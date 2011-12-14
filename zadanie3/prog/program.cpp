@@ -1,12 +1,20 @@
 #include <iostream>
 #include <matrix.h>
+#include <fstream>
 
+using namespace std;
 
 int main(){
-  Matrix m(3);
-  m.one();
-  Matrix z(3);
-  z.one();
-  std::cout << m - z;
+  // displays readme
+  ifstream readme;
+  readme.open("../README");
+
+  while(!readme.eof()){
+    char buf[1000];
+    readme.getline(buf, 1000);
+    cout << buf << "\n";
+  }
+
+  readme.close();
   return 0;
 }
