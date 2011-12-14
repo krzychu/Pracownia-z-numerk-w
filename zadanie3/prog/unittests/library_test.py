@@ -5,6 +5,8 @@ class exportsAllMethods(unittest.TestCase):
   
   def testConstructors(self):
     a = Matrix(44)
+    b = Matrix(a)
+    b = Matrix([[1,2,3],[1,2,3],[1,2,3]])
   
   def testNorms(self):
     a = Matrix(44)

@@ -35,8 +35,10 @@ class Matrix{
     void hilbert(); // hilbert matrix
     
     // upper triangular matrix operations
-    bool isUpperTriangular() const;
     const Matrix invertUpperTriangular() const;   
+
+    // upper triangular matrix operations
+    const Matrix invertLowerTriangular() const;   
 
     // destructor, does nothing interesting
     virtual ~Matrix();
@@ -46,9 +48,20 @@ class Matrix{
    
     // output
     friend std::ostream& operator << (std::ostream& os, const Matrix& mat); 
-  private:
+  
+  protected:
     int m_size; 
     MatrixData m_data;
+    
+    // element manipulation
+    inline double get(int row, int col) const{
+      return m_data[row * m_size + col];
+    }
+
+   inline void set(int row, int col, double val){
+      m_data[row * m_size + col] = val;
+    }
+
 };
 
 

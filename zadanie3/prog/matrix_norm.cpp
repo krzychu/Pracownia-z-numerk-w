@@ -10,7 +10,7 @@ double Matrix::frobeniusNorm() const{
   double sum = 0;
   for(int i = 0; i < m_size*m_size; i++)
     sum += sq(m_data[i]);
-  return sum;
+  return sqrt(sum);
 }
 
 double Matrix::scaledFrobeniusNorm() const{

@@ -9,6 +9,19 @@ const Matrix Matrix::operator-(const Matrix& other) const{
   return sub(other);
 }
 
+
+const Matrix Matrix::mul(const Matrix& other) const{
+  Matrix result(m_size);
+  for(int i=0 ; i<m_size; i++){
+    for(int j=0; j<m_size; j++){
+      for(int k=0; k<m_size ; k++){
+      }
+    }
+  }
+  return result;
+}
+
+
 const Matrix Matrix::add(const Matrix& other) const{
   Matrix result(m_size);  
   for(int i = 0; i < m_size * m_size ; i++){
