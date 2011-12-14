@@ -14,8 +14,11 @@ const Matrix Matrix::mul(const Matrix& other) const{
   Matrix result(m_size);
   for(int i=0 ; i<m_size; i++){
     for(int j=0; j<m_size; j++){
+      double sum = 0;
       for(int k=0; k<m_size ; k++){
+        sum += get(i,k) * other.get(k,j);
       }
+      result.set(i, j, sum);
     }
   }
   return result;

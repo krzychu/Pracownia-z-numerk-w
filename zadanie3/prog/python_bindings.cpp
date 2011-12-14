@@ -42,6 +42,12 @@ class PyMatrix : public Matrix{
     const PyMatrix operator*(const Matrix& other) const{
       return PyMatrix(mul(other)); 
     }
+
+    // for testing purposes
+    bool isAlmostEqual(const PyMatrix& other) const{
+      Matrix diff = *this - other;
+      return diff.frobeniusNorm() < 0.0001;
+    }
 };
 
 
@@ -63,7 +69,9 @@ BOOST_PYTHON_MODULE(pymatrix){
     .def("firstNorm", &Matrix::firstNorm)
     .def("infNorm", &Matrix::infNorm)
     
-    
+    // for tests
+    .def("isAlmostEqual", &PyMatrix::isAlmostEqual)
+
     // arithmetic
     .def(self + self)
     .def(self - self)

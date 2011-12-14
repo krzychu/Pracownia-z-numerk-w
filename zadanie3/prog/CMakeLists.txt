@@ -38,3 +38,6 @@ add_test(library_test ${PYTHON_EXECUTABLE}
 
 add_test(norms_test ${PYTHON_EXECUTABLE} 
         ${CMAKE_SOURCE_DIR}/unittests/norms_test.py)
+
+add_test(arithmetic_test ${PYTHON_EXECUTABLE} 
+        ${CMAKE_SOURCE_DIR}/unittests/arithmetic_test.py)

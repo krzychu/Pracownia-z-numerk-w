@@ -29,7 +29,6 @@ double Matrix::firstNorm() const{
   }
 }
 
-
 double Matrix::infNorm() const{
   double result = 0;
   for(int row = 0; row < m_size; row++){
