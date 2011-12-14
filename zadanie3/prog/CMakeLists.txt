@@ -1,6 +1,9 @@
 project(ANALIZA_NUMERYCZNA)
 cmake_minimum_required(VERSION 2.8)
 
+
+
+
 # find and include boost library
 find_package(Boost COMPONENTS python REQUIRED)
 find_package(PythonLibs REQUIRED)
@@ -20,6 +23,9 @@ set_target_properties(pymatrix PROPERTIES PREFIX "")
 target_link_libraries(pymatrix 
   ${Boost_LIBRARIES} ${PYTHON_LIBRARIES})
 
+
+add_custom_command(TARGET pymatrix POST_BUILD
+  COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_CURRENT_BINARY_DIR}/pymatrix.so ${CMAKE_SOURCE_DIR}/unittests/)
 
 # compile test c++ program
 add_executable(prog program.cpp)

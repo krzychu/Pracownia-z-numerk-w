@@ -40,6 +40,9 @@ BOOST_PYTHON_MODULE(pymatrix){
     
     // norms
     .def("frobeniusNorm", &Matrix::frobeniusNorm)
+    .def("scaledFrobeniusNorm", &Matrix::scaledFrobeniusNorm)
+    .def("firstNorm", &Matrix::firstNorm)
+    .def("infNorm", &Matrix::infNorm)
     
     
     // arithmetic
