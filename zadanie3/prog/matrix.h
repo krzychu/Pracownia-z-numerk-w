@@ -33,7 +33,10 @@ class Matrix{
     void zero();    // sets all elements to be 0
     void one();     // identity matrix
     void hilbert(); // hilbert matrix
-    
+  
+    // lu decomposition
+    const std::pair<Matrix, Matrix> lu() const;
+
     // upper triangular matrix operations
     const Matrix invertUpperTriangular() const;   
 

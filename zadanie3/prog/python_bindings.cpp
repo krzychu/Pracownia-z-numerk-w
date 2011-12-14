@@ -2,6 +2,7 @@
 #include <boost/python/list.hpp>
 #include <matrix.h>
 #include <string>
+#include <utility>
 
 using namespace boost::python;
 
@@ -48,7 +49,16 @@ class PyMatrix : public Matrix{
       Matrix diff = *this - other;
       return diff.frobeniusNorm() < 0.0001;
     }
+    
+    tuple pythonLu() const{
+      std::pair<Matrix, Matrix> p = lu();
+      PyMatrix l(p.first);
+      PyMatrix u(p.second);
+      return make_tuple(l,u);
+    }
 };
+
+
 
 
 
@@ -68,9 +78,17 @@ BOOST_PYTHON_MODULE(pymatrix){
     .def("scaledFrobeniusNorm", &Matrix::scaledFrobeniusNorm)
     .def("firstNorm", &Matrix::firstNorm)
     .def("infNorm", &Matrix::infNorm)
-    
+   
+    // decompositions
+    .def("lu", &PyMatrix::pythonLu)
+
+    // triangular inversions
+
     // for tests
     .def("isAlmostEqual", &PyMatrix::isAlmostEqual)
+//    .def("randomUpperTriangular", &PyMatrix::randomUpperTriangular)
+//    .def("randomLowerTriangular", &PyMatrix::randomLowerTriangular)
+
 
     // arithmetic
     .def(self + self)
