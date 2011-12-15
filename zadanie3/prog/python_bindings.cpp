@@ -65,6 +65,11 @@ class PyMatrix : public Matrix{
       PyMatrix result(Matrix::transpose());
       return result;
     }
+  
+    const PyMatrix copy(){
+      PyMatrix result(Matrix::copy());
+      return result;
+    }
 
     void random(int seed);
     void randomUpperTriangular(int seed);
@@ -122,8 +127,10 @@ BOOST_PYTHON_MODULE(pymatrix){
     .def("firstNorm", &Matrix::firstNorm)
     .def("infNorm", &Matrix::infNorm)
   
-    // transposition
+    // utils
     .def("transpose", &PyMatrix::transpose)
+    .def("normalizeColumn", &Matrix::normalizeColumn)
+    .def("copy", &PyMatrix::copy)
 
     // decompositions
     .def("lu", &PyMatrix::pythonLu)

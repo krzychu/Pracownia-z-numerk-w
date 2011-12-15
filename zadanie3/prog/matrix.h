@@ -49,6 +49,8 @@ class Matrix{
     virtual ~Matrix();
    
     // less typing
+    const Matrix copy() const; 
+    void normalizeColumn(int col);
     typedef boost::shared_array<double> MatrixData;
     friend std::ostream& operator << (std::ostream& os, const Matrix& mat); 
   

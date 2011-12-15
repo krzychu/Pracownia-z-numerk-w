@@ -23,6 +23,27 @@ void Matrix::zero(){
   }
 }
 
+const Matrix Matrix::copy() const{
+  Matrix result(m_size);
+  for(int i=0; i < m_size * m_size; i++){
+    result.m_data[i] = m_data[i];
+  }  
+  return result;
+}
+
+void Matrix::normalizeColumn(int col){
+  double squareSum = 0; 
+  for(int i=0; i<m_size; i++)
+    squareSum += get(i, col) * get(i, col);
+
+  double norm = sqrt(squareSum);
+
+  for(int i=0; i<m_size ; i++){
+    set(i, col, get(i, col) / norm); 
+  }
+}
+
+
 void Matrix::one(){
   zero();
   for(int i=0 ; i<m_size; i++){
