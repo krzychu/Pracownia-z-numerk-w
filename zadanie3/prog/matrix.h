@@ -23,6 +23,9 @@ class Matrix{
     const Matrix operator + (const Matrix& other) const;
     const Matrix operator - (const Matrix& other) const;
    
+    // transposition
+    const Matrix transpose() const;
+
     // norms
     double frobeniusNorm() const;
     double scaledFrobeniusNorm() const;
@@ -47,8 +50,6 @@ class Matrix{
    
     // less typing
     typedef boost::shared_array<double> MatrixData;
-   
-    // output
     friend std::ostream& operator << (std::ostream& os, const Matrix& mat); 
   
   protected:

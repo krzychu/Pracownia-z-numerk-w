@@ -36,7 +36,7 @@ target_link_libraries(prog pymatrix)
 enable_testing()
 
 set(tests 
-  library norms arithmetic lu triangular)
+  library norms arithmetic lu triangular misc)
 
 foreach(test ${tests})
  add_test(${test} ${PYTHON_EXECUTABLE} ${CMAKE_SOURCE_DIR}/unittests/${test}_test.py) 

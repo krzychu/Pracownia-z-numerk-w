@@ -40,6 +40,15 @@ void Matrix::hilbert(){
 }
 
 
+const Matrix Matrix::transpose() const{
+  Matrix result(m_size);
+  for(int i = 0 ; i < m_size ; i++)
+    for(int j = 0; j < m_size; j++)
+      result.set(i,j, get(j,i));
+
+  return result;
+}
+
 
 std::ostream& operator << (std::ostream& os, const Matrix& mat){
   os << "[\n";
