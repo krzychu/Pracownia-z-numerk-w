@@ -56,6 +56,12 @@ class PyMatrix : public Matrix{
       return m;
     }
 
+    const PyMatrix invertLowerTriangular(){
+      PyMatrix m(Matrix::invertLowerTriangular()); 
+      return m;
+    }
+
+
     void random(int seed);
     void randomUpperTriangular(int seed);
     void randomLowerTriangular(int seed);
@@ -117,7 +123,7 @@ BOOST_PYTHON_MODULE(pymatrix){
 
     // triangular inversions
     .def("invertUpperTriangular", &PyMatrix::invertUpperTriangular)
-    .def("invertLowerTriangular", &Matrix::invertLowerTriangular)
+    .def("invertLowerTriangular", &PyMatrix::invertLowerTriangular)
 
     // for tests
     .def("isAlmostEqual", &PyMatrix::isAlmostEqual)
