@@ -37,11 +37,10 @@ class Matrix{
     // lu decomposition
     const std::pair<Matrix, Matrix> lu() const;
 
-    // upper triangular matrix operations
+    // triangular matrix operations
     const Matrix invertUpperTriangular() const;   
-
-    // upper triangular matrix operations
     const Matrix invertLowerTriangular() const;   
+
 
     // destructor, does nothing interesting
     virtual ~Matrix();

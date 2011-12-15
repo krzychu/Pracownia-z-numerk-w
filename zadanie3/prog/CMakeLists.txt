@@ -17,7 +17,7 @@ add_library(pymatrix SHARED
   matrix_arithmetic.cpp
   matrix_norm.cpp
   matrix_lu.cpp
-  matrix_upper_triangular.cpp
+  matrix_triangular.cpp
   python_bindings.cpp)
 set_target_properties(pymatrix PROPERTIES PREFIX "")
 target_link_libraries(pymatrix 
@@ -36,7 +36,7 @@ target_link_libraries(prog pymatrix)
 enable_testing()
 
 set(tests 
-  library norms arithmetic lu)
+  library norms arithmetic lu triangular)
 
 foreach(test ${tests})
  add_test(${test} ${PYTHON_EXECUTABLE} ${CMAKE_SOURCE_DIR}/unittests/${test}_test.py) 

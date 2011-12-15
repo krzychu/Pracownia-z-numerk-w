@@ -51,6 +51,11 @@ class PyMatrix : public Matrix{
       return diff.frobeniusNorm() < 0.0001;
     }
     
+    const PyMatrix invertUpperTriangular(){
+      PyMatrix m(Matrix::invertUpperTriangular()); 
+      return m;
+    }
+
     void random(int seed);
     void randomUpperTriangular(int seed);
     void randomLowerTriangular(int seed);
@@ -111,6 +116,8 @@ BOOST_PYTHON_MODULE(pymatrix){
     .def("lu", &PyMatrix::pythonLu)
 
     // triangular inversions
+    .def("invertUpperTriangular", &PyMatrix::invertUpperTriangular)
+    .def("invertLowerTriangular", &Matrix::invertLowerTriangular)
 
     // for tests
     .def("isAlmostEqual", &PyMatrix::isAlmostEqual)
