@@ -17,6 +17,7 @@ add_library(pymatrix SHARED
   matrix_arithmetic.cpp
   matrix_norm.cpp
   matrix_lu.cpp
+  matrix_qr.cpp
   matrix_triangular.cpp
   python_bindings.cpp)
 set_target_properties(pymatrix PROPERTIES PREFIX "")
