@@ -76,6 +76,7 @@ class PyMatrix : public Matrix{
     void randomLowerTriangular(int seed);
 
     tuple pythonLu() const;
+    tuple pythonQRsimple() const;
 };
 
 
@@ -107,7 +108,12 @@ tuple PyMatrix::pythonLu() const{
   return make_tuple(l,u);
 }
 
-
+tuple PyMatrix::pythonQRsimple() const{
+  std::pair<Matrix, Matrix> p = qr_simple();
+  PyMatrix l(p.first);
+  PyMatrix u(p.second);
+  return make_tuple(l,u);
+}
 
 
 BOOST_PYTHON_MODULE(pymatrix){
@@ -134,6 +140,7 @@ BOOST_PYTHON_MODULE(pymatrix){
 
     // decompositions
     .def("lu", &PyMatrix::pythonLu)
+    .def("qr_simple", &PyMatrix::pythonQRsimple)
 
     // triangular inversions
     .def("invertUpperTriangular", &PyMatrix::invertUpperTriangular)

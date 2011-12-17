@@ -11,11 +11,19 @@
     - CMake : znacznie upraszcza proces kompilacji programu i automatycznie
       znajduje biblioteki.
 
+  W debianowatych systemach np. Ubuntu, aby zainstalować wszystkie potrzebne 
+  biblioteki należy wydać polecenie
+    - sudo apt-get install libboost-python-dev cmake
+
   Przebieg:
 
     Aby skompilować program, należy wydać następujące polecenia:
       - cd build
       - cmake ..
       - make
+
+    Aby zweryfikować poprawność kompilacji, można wykonać kilka testów 
+    poprawnościowych poleceniem:
+      - make test
 
 2. Testy
