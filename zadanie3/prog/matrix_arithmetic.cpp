@@ -9,6 +9,10 @@ const Matrix Matrix::operator-(const Matrix& other) const{
   return sub(other);
 }
 
+const Matrix Matrix::operator*(const Matrix& other) const{
+  return mul(other);
+}
+
 
 const Matrix Matrix::mul(const Matrix& other) const{
   Matrix result(m_size);

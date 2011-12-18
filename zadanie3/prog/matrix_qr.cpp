@@ -44,3 +44,60 @@ const std::pair<Matrix, Matrix> Matrix::qr_simple() const{
   
   return std::make_pair(Q,R);
 }
+
+
+const std::pair<Matrix, Matrix> Matrix::qr_householder() const{
+  Matrix R = copy();
+  Matrix Q = Matrix(m_size);
+  Q.one();
+
+  double u[m_size];
+
+  for(int k = 0; k < m_size - 1; k++){
+    // generate u vector
+    double sum = 0;
+    for(int j = k; j < m_size; j++){
+      u[j] = R.get(j,k);
+      sum += u[j] * u[j]; 
+    }
+    double len = sqrt(sum);
+    sum -= u[k] * u[k];
+    u[k] -= len;
+    sum += u[k] * u[k];
+ 
+    if(sum == 0.0)
+      continue;
+
+    // get alpha constant
+    double alpha = 2.0l / sum ;
+
+    // transform R
+    for(int column = k ; column < m_size; column++){
+      // calculate scalar product of column and u
+      double prod = 0;
+      for(int row = k; row < m_size; row ++)
+        prod += u[row] * R.get(row, column);
+      // do subtractions
+      for(int row = k; row < m_size; row++){
+        int p = row * m_size + column;
+        R.m_data[p] -= alpha * prod * u[row];
+      }
+    }
+
+    // transform Q
+    for(int column = 0 ; column < m_size; column++){
+      // calculate scalar product of column and u
+      double prod = 0;
+      for(int row = k; row < m_size; row ++)
+        prod += u[row] * Q.get(row, column);
+      // do subtractions
+      for(int row = k; row < m_size; row++){
+        int p = row * m_size + column;
+        Q.m_data[p] -= alpha * prod * u[row];
+      }
+    }
+
+  }
+  Q = Q.transpose();
+  return std::make_pair(Q,R);
+}

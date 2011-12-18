@@ -12,9 +12,19 @@ class TestGS(unittest.TestCase):
     self.assertTrue(m.isAlmostEqual(q*r))
     self.assertTrue(one.isAlmostEqual(q*q.transpose()))
 
-  def testOne(self):
-    one = Matrix(5)
+
+class TestH(unittest.TestCase):
+  size = 50
+
+  def testRandom(self):
+    m = Matrix(self.size)
+    m.random(3)
+    q, r = m.qr_householder()
+    one = Matrix(self.size)
     one.one()
-    q, r = one.qr_simple()
+    self.assertTrue(m.isAlmostEqual(q*r))
+    self.assertTrue(one.isAlmostEqual(q*q.transpose()))
+
+   
 
 unittest.main()

@@ -40,6 +40,7 @@ class Matrix{
     // lu decomposition
     const std::pair<Matrix, Matrix> lu() const;
     const std::pair<Matrix, Matrix> qr_simple() const;
+    const std::pair<Matrix, Matrix> qr_householder() const;
 
     // triangular matrix operations
     const Matrix invertUpperTriangular() const;   
