@@ -87,8 +87,8 @@ procedural_resize_test.run: $(LIBS) procedural_resize_test.cpp
 X_res = 200
 Y_res = 200
 ORDER = xy
-IMAGE_res = linia_50_linear	
-OUTFILE_res = linia_50_200_linear
+IMAGE_res = pokemon
+OUTFILE_res = pokemon_resize
 
 resizers_test: resizers_test.run
 	./resizers_test.run ../obrazki/$(IMAGE_res).bmp linear $(ORDER) $(X_res) $(Y_res) \
@@ -114,15 +114,15 @@ resizers_test: resizers_test.run
 
 
 
-IMAGE_time = liscie_male
+IMAGE_time = pokemon
 time_test: time_test.run
 	./time_test.run 10 1000 5 ../obrazki/$(IMAGE_time).bmp > ../data/time_test.dat
 
 
 X_ord = 10
 Y_ord = 10
-IMAGE_ord = pokemon_bw
-OUTFILE_ord = all
+IMAGE_ord = pokemon
+OUTFILE_ord = pokemon_ord
 visual_order_test: visual_order_test.run
 	./visual_order_test.run ../obrazki/$(IMAGE_ord).bmp cubic 50 500 ../obrazki/$(OUTFLIE).bmp
 	$(SHOW) ../obrazki/$(OUTFLIE).bmp

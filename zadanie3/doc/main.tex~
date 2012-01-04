@@ -25,12 +25,5 @@
 \tableofcontents
 \newpage
 \input{wstep.tex}
-\input{opis_metod.tex}
-\input{testy_jakosci.tex}
-\input{testy_kolejnosci.tex}
-\input{testy_szybkosci.tex}
-\input{profesjonalny.tex}
-\input{wnioski.tex}
-\input{bibliografia.tex}
 \end{document}
 
