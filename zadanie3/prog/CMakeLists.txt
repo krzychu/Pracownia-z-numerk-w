@@ -30,6 +30,10 @@ target_link_libraries(pymatrix
 add_custom_command(TARGET pymatrix POST_BUILD
   COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_CURRENT_BINARY_DIR}/pymatrix.so ${CMAKE_SOURCE_DIR}/unittests/)
 
+add_custom_command(TARGET pymatrix POST_BUILD
+  COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_CURRENT_BINARY_DIR}/pymatrix.so ${CMAKE_SOURCE_DIR}/tests/)
+
+
 # compile test c++ program
 add_executable(prog program.cpp)
 target_link_libraries(prog pymatrix)
