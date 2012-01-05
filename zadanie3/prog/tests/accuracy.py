@@ -1,5 +1,7 @@
 from pymatrix import Matrix
 from time import time
+from numpy import matrix as numpyMatrix
+from numpy import linalg
 
 def seed():
   return int(time())
@@ -15,10 +17,6 @@ def genMatrix(size, kind):
   else:
     return None
   return m
-
-"""
-for size in range(minsize, maxsize + 1):
-"""
 
 
 
@@ -103,9 +101,46 @@ class INVAccuracyTest(AccuracyTest):
     self.putMany([size, e_lu, e_qr_simple, e_qr_house])
 
 
+class INVComparisonTest(AccuracyTest):
+  def header(self):
+    self.put("# E = frobenius_norm(inv(A) - numpy_inv(A))")
+    self.put("# size E_LU E_QRSimple E_QRHouseholder")
+
+  def np_invert(self, matrix, size):
+    temp = []
+    for r in range(size):
+      row = []
+      for c in range(size):
+        row.append(matrix.get(r,c))
+      temp.append(row)
+    
+    np = numpyMatrix(temp)
+    np = np.I
+
+    temp = []
+    for r in range(size):
+      row = []
+      for c in range(size):
+        row.append(np[r,c])
+      temp.append(row)
+    
+    return Matrix(temp)
+
+  def test(self, m, size):
+    np = self.np_invert(m, size)
+    e_lu = (np - m.invertLU()).frobeniusNorm()
+    e_qr_simple = (np - m.invertQRSimple()).frobeniusNorm()
+    e_qr_house = (np - m.invertQRHouseholder()).frobeniusNorm()
+    
+    self.putMany([size, e_lu, e_qr_simple, e_qr_house])
+
 
 qr = QRAccuracyTest()
 qr.run()
 
 inv = INVAccuracyTest()
 inv.run()
+
+
+comp = INVComparisonTest()
+comp.run()

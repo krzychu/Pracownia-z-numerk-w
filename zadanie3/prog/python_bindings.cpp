@@ -105,6 +105,10 @@ class PyMatrix : public Matrix{
       return make_tuple(m, stop_timer());
     }
 
+  
+    double get(int row, int col){
+      return Matrix::get(row, col);
+    }
 
     void random(int seed);
     void randomUpperTriangular(int seed);
@@ -214,6 +218,9 @@ BOOST_PYTHON_MODULE(pymatrix){
     .def("randomUpperTriangular", &PyMatrix::randomUpperTriangular)
     .def("randomLowerTriangular", &PyMatrix::randomLowerTriangular)
     .def("random", &PyMatrix::random)
+
+    // element access
+    .def("get", &PyMatrix::get)
 
     // arithmetic
     .def(self + self)
