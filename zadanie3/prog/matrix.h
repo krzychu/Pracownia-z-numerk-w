@@ -42,6 +42,11 @@ class Matrix{
     const std::pair<Matrix, Matrix> qr_simple() const;
     const std::pair<Matrix, Matrix> qr_householder() const;
 
+    // inversions
+    const Matrix invertLU() const;
+    const Matrix invertQRSimple() const;
+    const Matrix invertQRHouseholder() const;
+
     // triangular matrix operations
     const Matrix invertUpperTriangular() const;   
     const Matrix invertLowerTriangular() const;   

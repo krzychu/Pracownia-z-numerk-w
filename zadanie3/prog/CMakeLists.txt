@@ -15,6 +15,7 @@ include_directories(.)
 add_library(pymatrix SHARED 
   matrix_utils.cpp 
   matrix_arithmetic.cpp
+  matrix_inversions.cpp
   matrix_norm.cpp
   matrix_lu.cpp
   matrix_qr.cpp
@@ -37,7 +38,7 @@ target_link_libraries(prog pymatrix)
 enable_testing()
 
 set(tests 
-  library norms arithmetic lu triangular misc qr)
+  library norms arithmetic lu triangular misc qr invert)
 
 foreach(test ${tests})
  add_test(${test} ${PYTHON_EXECUTABLE} ${CMAKE_SOURCE_DIR}/unittests/${test}_test.py) 

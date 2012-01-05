@@ -71,6 +71,23 @@ class PyMatrix : public Matrix{
       return result;
     }
 
+    const PyMatrix pythonInvertLU(){
+      PyMatrix result(Matrix::invertLU());
+      return result;
+    }
+  
+    const PyMatrix pythonInvertQRSimple(){
+      PyMatrix result(Matrix::invertQRSimple());
+      return result;
+    }
+    
+    const PyMatrix pythonInvertQRHouseholder(){
+      PyMatrix result(Matrix::invertQRHouseholder());
+      return result;
+    }
+
+
+
     void random(int seed);
     void randomUpperTriangular(int seed);
     void randomLowerTriangular(int seed);
@@ -144,6 +161,12 @@ BOOST_PYTHON_MODULE(pymatrix){
     .def("transpose", &PyMatrix::transpose)
     .def("normalizeColumn", &Matrix::normalizeColumn)
     .def("copy", &PyMatrix::copy)
+
+
+    // inversions
+    .def("invertLU", &PyMatrix::pythonInvertLU)
+    .def("invertQRSimple", &PyMatrix::pythonInvertQRSimple)
+    .def("invertQRHouseholder", &PyMatrix::pythonInvertQRHouseholder)
 
     // decompositions
     .def("lu", &PyMatrix::pythonLu)

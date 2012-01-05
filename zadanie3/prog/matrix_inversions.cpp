@@ -9,3 +9,13 @@ const Matrix Matrix::invertLU() const{
   Matrix invU = lu_pair.second.invertUpperTriangular();
   return invU * invL;
 }
+
+const Matrix Matrix::invertQRSimple() const{
+  pair<Matrix, Matrix> qr = qr_simple();
+  return qr.second.invertUpperTriangular() * qr.first.transpose();
+}
+
+const Matrix Matrix::invertQRHouseholder() const{
+  pair<Matrix, Matrix> qr = qr_householder();
+  return qr.second.invertUpperTriangular() * qr.first.transpose();
+}

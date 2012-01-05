@@ -22,4 +22,39 @@ class InvertLUTest(unittest.TestCase):
     self.assertTrue(one.isAlmostEqual(m * m.invertLU()))
 
 
+
+class InvertQRSimpleTest(unittest.TestCase):
+  size = 50
+
+  def testUnit(self):
+    one = Matrix(self.size)
+    one.one()
+    self.assertTrue(one.isAlmostEqual(one.invertQRSimple()))
+
+
+  def testRandom(self):
+    m = Matrix(self.size) 
+    m.random(3);
+    one = Matrix(self.size)
+    one.one()
+    self.assertTrue(one.isAlmostEqual(m * m.invertQRSimple()))
+
+
+class InvertQRHouseholderTest(unittest.TestCase):
+  size = 50
+
+  def testUnit(self):
+    one = Matrix(self.size)
+    one.one()
+    self.assertTrue(one.isAlmostEqual(one.invertQRHouseholder()))
+
+
+  def testRandom(self):
+    m = Matrix(self.size) 
+    m.random(3);
+    one = Matrix(self.size)
+    one.one()
+    self.assertTrue(one.isAlmostEqual(m * m.invertQRHouseholder()))
+
+
 unittest.main()
