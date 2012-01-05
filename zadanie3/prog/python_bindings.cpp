@@ -4,6 +4,7 @@
 #include <string>
 #include <utility>
 #include <cstdlib>
+#include <benchmark.h>
 
 using namespace boost::python;
 
@@ -71,21 +72,38 @@ class PyMatrix : public Matrix{
       return result;
     }
 
-    const PyMatrix pythonInvertLU(){
+    const PyMatrix invertLU(){
       PyMatrix result(Matrix::invertLU());
       return result;
     }
   
-    const PyMatrix pythonInvertQRSimple(){
+    const PyMatrix invertQRSimple(){
       PyMatrix result(Matrix::invertQRSimple());
       return result;
     }
     
-    const PyMatrix pythonInvertQRHouseholder(){
+    const PyMatrix invertQRHouseholder(){
       PyMatrix result(Matrix::invertQRHouseholder());
       return result;
     }
 
+    const tuple invertLUTimed(){
+      start_timer();
+      PyMatrix m = invertLU();
+      return make_tuple(m, stop_timer());
+    }
+
+    const tuple invertQRSimpleTimed(){
+      start_timer();
+      PyMatrix m = invertQRSimple();
+      return make_tuple(m, stop_timer());
+    }
+
+    const tuple invertQRHouseholderTimed(){
+      start_timer();
+      PyMatrix m = invertQRHouseholder();
+      return make_tuple(m, stop_timer());
+    }
 
 
     void random(int seed);
@@ -164,9 +182,15 @@ BOOST_PYTHON_MODULE(pymatrix){
 
 
     // inversions
-    .def("invertLU", &PyMatrix::pythonInvertLU)
-    .def("invertQRSimple", &PyMatrix::pythonInvertQRSimple)
-    .def("invertQRHouseholder", &PyMatrix::pythonInvertQRHouseholder)
+    .def("invertLU", &PyMatrix::invertLU)
+    .def("invertQRSimple", &PyMatrix::invertQRSimple)
+    .def("invertQRHouseholder", &PyMatrix::invertQRHouseholder)
+
+    // timed inversions
+    .def("invertLUTimed", &PyMatrix::invertLUTimed)
+    .def("invertQRSimpleTimed", &PyMatrix::invertQRSimpleTimed)
+    .def("invertQRHouseholderTimed", &PyMatrix::invertQRHouseholderTimed)
+
 
     // decompositions
     .def("lu", &PyMatrix::pythonLu)

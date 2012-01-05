@@ -13,6 +13,7 @@ include_directories(.)
 
 # compile python bindings
 add_library(pymatrix SHARED 
+  benchmark.cpp
   matrix_utils.cpp 
   matrix_arithmetic.cpp
   matrix_inversions.cpp
