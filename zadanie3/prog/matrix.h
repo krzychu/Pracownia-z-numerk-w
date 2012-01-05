@@ -39,8 +39,8 @@ class Matrix{
   
     // lu decomposition
     const std::pair<Matrix, Matrix> lu() const;
-    const std::pair<Matrix, Matrix> qr_simple() const;
-    const std::pair<Matrix, Matrix> qr_householder() const;
+    const std::pair<Matrix, Matrix> QRSimple() const;
+    const std::pair<Matrix, Matrix> QRHouseholder() const;
 
     // inversions
     const Matrix invertLU() const;

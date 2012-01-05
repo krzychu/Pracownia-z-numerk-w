@@ -11,11 +11,11 @@ const Matrix Matrix::invertLU() const{
 }
 
 const Matrix Matrix::invertQRSimple() const{
-  pair<Matrix, Matrix> qr = qr_simple();
+  pair<Matrix, Matrix> qr = QRSimple();
   return qr.second.invertUpperTriangular() * qr.first.transpose();
 }
 
 const Matrix Matrix::invertQRHouseholder() const{
-  pair<Matrix, Matrix> qr = qr_householder();
+  pair<Matrix, Matrix> qr = QRHouseholder();
   return qr.second.invertUpperTriangular() * qr.first.transpose();
 }

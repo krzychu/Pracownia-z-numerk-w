@@ -1,7 +1,7 @@
 #include <matrix.h>
 #include <cmath>
 
-const std::pair<Matrix, Matrix> Matrix::qr_simple() const{
+const std::pair<Matrix, Matrix> Matrix::QRSimple() const{
   Matrix Q = this->copy();
   Matrix R(m_size);
 
@@ -46,7 +46,7 @@ const std::pair<Matrix, Matrix> Matrix::qr_simple() const{
 }
 
 
-const std::pair<Matrix, Matrix> Matrix::qr_householder() const{
+const std::pair<Matrix, Matrix> Matrix::QRHouseholder() const{
   Matrix R = copy();
   Matrix Q = Matrix(m_size);
   Q.one();

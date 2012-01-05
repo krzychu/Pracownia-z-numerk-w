@@ -109,6 +109,11 @@ class PyMatrix : public Matrix{
     void random(int seed);
     void randomUpperTriangular(int seed);
     void randomLowerTriangular(int seed);
+    void randomDiagonalDominant(int seed);
+    void randomAlmostSingular(int seed);
+    void randomZeroMinor(int seed);
+    void randomTridiagonal(int seed);
+
 
     tuple pythonLu() const;
     tuple pythonQRsimple() const;
@@ -137,6 +142,9 @@ void PyMatrix::randomLowerTriangular(int seed){
       set(i,j,0);
 }
 
+
+
+
 tuple PyMatrix::pythonLu() const{
   std::pair<Matrix, Matrix> p = lu();
   PyMatrix l(p.first);
@@ -145,14 +153,14 @@ tuple PyMatrix::pythonLu() const{
 }
 
 tuple PyMatrix::pythonQRsimple() const{
-  std::pair<Matrix, Matrix> p = qr_simple();
+  std::pair<Matrix, Matrix> p = QRSimple();
   PyMatrix l(p.first);
   PyMatrix u(p.second);
   return make_tuple(l,u);
 }
 
 tuple PyMatrix::pythonQRhouseholder() const{
-  std::pair<Matrix, Matrix> p = qr_householder();
+  std::pair<Matrix, Matrix> p = QRHouseholder();
   PyMatrix l(p.first);
   PyMatrix u(p.second);
   return make_tuple(l,u);
@@ -194,8 +202,8 @@ BOOST_PYTHON_MODULE(pymatrix){
 
     // decompositions
     .def("lu", &PyMatrix::pythonLu)
-    .def("qr_simple", &PyMatrix::pythonQRsimple)
-    .def("qr_householder", &PyMatrix::pythonQRhouseholder)
+    .def("QRSimple", &PyMatrix::pythonQRsimple)
+    .def("QRHouseholder", &PyMatrix::pythonQRhouseholder)
 
     // triangular inversions
     .def("invertUpperTriangular", &PyMatrix::invertUpperTriangular)
