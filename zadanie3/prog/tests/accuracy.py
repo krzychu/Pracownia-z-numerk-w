@@ -14,6 +14,16 @@ def genMatrix(size, kind):
     m.random(seed())
   elif kind == "triangular":
     m.randomUpperTriangular(seed())
+  elif kind == "hilbert":
+    m.hilbert()
+  elif kind == "diagonal_dominant":
+    m.randomDiagonalDominant(seed())
+  elif kind == "almost_singular":
+    m.randomAlmostSingular(seed())
+  elif kind == "zero_minor":
+    m.randomZeroMinor(seed())
+  elif kind == "tridiagonal":
+    m.randomTridiagonal(seed())
   else:
     return None
   return m
@@ -21,10 +31,11 @@ def genMatrix(size, kind):
 
 
 class AccuracyTest:
-  matrixTypes = ["random", "triangular"]
+  matrixTypes = ["random", "triangular", "hilbert", "diagonal_dominant", 
+  "almost_singular", "zero_minor", "tridiagonal"]
   minsize = 10
-  maxsize = 50
-
+  maxsize = 200
+  step = 3
 
   def put(self, string):
     self.output.write(string + "\n")
@@ -48,7 +59,7 @@ class AccuracyTest:
       self.put("# matrix type : " + mtype)
       self.header()
      
-      for size in range(self.minsize, self.maxsize + 1):
+      for size in range(self.minsize, self.maxsize + 1, self.step):
         m = genMatrix(size, mtype)
         self.test(m, size)
       
@@ -140,7 +151,6 @@ qr.run()
 
 inv = INVAccuracyTest()
 inv.run()
-
 
 comp = INVComparisonTest()
 comp.run()

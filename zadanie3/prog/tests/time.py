@@ -2,12 +2,13 @@ from pymatrix import Matrix
 from time import time
 
 minsize = 10
-maxsize = 50
+maxsize = 200
+step = 5
 
 print "# time test"
 print "# size LU QR-Gram QR-Householder"
 
-for size in range(minsize, maxsize + 1):
+for size in range(minsize, maxsize + 1, step):
   m = Matrix(size)
   m.random(int(time()))
   

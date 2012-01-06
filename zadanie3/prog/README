@@ -13,7 +13,7 @@
 
   W debianowatych systemach np. Ubuntu, aby zainstalować wszystkie potrzebne 
   biblioteki należy wydać polecenie
-    - sudo apt-get install libboost-python-dev cmake
+    - sudo apt-get install libboost-python-dev python-numpy cmake
 
   Przebieg:
 
@@ -27,3 +27,5 @@
       - make test
 
 2. Testy
+  
+  Aby wygenerować dane trzeba w katalogu tests wydać polecenie 'make'

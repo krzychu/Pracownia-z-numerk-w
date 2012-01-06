@@ -125,10 +125,14 @@ class PyMatrix : public Matrix{
 };
 
 
+double randnum(){
+  return double(rand()) * 100.0 / double(RAND_MAX) - 50.0;
+}
+
 void PyMatrix::random(int seed){
   srand(seed);
   for(int i=0 ; i<m_size * m_size; i++){
-    m_data[i] = double(rand()) * 100.0 / double(RAND_MAX) - 50.0;
+    m_data[i] = randnum();
   }
 }
 
@@ -146,7 +150,53 @@ void PyMatrix::randomLowerTriangular(int seed){
       set(i,j,0);
 }
 
+void PyMatrix::randomDiagonalDominant(int seed){
+  random(seed);
+  for(int row = 0; row < m_size; row++){
+    double sum = 0;
+    for(int col = 0; col < m_size; col++){
+      if(col != row)
+        sum += fabs(get(row, col));
+    }
+    set(row, row, sum + 1.0);
+  }
+}
 
+void PyMatrix::randomAlmostSingular(int seed){
+  random(seed);
+  int a = rand() % m_size;
+  int b = rand() % m_size;
+  
+  if(a == b)
+    a = (a + 1) % m_size;
+
+  for(int row = 0 ; row < m_size ; row++)
+    set(row, a, get(row, b) * 2.0 + 0.001);
+}
+
+void PyMatrix::randomZeroMinor(int seed){
+  random(seed);
+  int half = m_size / 2;
+  int a = rand() % half;
+  int b = rand() % half;
+  
+  if(a == b)
+    a = (a + 1) % half;
+
+  for(int row = 0 ; row < half ; row++)
+    set(row, a, get(row, b) * 2.0);
+}
+
+void PyMatrix::randomTridiagonal(int seed){
+  srand(seed);
+  for(int i = 0; i<m_size ; i++){
+    set(i, i, randnum());
+    if(i > 0)
+      set(i, i-1, randnum());
+    if(i < m_size - 1)
+      set(i, i+1, randnum());
+  }
+}
 
 
 tuple PyMatrix::pythonLu() const{
@@ -218,6 +268,10 @@ BOOST_PYTHON_MODULE(pymatrix){
     .def("randomUpperTriangular", &PyMatrix::randomUpperTriangular)
     .def("randomLowerTriangular", &PyMatrix::randomLowerTriangular)
     .def("random", &PyMatrix::random)
+    .def("randomDiagonalDominant", &PyMatrix::randomDiagonalDominant)
+    .def("randomAlmostSingular", &PyMatrix::randomAlmostSingular)
+    .def("randomZeroMinor", &PyMatrix::randomZeroMinor)
+    .def("randomTridiagonal", &PyMatrix::randomTridiagonal)
 
     // element access
     .def("get", &PyMatrix::get)
