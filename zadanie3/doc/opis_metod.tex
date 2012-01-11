@@ -1,5 +1,54 @@
 \section{Opis metod}
+W rozdziale tym wytłumaczona została idea dekompozycji QR oraz LU macierzy oraz
+podane zostały metody do wyznaczaczania poszczególnych rozkładów, przy czym dla
+dekompozycji QR są to metody zwane \textit{metodą Grama-Schmidta} i
+\textit{metodą Householdera}.
 \subsection{Rozkład QR}
+Dekompozycja QR macierzy kwadratowej $A \in M_{n \times n}$ jest to rozkład
+macierzy A na dwie macierze kwadratowe $Q \in M_{n \times n}$ i $R \in M_{n
+\times n}$ takie, że:
+$$A=QR,$$
+przy czym Q jest macierzą ortogonalną ($QQ^T=I$), zaś R jest macierzą trójkątną
+górną.
+
+Ciekawą własnością tej dekompozycji jest to, że isnieje ona dla dowolnej
+macierzy kwadratowej. Jeżeli przyjmiemy dodatkowo, że elementy diagonali
+macierzy R są wszystkie nieujemne, rozkład taki jest wyznaczony jednoznacznie.
+Dowód powyższej własności jest dowodem konstrukcjyjnym\footnote{Można go znależć
+na stronie http://www.math4all.in/public\_html/linear\%20algebra/proof8.5.11.html}
+i opiera sie o metodęorotgonalizacji Grama-Schmitda, której opis znajduje się w
+dalszej częśći sprawozdania.
+
+Istnieje również dekompozycja QR dla macierzy prostokątnych. Niech macierz
+$A \in M_{n \times n}$, $m \geq n$. Wówczas rozkładamy macierz A na macierz
+ortogonalną $Q \in M_{m \in m}$ i macierz trójkątną górną $R \in M_{m \in n}$.
+Jak można zauważyć, dolne $m-n$ wierszy macierzy R są zerowe, stosuje się więc
+podział macierzy Q i R na $R_1 \in M_{n \times n}$ i diw macierze posiadające
+ortogonalne kolumny, mianowicie $Q_1 \in M_{m \times n}$ i $Q_2 \in M_{m, m-n}$.
+Zachodzi równość:
+$$A=QR=(Q_1, Q_2)=\begin{pmatrix} R_1 \\ 0 \end{pmatrix}=Q_1R_1.$$
+W dalszych rozważąniac ograniczymy się jednak do macierz kwadratowych.
 \subsubsection{Metoda Grama-Schmidta}
+Jest to pierwsza rozważana przez nas metoda dekompozycji QR. Definiujemy
+operator projekcji jako:
+$$proj_u(v)=\frac{<v,u>}{<u,u>}u,$$
+gdzie $<x,y>$ oznacza iloczyn skalarny wektorów x i y. Innymi słowy, projekcja
+to rzut wektora v na prostą rozpinaną przez wektor u. Danymi wejściowymi
+metody Grama-Schmidta są kolejne kolumny macierzy $A=[a_1,...,a_n]$.
+Oznaczamy przez ${u_k}$ i ${e_k}, 1 \leq k \leq n,$ następujące wektory:
+$$ u_k = a_k-\sum_{j=1}^{k-1} proj_{e_j}a_k, \hspace{2cm}
+e_k = \frac{u_k}{\|u_k\|}.$$
+Przekształcająć odpowiednio podane równości i kożystając z faktu, że
+$<e_k, a_k> = \|u_k\|$ i wektory $e_k$ są wektorami jednostkowymi dla
+$1 \leq k \leq n$ otrzymujemy, że:
+$$ a_k = \sum_{i=1}^{k} <e_i,a_k>e_i.$$
+Powyższą równość możemu zapisać w postaci macierzowej $A=QR$, które są
+postaci jakiej oczekiwaliśmy. Macierz Q bowiem jest macierzą ortonormalną,
+zaś R górnotrójkątną i możemy je zapisać w postaci:
+$$ Q = [e_1,...,e_n], \hspace{1cm} R = \begin{pmatrix} \langle\ e_1,a_1
+\rangle & \langle e_1,a_2\rangle & \langle e_1, a_3\rangle & \ldots \\ 0
+& \langle e_2, a_2\rangle & \langle e_2, a_3\rangle & \ldots \\ 0 & 0 &
+\langle e_3, a_3\rangle & \ldots \\ \vdots & \vdots & \vdots & \ddots
+\end{pmatrix}.$$
 \subsubsection{Metoda Householdera}
 \subsection{Rozkład LU}

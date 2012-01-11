@@ -3,9 +3,9 @@
 \contentsline {section}{\numberline {2\relax .\kern .5em }Opis metod}{2}
 \contentsline {subsection}{\numberline {2.1\relax .\kern .5em }Rozk\IeC {\l }ad QR}{2}
 \contentsline {subsubsection}{\numberline {2.1.1\relax .\kern .5em }Metoda Grama-Schmidta}{2}
-\contentsline {subsubsection}{\numberline {2.1.2\relax .\kern .5em }Metoda Householdera}{2}
-\contentsline {subsection}{\numberline {2.2\relax .\kern .5em }Rozk\IeC {\l }ad LU}{2}
-\contentsline {section}{\numberline {3\relax .\kern .5em }Znajdowanie macierzy odwrotnej}{2}
-\contentsline {section}{\numberline {4\relax .\kern .5em }Por\IeC {\'o}wnanie szybko\IeC {\'s}ci dzia\IeC {\l }ania metod}{2}
-\contentsline {section}{\numberline {5\relax .\kern .5em }Por\IeC {\'o}wnanie dok\IeC {\l }adno\IeC {\'s}ci metod}{2}
-\contentsline {section}{\numberline {6\relax .\kern .5em }Podsumowanie}{2}
+\contentsline {subsubsection}{\numberline {2.1.2\relax .\kern .5em }Metoda Householdera}{3}
+\contentsline {subsection}{\numberline {2.2\relax .\kern .5em }Rozk\IeC {\l }ad LU}{3}
+\contentsline {section}{\numberline {3\relax .\kern .5em }Znajdowanie macierzy odwrotnej}{3}
+\contentsline {section}{\numberline {4\relax .\kern .5em }Por\IeC {\'o}wnanie szybko\IeC {\'s}ci dzia\IeC {\l }ania metod}{3}
+\contentsline {section}{\numberline {5\relax .\kern .5em }Por\IeC {\'o}wnanie dok\IeC {\l }adno\IeC {\'s}ci metod}{3}
+\contentsline {section}{\numberline {6\relax .\kern .5em }Podsumowanie}{3}
