@@ -51,4 +51,37 @@ $$ Q = [e_1,...,e_n], \hspace{1cm} R = \begin{pmatrix} \langle\ e_1,a_1
 \langle e_3, a_3\rangle & \ldots \\ \vdots & \vdots & \vdots & \ddots
 \end{pmatrix}.$$
 \subsubsection{Metoda Householdera}
+Druga metoda rozkładu QR, którą pozanaliśmy, korzysta z odbić Housholdera.
+Dla danego wektora $w$ \textbf{odbicie} (macierz) \textbf{Householdera}
+definiujemy jako:
+$$H=I-2ww^T.$$
+Można dostrzec, że wartość $Hx$ jest odbiciem lustrznym wektora $x$ względem
+hiperpłaszczyzny prostopadłej do wektora $w$. Ponadto macierz $H$ jest równa
+macierzy $H^{-1}$ i $H^T$, w szczególności jest to więc przekształcenie
+ortogonalne. W badanej przez nas metodzie Hausholdera odbić tych używa się
+do przekształacania wektorów w taki sposób, aby wszystkie współrzędne,
+poza jedną, uległy wyzerowaniu. Niech więc $x$ będzie wektorem kolumnowym,
+a $e_1$ wektorem postaci $(1,0,...,0)^T$. Przez $u$ oznaczmy $u=x+\|x\|e_1$,
+$v=\frac{u}{\|u\|}$ oraz $Q=I-2vv^T$. Uzyskujemy wówczas, że macierz $Q$
+będącą odbiciem Householdera i wartość $Qx$ jest postaci $(\|x\|,0,...,0)^T$.
+To właśnie ten proces jest wykorzystyany do transformacji wejśćiowej
+macierzy A do macierzy górnotrójkątnej. W pierwszej kolejności mnożymy
+macierz A przez macierz Householdera $Q_1$ tak, aby wszystkie elementy
+prócz pierwszego elementy kolumny $a_1$ się wyzerowały, czyli tak, aby
+zachodziła równość:
+$$ Q_1A = \begin{pmatrix} \|a_1\|&\star&\dots&\star\\ 0 & & & \\ \vdots & &
+A' & \\ 0 & & & \end{pmatrix}.$$
+Powtarzamy to działanie dla macierzy $A'$, uzyskując macierz $Q_2'$.
+Aby operować na miecirzach tego samego rozmiaru przyjmujemy:
+$$Q_k=\begin{pmatrix} I_{k-1} & 0 \\ 0 & Q_k' \end{pmatrix}.$$
+Po powtórzeniu tego procesu n-krotnie, uzyskujemy:
+$$R=Q_{n-1}...Q_1A=QA.$$
+Q jako iloczyn macierzy ortagonalnych jest macierzą ortagonalną, R jest
+macierzą górnotrójkątną, a wieć uzyskaliśmy to, czego oczekiwaliśmy, czyli
+rozkład QR macierzy A.
 \subsection{Rozkład LU}
+Rozkład $LU$ macierzy polega na przedstawieniu $A$ jako iloczynu macierzy
+dolnotrójkątnej $L$ i górnotrójkątnej $U$. Dokładny opis postaci i metody
+uzysiwania tej dekompozycji został podany na wykładzie i można go znaleźć w
+odpowiadających mu notatkach. Warto jedynie zauważyć, że nie dla każdej
+macierzy taki rozkład istnieje.
