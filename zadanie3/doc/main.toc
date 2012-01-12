@@ -6,6 +6,8 @@
 \contentsline {subsubsection}{\numberline {2.1.2\relax .\kern .5em }Metoda Householdera}{4}
 \contentsline {subsection}{\numberline {2.2\relax .\kern .5em }Rozk\IeC {\l }ad LU}{5}
 \contentsline {section}{\numberline {3\relax .\kern .5em }Znajdowanie macierzy odwrotnej}{5}
-\contentsline {section}{\numberline {4\relax .\kern .5em }Por\IeC {\'o}wnanie szybko\IeC {\'s}ci dzia\IeC {\l }ania metod}{5}
-\contentsline {section}{\numberline {5\relax .\kern .5em }Por\IeC {\'o}wnanie dok\IeC {\l }adno\IeC {\'s}ci metod}{5}
-\contentsline {section}{\numberline {6\relax .\kern .5em }Podsumowanie}{5}
+\contentsline {subsection}{\numberline {3.1\relax .\kern .5em }Rozk\IeC {\l }ad QR}{5}
+\contentsline {subsection}{\numberline {3.2\relax .\kern .5em }Rozk\IeC {\l }ad LU}{5}
+\contentsline {section}{\numberline {4\relax .\kern .5em }Por\IeC {\'o}wnanie szybko\IeC {\'s}ci dzia\IeC {\l }ania metod}{6}
+\contentsline {section}{\numberline {5\relax .\kern .5em }Por\IeC {\'o}wnanie dok\IeC {\l }adno\IeC {\'s}ci metod}{6}
+\contentsline {section}{\numberline {6\relax .\kern .5em }Podsumowanie}{6}
