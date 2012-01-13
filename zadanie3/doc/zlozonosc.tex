@@ -1,1 +1,21 @@
 \section{Porównanie szybkości działania metod}
+Aby zbadać, która medota spośród wspomnianych trzech (Grama-Schmidta, Householdera, czy
+opierająca się o rozkład $LU$), najszybciej odwraca podaną jej na wejściu
+macierz $A$, zmierzyliśmy czas ich działania dla macierzy losowych. Przedział
+wielkośći losowanych macierzy ustaliliśmy na $[10, 200]$ z krokiem $5$. Mogliśmy
+oprzeć się wyłącznie o wyniki dla losowo wygenerowanych danych, ze względu na to,
+że czas działania każdego z badanych algorytmów nie zależy od postaci i
+wewnętrznej struktury macierzy. Wyniki naszego doświadczenia obrazuje wykres z
+rysunku \textbf{4.1}.
+\begin{figure}[h!tb]
+\begin{center}
+\input{./Wykresy/timePlot.tex}
+\caption{Wkres zależności czasu odwracania macierzy od wielkości macierzy dla trzech metod.}
+\end{center}
+\end{figure}
+
+Patrząc na ten wykres można zaobserwować, że wszystkie metody działają w bardzo
+zbiżonym czasie, wykresy dla $GS$ i $HH$ wręcz nachodzą na siebie. Algorytm
+wykorzystujący rozkład $LU$ działa nieznacznie szybciej. Nie powinien nas dziwić
+taki wynik tego eksperymentu. Wszstkie te trzy metody bowiem mają złożoność
+$O(n^3)$.
