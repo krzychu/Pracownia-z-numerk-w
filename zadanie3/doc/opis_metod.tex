@@ -1,57 +1,57 @@
 \section{Opis metod}
-W rozdziale tym wytłumaczona została idea dekompozycji QR oraz LU macierzy oraz
-podane zostały metody do wyznaczaczania poszczególnych rozkładów, przy czym dla
-dekompozycji QR są to metody zwane \textit{metodą Grama-Schmidta} i
+W rozdziale tym wytłumaczymy ideę dekompozycji $QR$ oraz $LU$ macierzy oraz
+podane zostaną metody do wyznaczaczania poszczególnych rozkładów, przy czym dla
+dekompozycji $QR$ są to metody zwane \textit{metodą Grama-Schmidta} i
 \textit{metodą Householdera}.
 \subsection{Rozkład QR}
-Dekompozycja QR macierzy kwadratowej $A \in M_{n \times n}$ jest to rozkład
-macierzy A na dwie macierze kwadratowe $Q \in M_{n \times n}$ i $R \in M_{n
+Dekompozycja $QR$ macierzy kwadratowej $A \in M_{n \times n}$ jest to rozkład
+macierzy $A$ na dwie macierze kwadratowe $Q \in M_{n \times n}$ i $R \in M_{n
 \times n}$ takie, że:
 $$A=QR,$$
-przy czym Q jest macierzą ortogonalną ($QQ^T=I$), zaś R jest macierzą trójkątną
+przy czym $Q$ jest macierzą ortogonalną ($QQ^T=I$), zaś R jest macierzą trójkątną
 górną.
 
 Ciekawą własnością tej dekompozycji jest to, że isnieje ona dla dowolnej
 macierzy kwadratowej. Jeżeli przyjmiemy dodatkowo, że elementy diagonali
-macierzy R są wszystkie nieujemne, rozkład taki jest wyznaczony jednoznacznie.
+macierzy $R$ są wszystkie nieujemne, rozkład taki jest wyznaczony jednoznacznie.
 Dowód powyższej własności jest dowodem konstrukcjyjnym\footnote{Można go znależć
 na stronie http://www.math4all.in/public\_html/linear\%20algebra/proof8.5.11.html}
-i opiera sie o metodęorotgonalizacji Grama-Schmitda, której opis znajduje się w
-dalszej częśći sprawozdania.
+i opiera sie o metodę orotgonalizacji GS, której opis znajduje się w
+dalszej części sprawozdania.
 
-Istnieje również dekompozycja QR dla macierzy prostokątnych. Niech macierz
-$A \in M_{n \times n}$, $m \geq n$. Wówczas rozkładamy macierz A na macierz
+Istnieje również dekompozycja $QR$ dla macierzy prostokątnych. Niech macierz
+$A \in M_{n \times n}$, $m \geq n$. Wówczas rozkładamy macierz $A$ na macierz
 ortogonalną $Q \in M_{m \in m}$ i macierz trójkątną górną $R \in M_{m \in n}$.
-Jak można zauważyć, dolne $m-n$ wierszy macierzy R są zerowe, stosuje się więc
-podział macierzy Q i R na $R_1 \in M_{n \times n}$ i diw macierze posiadające
+Jak można zauważyć, dolne $m-n$ wierszy macierzy $R$ są zerowe, stosuje się więc
+podział macierzy $Q$ i $R$ na $R_1 \in M_{n \times n}$ i dwie macierze posiadające
 ortogonalne kolumny, mianowicie $Q_1 \in M_{m \times n}$ i $Q_2 \in M_{m, m-n}$.
 Zachodzi równość:
 $$A=QR=(Q_1, Q_2)=\begin{pmatrix} R_1 \\ 0 \end{pmatrix}=Q_1R_1.$$
-W dalszych rozważąniac ograniczymy się jednak do macierz kwadratowych.
+W dalszych rozważąniac ograniczymy się jednak do macierzy kwadratowych.
 \subsubsection{Metoda Grama-Schmidta}
-Jest to pierwsza rozważana przez nas metoda dekompozycji QR. Definiujemy
+Jest to pierwsza rozważana przez nas metoda dekompozycji $QR$. Definiujemy
 operator projekcji jako:
-$$proj_u(v)=\frac{<v,u>}{<u,u>}u,$$
-gdzie $<x,y>$ oznacza iloczyn skalarny wektorów x i y. Innymi słowy, projekcja
-to rzut wektora v na prostą rozpinaną przez wektor u. Danymi wejściowymi
+$$\mathrm{proj_u}(v)=\frac{<v,u>}{<u,u>}u,$$
+gdzie $<x,y>$ oznacza iloczyn skalarny wektorów $x$ i $y$. Innymi słowy, projekcja
+to rzut wektora $v$ na prostą rozpinaną przez wektor $u$. Danymi wejściowymi
 metody Grama-Schmidta są kolejne kolumny macierzy $A=[a_1,...,a_n]$.
 Oznaczamy przez ${u_k}$ i ${e_k}, 1 \leq k \leq n,$ następujące wektory:
-$$ u_k = a_k-\sum_{j=1}^{k-1} proj_{e_j}a_k, \hspace{2cm}
+$$ u_k = a_k-\sum_{j=1}^{k-1} \mathrm{proj_{e_j}a_k}, \hspace{2cm}
 e_k = \frac{u_k}{\|u_k\|}.$$
 Przekształcająć odpowiednio podane równości i kożystając z faktu, że
-$<e_k, a_k> = \|u_k\|$ i wektory $e_k$ są wektorami jednostkowymi dla
+$<e_k, a_k> = \|u_k\|$ i tego, żę wektory $e_k$ są wektorami jednostkowymi dla
 $1 \leq k \leq n$ otrzymujemy, że:
 $$ a_k = \sum_{i=1}^{k} <e_i,a_k>e_i.$$
-Powyższą równość możemu zapisać w postaci macierzowej $A=QR$, które są
-postaci jakiej oczekiwaliśmy. Macierz Q bowiem jest macierzą ortonormalną,
-zaś R górnotrójkątną i możemy je zapisać w postaci:
+Powyższą równość możemy zapisać w postaci macierzowej $A=QR$, które są
+postaci takiej, jakiej oczekiwaliśmy. Macierz $Q$ bowiem jest macierzą ortogonalną,
+zaś $R$ górnotrójkątną i możemy je zapisać w postaci:
 $$ Q = [e_1,...,e_n], \hspace{1cm} R = \begin{pmatrix} \langle\ e_1,a_1
 \rangle & \langle e_1,a_2\rangle & \langle e_1, a_3\rangle & \ldots \\ 0
 & \langle e_2, a_2\rangle & \langle e_2, a_3\rangle & \ldots \\ 0 & 0 &
 \langle e_3, a_3\rangle & \ldots \\ \vdots & \vdots & \vdots & \ddots
 \end{pmatrix}.$$
 \subsubsection{Metoda Householdera}
-Druga metoda rozkładu QR, którą pozanaliśmy, korzysta z odbić Housholdera.
+Druga metoda rozkładu $QR$, którą pozanaliśmy, korzysta z odbić Housholdera.
 Dla danego wektora $w$ \textbf{odbicie} (macierz) \textbf{Householdera}
 definiujemy jako:
 $$H=I-2ww^T.$$
@@ -61,9 +61,9 @@ macierzy $H^{-1}$ i $H^T$, w szczególności jest to więc przekształcenie
 ortogonalne. W badanej przez nas metodzie Hausholdera odbić tych używa się
 do przekształacania wektorów w taki sposób, aby wszystkie współrzędne,
 poza jedną, uległy wyzerowaniu. Niech więc $x$ będzie wektorem kolumnowym,
-a $e_1$ wektorem postaci $(1,0,...,0)^T$. Przez $u$ oznaczmy $u=x+\|x\|e_1$,
-$v=\frac{u}{\|u\|}$ oraz $Q=I-2vv^T$. Uzyskujemy wówczas, że macierz $Q$
-będącą odbiciem Householdera i wartość $Qx$ jest postaci $(\|x\|,0,...,0)^T$.
+a $e_1$ wektorem postaci $(1,0,...,0)^T$. Przez $u, v, Q$ oznaczmy odpowiednio $u=x+\|x\|e_1$,
+$v=\frac{u}{\|u\|}$ oraz $Q=I-2vv^T$. Uzyskujemy wówczas macierz $Q$
+będącą odbiciem Householdera i  widzimy, że wartość $Qx$ jest postaci $(\|x\|,0,...,0)^T$.
 To właśnie ten proces jest wykorzystyany do transformacji wejśćiowej
 macierzy A do macierzy górnotrójkątnej. W pierwszej kolejności mnożymy
 macierz A przez macierz Householdera $Q_1$ tak, aby wszystkie elementy
@@ -76,12 +76,12 @@ Aby operować na miecirzach tego samego rozmiaru przyjmujemy:
 $$Q_k=\begin{pmatrix} I_{k-1} & 0 \\ 0 & Q_k' \end{pmatrix}.$$
 Po powtórzeniu tego procesu n-krotnie, uzyskujemy:
 $$R=Q_{n-1}...Q_1A=QA.$$
-Q jako iloczyn macierzy ortagonalnych jest macierzą ortagonalną, R jest
+$Q$ jako iloczyn macierzy ortagonalnych jest macierzą ortogonalną, R jest
 macierzą górnotrójkątną, a wieć uzyskaliśmy to, czego oczekiwaliśmy, czyli
-rozkład QR macierzy A.
+rozkład $QR$ macierzy $A$.
 \subsection{Rozkład LU}
 Rozkład $LU$ macierzy polega na przedstawieniu $A$ jako iloczynu macierzy
 dolnotrójkątnej $L$ i górnotrójkątnej $U$. Dokładny opis postaci i metody
 uzysiwania tej dekompozycji został podany na wykładzie i można go znaleźć w
-odpowiadających mu notatkach. Warto jedynie zauważyć, że nie dla każdej
+odpowiadających mu notatkach. Warto jedynie podkreślić, że nie dla każdej
 macierzy taki rozkład istnieje.

@@ -1,6 +1,6 @@
 \select@language {polish}
 \contentsline {section}{\numberline {1\relax .\kern .5em }Wst\IeC {\k e}p}{2}
-\contentsline {section}{\numberline {2\relax .\kern .5em }Opis metod}{2}
+\contentsline {section}{\numberline {2\relax .\kern .5em }Opis metod}{3}
 \contentsline {subsection}{\numberline {2.1\relax .\kern .5em }Rozk\IeC {\l }ad QR}{3}
 \contentsline {subsubsection}{\numberline {2.1.1\relax .\kern .5em }Metoda Grama-Schmidta}{3}
 \contentsline {subsubsection}{\numberline {2.1.2\relax .\kern .5em }Metoda Householdera}{4}
