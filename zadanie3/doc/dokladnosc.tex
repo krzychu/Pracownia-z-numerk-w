@@ -1,8 +1,8 @@
 \section{Porównanie dokładności metod}
 Jeśli chodzi o badanie dokładności uzyskanych wyników sprawa nie jest już tak
-prosta. W zależności od tego, jaką struktrę ma macierz, analizowane przez nas
-algorytmy mogą zachowawać się różnie. Postanowiliśmy wiec przeprowadzić
-eksperymenty dla różnych rodzajów macierzy z zakresu wielkośći $[10, 200]$. Przypożądkujemy numer indentyfikujący
+prosta. W zależności od tego, jaką strukturę ma macierz, analizowane przez nas
+algorytmy mogą zachowywać się różnie. Postanowiliśmy wiec przeprowadzić
+eksperymenty dla różnych rodzajów macierzy z zakresu wielkości i $[10, 200]$. Przypożądkujemy numer indentyfikujący
 dany typ macierzy, aby uprościć dalsze rozważania. Mianowicie przez kolejne cyfry
 oznaczamy:
 \begin{myenumerate}
@@ -10,21 +10,25 @@ oznaczamy:
 \item macierz trójkątną,
 \item macierz Hilberta (jak wiemy jest to macierz źle uwarunkowana),
 \item macierz z dominującą przekątną,
-\item macierz, której wyznaczik jest bliski zeru,
+\item macierz, której wyznacznik jest bliski zeru,
 \item macierz, dla której jeden z minorów jest zerowy,
 \item macierz trójprzekątniową.
 \end{myenumerate}
 
 Pierwsze przeprowadzone przez nas badanie polegało na wykonaniu rozkładu $QR$
-obydwiema metodami i obliczeniu dla uzyskanych wyników wartośći wyrażenia:
+obydwiema metodami i obliczeniu dla uzyskanych wyników wartości wyrażenia:
 $$\mathrm{F}(QQ^T - I),$$
-gdzie $\mathrm{F}$ oznacza \textit{normę Frobeniusa} macierzy, którą definujemy
+gdzie $\mathrm{F}$ oznacza \textit{normę Frobeniusa} macierzy, którą definiujemy
 dla danej macierzy $A=(a_{ij})$ jako:
 $$F(A)=(\sum_{i=1}^{n} \sum_{j=1}^{n} a_{ij}^2)^\frac{1}{2}.$$
-Innymi słowy sprawdzamy, w jakim stopniu wyznaczona macierz $Q$ jest ortogonalna. Im większy
-współczynnik, tym obliczona macierz jest bardziej oddalona od porządanej. Częściowe wyniki zostały przedstwione
-w tabeli na rysunku \textbf{5.1}. Pełne dane można znaleźć w katalogu \textit{prog/testy}. Pierwszy wiersz tabeli 
-określa użytą metodę, drugi zaś wielkość macierzy. W pierwszej kolumnie znajdują się identyfikatory poszczególnych typów
+Innymi słowy sprawdzamy, w jakim stopniu wyznaczona macierz $Q$ jest ortogonalna.
+Im większy
+współczynnik, tym obliczona macierz jest bardziej oddalona od pożądanej.
+Częściowe wyniki zostały przedstawione
+w tabeli na rysunku \textbf{5.1}. Pełne dane można znaleźć w katalogu \textit{prog/testy}.
+Pierwszy wiersz tabeli
+określa użytą metodę, drugi zaś wielkość macierzy. W pierwszej kolumnie znajdują
+się identyfikatory poszczególnych typów
 macierzy.
 \begin{figure}[h!tb]
 \begin{center}
@@ -54,15 +58,21 @@ macierzy.
 \end{center}
 \end{figure}
 
-Analizując tę tabelę, można zaobserwować, że wartość badanego wspołczynnika nie zależy od typu macierzy, zależy
-zaś od jej wielkości. Dotyczy to zarówno algorytmu $HH$ jak i $GS$. Jednocześnie widzimy, że algorytm Householdera
-w tym przypadku sprawuje się lepiej, niekiedy nawet wartość współczynnika jest dla niego dwa rzędy niższa. 
+Analizując tę tabelę, można zaobserwować, że wartość badanego współczynnika nie
+zależy od typu macierzy, zależy
+zaś od jej wielkości. Dotyczy to zarówno algorytmu $HH$ jak i $GS$.
+Jednocześnie widzimy, że algorytm Householdera
+w tym przypadku sprawuje się lepiej, niekiedy nawet wartość współczynnika jest
+dla niego dwa rzędy niższa.
 
-Kolejny eksperymet również dotyczy wyznaczania rozkładu $QR$. Tym razem przyjrzymy się dla obydwu metod
+Kolejny eksperyment również dotyczy wyznaczania rozkładu $QR$. Tym razem
+przyjrzymy się dla obydwu metod
 i danej macierzy $A$ wartości wyrażenia:
 $$\mathrm{F}(A-QT).$$
-Tym samym chcemy się przekonać, jak bardzo rozkład $QR$ deformuje macierz wejściową $A$ w przypadku obu alorytmów
-i która z metod jest mniej dokładna. Częściowe wyniki uzyskane przy wykonywaniu tego zadania znajdują się w tabeli
+Tym samym chcemy się przekonać, jak bardzo rozkład $QR$ deformuje macierz
+wejściową $A$ w przypadku obu algorytmów
+i która z metod jest mniej dokładna. Częściowe wyniki uzyskane przy wykonywaniu
+tego zadania znajdują się w tabeli
 \textbf{5.2}.
 \begin{figure}[h!tb]
 \begin{center}
@@ -91,17 +101,24 @@ i która z metod jest mniej dokładna. Częściowe wyniki uzyskane przy wykonywa
 \caption{Tabela dla wyrażenia $\mathrm{F}(A-QT)$, jednostka: $10^{-12}$.} 
 \end{center}
 \end{figure}
-Tak jak w poprzednim przypadku, tak i tutaj wartość wyznacznika dla obydwu metod w niewielkim stopniu
-zależy od typu badanej macierzy, zależy zaś w podobny sposób od wielkośći macierzy. Na tym nie kończą
-się zaobserwowane podobieństwa. Ponownie bardziej efektowny okazuje się być algorytm Householdera, przy
-czym odpowiednie wielkości normy różnią się o jeden bądź dwa rzęd wielkości dla większych macierzy. Skupimy
+Tak jak w poprzednim przypadku, tak i tutaj wartość wyznacznika dla obydwu
+metod w niewielkim stopniu
+zależy od typu badanej macierzy, zależy zaś w podobny sposób od wielkości
+macierzy. Na tym nie kończą
+się zaobserwowane podobieństwa. Ponownie bardziej efektowny okazuje się być
+algorytm Householdera, przy
+czym odpowiednie wielkości normy różnią się o jeden bądź dwa rzędy wielkości
+dla większych macierzy. Skupimy
 się więc w dalszych rozważaniach na metodzie \textit{HH}.
 
-Zajmijmy się teraz porównaniem algorytmu \textit{HH} z \textit{LU} pod względem dokładności wyznaczanie dla
-danej macierzy $A$ jej odwrotności. W tym celu będziemy obserwować, jak dla każdej z metod przy przyjęciu kolejnych
+Zajmijmy się teraz porównaniem algorytmu \textit{HH} z \textit{LU} pod względem
+dokładności wyznaczania dla
+danej macierzy $A$ jej odwrotności. W tym celu będziemy obserwować, jak dla
+każdej z metod przy przyjęciu kolejnych
 podanych wcześniej typów macierzy zachowuje się wartość wyrażenia:
 $$\mathrm{F}(AA^{-1} - I).$$
-Rysunek \textbf{5.3} przedstawia tabele z częścią wyników przeprowadzonego eksperymentu. POzostałe dane można znaleźć, tak jak dla wcześniej
+Rysunek \textbf{5.3} przedstawia tabele z częścią wyników przeprowadzonego
+eksperymentu. Pozostałe dane można znaleźć, tak jak dla wcześniej
 zaprezentowanych tabel w katalogu \textit{prog/tests}.
 \begin{figure}[h!tb]
 \begin{center}
@@ -131,20 +148,35 @@ zaprezentowanych tabel w katalogu \textit{prog/tests}.
 \end{center}
 \end{figure}
 
-W tym przypadku widać, w jak dużym stopniu dokładność wyznaczonej macierzy odwrotnej zależy od struktury danej macierzy i od jej rozmiaru. Dla macierzy losowych, z dominującą przekątną,z wyznacznikiem bliskim zeru i trójdiagonalnych uzyskujemy satysfakcjonująće wartośći wyznacznika dla obydwu metod. Są on bowiem rzędo od
+W tym przypadku widać, w jak dużym stopniu dokładność wyznaczonej macierzy
+odwrotnej zależy od struktury danej macierzy i od jej rozmiaru. Dla macierzy
+losowych, z dominującą przekątną, z wyznacznikiem bliskim zeru i
+trójdiagonalnych uzyskujemy satysfakcjonujące wartości wyznacznika dla obydwu
+metod. Są one bowiem rzędu od
 $10^{-12}$ do $10^{-9}$.
-Nie możemy tego jednak powiedzieć w przypadku macierzy trójkątnych i macierzy Hilberta. Tutaj wartość wyrażenia sięga nawet $10^{30}$. Uzyskane odwrotnośći są więc
-całkowicie niepoprawne. Obie metody zachowują się odmiennie dla macierzy z serowym minorem. Metoda \textit{LU} dlaje nam wartość wyznacznika rzędu $10^{2}$, zaś metoda
-\textit{HH} zacowuje się definitywnie lepiej, generuje bowiem błąd równy około $10^{-13}$. Wynika to z tego, że w metodzie \textit{LU} dzielimy przez wyznaczniki
-minorów gównych, co powoduje dzielenie przez liczbę bliską zeru. 
+Nie możemy tego jednak powiedzieć w przypadku macierzy trójkątnych i macierzy
+Hilberta. Tutaj wartość wyrażenia sięga nawet $10^{30}$. Uzyskane odwrotności są
+więc
+całkowicie niepoprawne. Obie metody zachowują się odmiennie dla macierzy z
+zerowym minorem. Metoda \textit{LU} daje nam wartość wyznacznika rzędu $10^{2}$,
+zaś metoda
+\textit{HH} zachowuje się definitywnie lepiej, generuje bowiem błąd równy około
+$10^{-13}$. Wynika to z tego, że w metodzie \textit{LU} dzielimy przez
+wyznaczniki
+minorów głównych, co powoduje dzielenie przez liczbę bliską zeru.
 
-Dokładnośći, z wyjątkiem macierzy z zerowym minorem głównym, są do siebie zbliżone dla obu metod. Możn więc być skłonnym do stwierdzenia, że lepiej jest wybrać
+Dokładności, z wyjątkiem macierzy z zerowym minorem głównym, są do siebie
+zbliżone dla obu metod. Można więc być skłonnym do stwierdzenia, że lepiej jest
+wybrać
 algorytm Householdera, aby uniknąć tak dużych błędów dla macierzy typu \textbf{6}.
 
-Ostatnim ekseprymentem, jaki omówimy, polega na porównaniu metody Householdera i metody $LU$ pod względem dokładnośći wyznaczania macierzy odwrotnej,
-porównując je z wynikami generowanymi przez program \textit{ocave}. Mianowicie, mając daną macierz $A$ przyjrzymy się wartośći wyrażenia:
-$$\textrm{F}(A^{-1} - Oc),$$
-gdzie $Oc$ jest macierzą odwrotną generowaną przez wsponiany powyżej program. Tabela przedstawiona na rysunku \textbf{5.4} stanowi prezentację częściowych wyników.
+Ostatnim eksperymentem, jaki omówimy, polega na porównaniu metody Householdera
+i metody $LU$ pod względem dokładności wyznaczania macierzy odwrotnej,
+porównując je z wynikami zgromadzonymi w bibliotece \textit{numpy}. Mianowicie,
+mając daną macierz $A$ przyjrzymy się wartości wyrażenia:
+$$\textrm{F}(A^{-1} - N),$$
+gdzie $N$ jest macierzą odwrotną zaczerpniętą z podanej wyżej biblioteki. Tabela
+przedstawiona na rysunku \textbf{5.4} stanowi prezentację częściowych wyników.
 \begin{figure}[h!tb]
 \begin{center}
 \begin{tabular}{|l||c|c|c||c|c|c|}
@@ -169,17 +201,19 @@ gdzie $Oc$ jest macierzą odwrotną generowaną przez wsponiany powyżej program
 \textbf{7} & $1.51 \cdot 10^{-15}$ & $0.12 \cdot 10^{-12}$ & $33.25 \cdot 10^{-12}$ & $1.06 \cdot 10^{-15}$ & $0.56 \cdot 10^{-12}$ & $45.77 \cdot 10^{-12}$ \\
 \hline
 \end{tabular}
-\caption{Tabela dla wyrażenia $\mathrm{F}(A^{-1}-Oc)$.} 
+\caption{Tabela dla wyrażenia $\mathrm{F}(A^{-1}-N)$.} 
 \end{center}
 \end{figure}
 
-Podobnie jak w poprzednim przypadku, widzimy, że dla typów macierzy identyfikowanych przez liczby \textbf{1}, \textbf{4}, \textbf{5} i \textbf{7}
-otrzymujemy odwrotności bliskie tym, które geneuje \textit{numpy}, zwłaszcza dla macierzy z dominującą przekątną (błąd jest rzędu $10^{-20}$).
-Katastrofalne wyniki uzyskujemy dla macierzy trójkątnych i Hilberta. Jak można zauważyć, wartość badanego wyrażenia jest w tym przypadku ogromna,
-uzyskane odwrotnośći są błędne. Różnica między metodami pojawia się ponownie w przypadku macierzy z zerowym minorem głównym. Wyniki te różnią się 
-$10^{12}$-krotnie na kożyść metody Householdera. Możemy stwierdzić więc, że badane przez nas metody nie są idealne i nie radzą sobie z
+Podobnie jak w poprzednim przypadku, widzimy, że dla typów macierzy
+identyfikowanych przez liczby \textbf{1}, \textbf{4}, \textbf{5} i \textbf{7}
+otrzymujemy odwrotności bliskie tym, które daje nam \textit{numpy}, zwłaszcza
+dla macierzy z dominującą przekątną (błąd jest rzędu $10^{-20}$).
+Katastrofalne wyniki uzyskujemy dla macierzy trójkątnych i Hilberta.
+Jak można zauważyć, wartość badanego wyrażenia jest w tym przypadku ogromna,
+uzyskane odwrotności są błędne. Różnica między metodami pojawia się ponownie w
+przypadku macierzy z zerowym minorem głównym. Wyniki te różnią się
+$10^{12}$-krotnie na korzyść metody Householdera. Możemy stwierdzić więc, że
+badane przez nas metody nie są idealne i nie radzą sobie z
 "trudnymi" macierzami. Troszkę efektywniejszą zdaje się być metoda Householdera.
- 
 
-
- 
