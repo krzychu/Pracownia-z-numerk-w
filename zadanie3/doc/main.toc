@@ -10,4 +10,4 @@
 \contentsline {subsection}{\numberline {3.2\relax .\kern .5em }Rozk\IeC {\l }ad LU}{5}
 \contentsline {section}{\numberline {4\relax .\kern .5em }Por\IeC {\'o}wnanie szybko\IeC {\'s}ci dzia\IeC {\l }ania metod}{6}
 \contentsline {section}{\numberline {5\relax .\kern .5em }Por\IeC {\'o}wnanie dok\IeC {\l }adno\IeC {\'s}ci metod}{6}
-\contentsline {section}{\numberline {6\relax .\kern .5em }Podsumowanie}{8}
+\contentsline {section}{\numberline {6\relax .\kern .5em }Podsumowanie}{10}
