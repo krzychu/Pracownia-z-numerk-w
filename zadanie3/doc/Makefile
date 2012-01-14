@@ -1,2 +1,3 @@
 all:
-	pdflatex main.tex
+	pdflatex sprawozdanie.tex
+	pdflatex sprawozdanie.tex

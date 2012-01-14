@@ -1,0 +1,14 @@
+\select@language {polish}
+\contentsline {section}{\numberline {1\relax .\kern .5em }Wst\IeC {\k e}p}{2}
+\contentsline {section}{\numberline {2\relax .\kern .5em }Opis metod}{3}
+\contentsline {subsection}{\numberline {2.1\relax .\kern .5em }Rozk\IeC {\l }ad QR}{3}
+\contentsline {subsubsection}{\numberline {2.1.1\relax .\kern .5em }Metoda Grama-Schmidta}{3}
+\contentsline {subsubsection}{\numberline {2.1.2\relax .\kern .5em }Metoda Householdera}{4}
+\contentsline {subsection}{\numberline {2.2\relax .\kern .5em }Rozk\IeC {\l }ad LU}{5}
+\contentsline {section}{\numberline {3\relax .\kern .5em }Znajdowanie macierzy odwrotnej}{5}
+\contentsline {subsection}{\numberline {3.1\relax .\kern .5em }Rozk\IeC {\l }ad QR}{5}
+\contentsline {subsection}{\numberline {3.2\relax .\kern .5em }Rozk\IeC {\l }ad LU}{5}
+\contentsline {section}{\numberline {4\relax .\kern .5em }Por\IeC {\'o}wnanie szybko\IeC {\'s}ci dzia\IeC {\l }ania metod}{6}
+\contentsline {section}{\numberline {5\relax .\kern .5em }Por\IeC {\'o}wnanie dok\IeC {\l }adno\IeC {\'s}ci metod}{6}
+\contentsline {section}{\numberline {6\relax .\kern .5em }Podsumowanie}{10}
+\contentsline {section}{Literatura}{11}

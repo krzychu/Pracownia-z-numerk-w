@@ -18,7 +18,8 @@
   Przebieg:
 
     Aby skompilować program, należy wydać następujące polecenia:
-      - cd build
+      - mkdir build (jeśli katalog build jeszcze nie istnieje)
+			- cd build
       - cmake ..
       - make
 
@@ -29,3 +30,8 @@
 2. Testy
   
   Aby wygenerować dane trzeba w katalogu tests wydać polecenie 'make'
+
+3. Sprawozdanie
+  
+  W celu skompilowania sprawozdania w katalogu doc trzeba wydać polecenie `make`
+
