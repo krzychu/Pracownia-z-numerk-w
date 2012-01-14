@@ -1,1 +1,20 @@
 \section{Podsumowanie}
+Wkonane przez nas zadanie pozwoliło nam zapoznać się z metodami wykonywania rozkładu
+$QR$, który wykorzystaliśmy do odwracania macierzy kwadratowych. Ponadto zaobserwowaliśmy,
+że nie nie zawsze otrzymany wynik przy pomocy badanych metod jest bliski wynikowi oczekiwanemu.
+
+Zbierzmy teraz zebrane przez nas obserwacje i wnioski. Przede wszystkim przypomnijmy, że wszystkie
+badane perzez nas metody miały podobny czas działania, który nie zależy od struktury macierzy.
+Wynika to z prostego faktu, zarówno metody \textit{HH}, \textit{GS}, jak i \textit{LU} mają taką
+samą złożoność obliczeniową równą $O(n^3)$. W rozdziale \S5 opisaliśmy przeprowadzone przez nas
+badania nad dokładnością metod, która okazuje się zależeć nie tylko od wielkości macierze, ale
+także od jej struktury. Jeśli chodzi o rozkład $QR$, metoda \textit{HH} okazała się lepsza od
+metody \textit{GS}. Wobec tego to właśnie tę metodę zestawiliśmy z algorytmam wykorzystującym
+rozkłas $LU$ i z programem \textit{octave}. Dokładności uzyskane za pomocą metod \textit{HH} i
+\textit{LU} okazały się zbliożone dla wszystkich badanych rodzajów macierzy, oprócz tych z zerującym
+się monorem głównym. W tym przypadku ewidentnie dokładniejsza okazała się być metoda Householdera.
+Zauważyliśmy ponadto, że obydwa algorytmy nie radzą sobie z odwracaniem macierzy Hilberta, błędy
+uzyskane były katastrofalnie duże. Podobne obserwacje uzyskaliśmy prz porównywaniu naszych metod z
+programem \textit{octave}. Satysfakcjonujące wyniki otrzymaliśmy dla macierzy losowych, z dominującą
+przekątną, o wyznaczniku bliskim zeru i trójdiagonalnych. Ponownie metoda \textit{HH} dała lepsze wyniki dla
+macierzy typu \textbf{6}. Liczony wskażnik był dla nich około $10^{12}$ razy mniejszy.
