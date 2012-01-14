@@ -1,1 +1,45 @@
-\section{Wstęp}Macierze to sposób reprezentacji danych i przekształceń, z którego w dzisiajeszychczasach nie korzystają wyłącznie matematycy. Szeroko stosowane są onew informatyce, przykładwo w gafice komputerowej. Ważne jest aby wszystkieobliczenia macierzowe realizować w sposób możliwie najszybszy i najdokładniejszy.Wiele opercji znacznie upraszcza się, jeśli macierz przedstawimy jakoiloczyn macierzy prostszej postaci, dla których znamy algorytmy pozwalającenam w efektywny sposób dokonywać obliczenia. Taki rozkład macierzy stanowidekompozycja $QR$, która przedstawia macierz jako iloczyn macierzy oragonalneji macierzy trójkątnej górnej. Jak się okazuje, istnieją różne algorytmy,wyznaczające taki rozkład, który jest cenny, ze względu na szerokie zastosowanie.Głównym celem naszego zadania jest opracowanie metod służących doznajdowania dekompozycji $QR$. Skupiamy naszą uwagę na dwóch algorytmach: \textit{metodzie Grama-Schmidta},oznaczanej jako \textit{GS}i \textit{metodzie Householdera},którą bedziemy skrótowo okrślać jako \textit{HH}. Stawiamy przed sobą problem, jak wyznaczyćmacierz odwrotną mając dany rozkład $QR$ macierzy. Dodatkowo postaramy sięporównać pod wględem dokładności i szybkości oba algorytmy,zestawiając je także z algorytmem wyznaczania odwrotnośći przy użyciudekompozycji LU, którą poznaliśmy podczas tegorocznych zajęć.Rozdział \S2 zawiera definicje poszczególnych dekompozycji. Również w jegoobrębie znajduje się opis wykorzystanych przez nas metod Grama-Schmidta i Householdera.Kolejna część zawiera opis sposobu, w jaki mając daną dekompozycję $QR$uzyskać odwrotność wejściowej macierzy. Jak się okaże, jest to bardzo prostew realizacji. Rozdział \S4 stanowi porównanie szbkośći znajdowaniaodwrotności za pomocą rozkładu LU oraz QR z wykorzystaniem obydwuwymienionych powyżej metod. W następnym rozdziale zaś, zamieściliśmyrelację z doświadczeń, które pozwoliły nam zbadać dokładność wszystkichtrzech wspomnianych sposobów odwracania macierzy. Aby zralizowaćtę część zadania, wykorzystaliśmy nie tylko macierze generowane losowo, aletakże zrobiliśmy próby dla macierzy o szczególnych właściwośćiach,przykładowo dla macierzy źle uwarunkowanych, czy macierzy trójdiagonalnych.Porównaliśmy nasze algorytmy także z wynikami jakie generuje \textit{Octave}.Dane, które zostały zgromadzone podczas badań, postaraliśmy sięumiejętnie przedstawić przy pomocy wykresów i tabel.Osatnia część sprawozdania to swoiste zebranie wniosków i obserwacjinagromadzonych podczas realizacji naszego zadania.Implementację przedstawionych metod i algorytmów można odnaleźć w katalogu \textit{prog}.
+\section{Wstęp}
+Macierze to sposób reprezentacji danych i przekształceń, z którego w dzisiejszych
+czasach nie korzystają wyłącznie matematycy. Szeroko stosowane są one
+w informatyce, przykładowo w gafice komputerowej. Ważne jest aby wszystkie
+obliczenia macierzowe realizować w sposób możliwie najszybszy i najdokładniejszy.
+Wiele operacji znacznie upraszcza się, jeśli macierz przedstawimy jako
+iloczyn macierzy prostszej postaci, dla których znamy algorytmy pozwalające
+nam w efektywny sposób dokonywać obliczenia. Taki rozkład macierzy stanowi
+dekompozycja $QR$, która przedstawia macierz jako iloczyn macierzy ortogonalnej
+i macierzy trójkątnej górnej. Jak się okazuje, istnieją różne algorytmy,
+wyznaczające taki rozkład, który jest cenny, ze względu na szerokie zastosowanie.
+
+Głównym celem naszego zadania jest opracowanie metod służących do
+znajdowania dekompozycji $QR$. Skupiamy naszą uwagę na dwóch algorytmach: \textit{metodzie Grama-Schmidta},
+oznaczanej jako \textit{GS}
+i \textit{metodzie Householdera},
+którą będziemy skrótowo określać jako \textit{HH}. Stawiamy przed sobą problem, jak wyznaczyć
+macierz odwrotną mając dany rozkład $QR$ macierzy. Dodatkowo postaramy się
+porównać pod względem dokładności i szybkości oba algorytmy,
+zestawiając je także z algorytmem wyznaczania odwrotności przy użyciu
+dekompozycji LU, którą poznaliśmy podczas tegorocznych zajęć.
+
+Rozdział \S2 zawiera definicje poszczególnych dekompozycji. Również w jego
+obrębie znajduje się opis wykorzystanych przez nas metod Grama-Schmidta i Householdera.
+Kolejna część zawiera opis sposobu, w jaki mając daną dekompozycję $QR$
+uzyskać odwrotność wejściowej macierzy. Jak się okaże, jest to bardzo proste
+w realizacji. Rozdział \S4 stanowi porównanie szybkości znajdowania
+odwrotności za pomocą rozkładu LU oraz QR z wykorzystaniem obydwu
+wymienionych powyżej metod. W następnym rozdziale zaś, zamieściliśmy
+relację z doświadczeń, które pozwoliły nam zbadać dokładność wszystkich
+trzech wspomnianych sposobów odwracania macierzy. Aby zrealizować
+tę część zadania, wykorzystaliśmy nie tylko macierze generowane losowo, ale
+także zrobiliśmy próby dla macierzy o szczególnych właściwościach,
+przykładowo dla macierzy źle uwarunkowanych, czy macierzy trójdiagonalnych.
+Porównaliśmy nasze algorytmy także z wynikami jakie generuje biblioteka \textit{numpy}.
+Dane, które zostały zgromadzone podczas badań, postaraliśmy się
+umiejętnie przedstawić przy pomocy wykresów i tabel.
+Ostatnia część sprawozdania to swoiste zebranie wniosków i obserwacji
+nagromadzonych podczas realizacji naszego zadania.
+
+Implementację przedstawionych metod i algorytmów można odnaleźć w katalogu \textit{prog}.
+
+
+
+

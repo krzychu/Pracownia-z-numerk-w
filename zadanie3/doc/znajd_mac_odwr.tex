@@ -1,1 +1,31 @@
-\section{Znajdowanie macierzy odwrotnej}\subsection{Rozkład QR}Załóżmy, że mamy już obliczony rozkład macierzy $A=QR$. Wobec tegoodwrotność danej macierzy, możamy obliczyć wykorzystując tożsamość:$$A^{-1}=(QR)^{-1}= R^{-1}Q^{-1}.$$Wystarczy więc, że obliczymy osobno odwrotnośći macierzy ortogonalnej $Q$ igórnotrójkątnej $R$. Znaleznienie odwrotności macierzy $Q$ jest zadaniemtrywialnym. Wynika to z tego, że jest to macierz ortogonalna iwobec czego jej odwrtotność to transpozycja$Q^{-1}=Q^{T}$. Zadanie to sprowadza się więc do zamiany wierszy zkolumnami.Więcej, ale wciąż niewiele, trudnośći przysparza nam znalezienie odwrotnościmacierzy górnotrójkątej $R$. Oznaczmy przez $r_{ij}$ elementy macierzy $R$,zaś $x_ij$ elementy jej odwrotnośći, $1 \leq i,j \leq n$. Wówczas elementymacierzy $R^{-1}$ możemy obliczyć w następujący sposób:$$ x_{ij}=\begin{cases}0, & \text{jeśli } j<i \\[8pt]\displaystyle \frac{1}{r_{ij}}, & \text{jeśli } i=j \\[8pt]\displaystyle -\frac{\sum_{k=0}^{j-i}a_{i,i+k}x_{i+k,j}}{a_{ii}}, & \text{jeśli } j>i, \end{cases}$$co wynika z rozwiązania układu równań $RR^{-1}=I$.\subsection{Rozkład LU}Jeżeli mamy rozkład $LU$ macierzy to, podobnie jak dla dekompozycji $QR$,wykorzystujemy wzór na odwrotność iloczynu macierzy. Stąd $A^{-1}=U^{-1}L^{-1}$,wystarczy więc umieć odwracać macierze trójkątne. To już jednak umiemy, odwróciliśmybowiem macierz $R$ z poprzedniego podrozdziału. Odwrotność macierzy dolnotrójkątnejuzyskuje się analognicznie do górnotrójkątnej.
+\section{Znajdowanie macierzy odwrotnej}
+\subsection{Rozkład QR}
+Załóżmy, że mamy już obliczony rozkład macierzy $A=QR$. Wobec tego
+odwrotność danej macierzy, możemy obliczyć wykorzystując tożsamość:
+$$A^{-1}=(QR)^{-1}= R^{-1}Q^{-1}.$$
+Wystarczy więc, że obliczymy osobno odwrotności macierzy ortogonalnej $Q$ i
+górnotrójkątnej $R$. Znalezienie odwrotności macierzy $Q$ jest zadaniem
+trywialnym. Wynika to z tego, że jest to macierz ortogonalna i
+wobec czego jej odwrotność to transpozycja
+$Q^{-1}=Q^{T}$. Zadanie to sprowadza się więc do zamiany wierszy z
+kolumnami.
+
+Więcej, ale wciąż niewiele, trudności przysparza nam znalezienie odwrotności
+macierzy górnotrójkątej $R$. Oznaczmy przez $r_{ij}$ elementy macierzy $R$,
+zaś $x_ij$ elementy jej odwrotności, $1 \leq i,j \leq n$. Wówczas elementy
+macierzy $R^{-1}$ możemy obliczyć w następujący sposób:
+$$ x_{ij}=
+\begin{cases}
+0, & \text{jeśli } j<i \\[8pt]
+\displaystyle \frac{1}{r_{ij}}, & \text{jeśli } i=j \\[8pt]
+\displaystyle -\frac{\sum_{k=0}^{j-i}a_{i,i+k}x_{i+k,j}}{a_{ii}}, & \text{jeśli } j>i, 
+\end{cases}
+$$
+co wynika z rozwiązania układu równań $RR^{-1}=I$.
+\subsection{Rozkład LU}
+Jeżeli mamy rozkład $LU$ macierzy to, podobnie jak dla dekompozycji $QR$,
+wykorzystujemy wzór na odwrotność iloczynu macierzy. Stąd $A^{-1}=U^{-1}L^{-1}$,
+wystarczy więc umieć odwracać macierze trójkątne. To już jednak umiemy, odwróciliśmy
+bowiem macierz $R$ z poprzedniego podrozdziału. Odwrotność macierzy dolnotrójkątnej
+uzyskuje się analogicznie do górnotrójkątnej.
+
